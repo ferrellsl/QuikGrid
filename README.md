@@ -29,6 +29,6 @@ Double-click the Visual Studio Solution file in the QuikGrid sub-folder and buil
 
 FOR QUESTIONS or COMMENTS:
 
-I can be reached at: sferrellblue <at/> yahoo.com if you have any questions or comments.
+I can be reached at: sferrellblue >at< yahoo.com if you have any questions or comments.
 
 
