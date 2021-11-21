@@ -42,3 +42,6 @@ I can be reached at: sferrellblue >at< yahoo.com if you have any questions or co
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz5.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz6.png?raw=true)
+
