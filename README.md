@@ -1,4 +1,4 @@
-# QuikGrid
+# QuikGrid v5.4
 Contour mapping and 3D surface modeling app
 
 This repo is for QuikGrid, the application originally developed by John Coulthard at https://www.galiander.ca/quikgrid/
