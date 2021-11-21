@@ -1,7 +1,7 @@
 # QuikGrid v5.4
 Contour mapping and 3D surface modeling app
 
-This repo is for QuikGrid, the application originally developed by John Coulthard at https://www.galiander.ca/quikgrid/
+This repo is for QuikGrid, the Windows-based application originally developed by John Coulthard at https://www.galiander.ca/quikgrid/
 
 This is the full Windows application including the HelpFile in CHM format, not the command-line grid generation app, although it incorporates some of the command-line grid generation code within the Windows app itself.  The gridding alogrithm, also referred to by some coders as QuikGrid, can be found in various other repos for command-line use and for use within python scripts.  The app in this repo is the complete Windows application for contouring, gridding, and 3D mapping.  It supports several output formats such as DXF and VRML.  Input formats include Surfer grid files, ASCII XYZ files, NOAA LAT/LON files, Submetrix SXP files, and DCA files.
 
