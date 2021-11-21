@@ -17,7 +17,7 @@ The code has now been moved over to Visual Studio 2019 and I decided it was time
 
 KNOWN BUGS:  
 
-1.  If the user tries to access the help menu from within QuikGrid after opening a data file or a grid file, they'll receive an error message that help isn't available.  The workaround for this is to open the help file from within QuikGrid  BEFORE importing a dataset or grid file.  Help will then function properly for the rest of your session even if you choose to close and re-open the Help file.  Another option is to just double-click on the QuikGrid.chm file whenever you need it.  I'm unsure why this happens and haven't been motivated enough to find the cause and fix it.
+1.  If the user tries to access the help menu from within QuikGrid after opening a data file or a grid file, they'll receive an error message that help isn't available.  The workaround for this is to open the help file from within QuikGrid  BEFORE importing/loading a dataset or grid file.  Help will then function properly for the rest of your session even if you choose to close and re-open the Help file.  Another option is to just double-click on the QuikGrid.chm file whenever you need it.  I'm unsure why this happens and haven't been motivated enough to find the cause and fix it.
 
 2.  On some systems, QuikGrid refuses to run unless it has been configured to run under "Windows 8 Compatibility Mode".  I'm unsure why this occurs, but after running it successfully in compatibility mode, you can go back and set it to run natively and it will continue to run properly thereafter.
 
