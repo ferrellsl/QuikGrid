@@ -34,3 +34,10 @@ FOR QUESTIONS or COMMENTS:
 I can be reached at: sferrellblue >at< yahoo.com if you have any questions or comments.
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz2.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz3.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
+
