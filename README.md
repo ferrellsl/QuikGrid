@@ -23,6 +23,6 @@ KNOWN BUGS:
 
 BUILDING:
 
-Double-click the solution file and build the EXE.  This app is a Microsoft MFC application so building a native Linux or MacOS version is probably out of the question. 
+Double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft MFC application so building a native Linux or MacOS version is probably out of the question. 
 
 
