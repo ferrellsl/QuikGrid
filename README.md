@@ -13,6 +13,8 @@ Porting to 64-bit was mostly straightforward.  I had to modify all the windowing
 
 I initially looked for tools that would simply translate or convert the old HLP file into a CHM file, but I wasn't successful in finding anything that would work and Microsoft's HTML Workshop would continually crash every time I attempted to read the HLP file.  So eventually I found an app that would de-compile the HLP file into its respective components (http://download.jgsoft.com/helpscribble/helpdc21.zip). I was then able to import these components into an application called HelpScribble (https://www.helpscribble.com/). HelpScribble took the de-compiled HLP file components and generated a working CHM file.  Everyting imported just fine into HelpScribble except for the Index Links which I had to go through individually and manually rebuild.  That was rather tedious and took the better part of 12 hours.
 
+I have since found an application called HelpNDoc (https://www.helpndoc.com/) that's free for personal use that will import HLP files and generate CHM with zero effort.
+
 The code has now been moved over to Visual Studio 2019 and I decided it was time to put this release on github as John and I are not young men anymore.  We're both retired but I won't divulge our ages!  LOL!
 
 KNOWN BUGS:  
