@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE"
+ content="text/html; charset=windows-1252">
+  <title></title>
+  <meta name="GENERATOR" content="OpenOffice.org 1.1.4  (Win32)">
+  <meta name="AUTHOR" content="John Coulthard">
+  <meta name="CREATED" content="20030524;10332107">
+  <meta name="CHANGEDBY" content="John Coulthard">
+  <meta name="CHANGED" content="20050421;17481274">
+</head>
+<body dir="ltr" lang="en-US">
+<h1><a name="mozTocId147064"></a><font face="Times New Roman, serif">QuikGrid
+Internals Documentation </font>
+</h1>
+<p><font face="Times New Roman, serif">Copyright (C) 2005 by John
+Coulthard. </font>Permission is granted to copy, distribute and/or
+modify this document under the terms of the GNU Free Documentation
+License, Version 1.1 or any later version published by the Free
+Software
+Foundation; A copy of the license is included in the file fdl.txt or
+can be obtained from the Free Software Internet site at
+http://www.fsf.org/licensing/licenses/fdl.txt . <br>
+</p>
+<p><font face="Times New Roman, serif">Revised: June 22, 2005<br>
+</font></p>
+<p style="margin-bottom: 0cm;"><!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+</p>
+<div style="margin-left: 40px;"><a
+ href="Internals%20documentation.html#mozTocId478644">Introduction</a> <br>
+<a href="Internals%20documentation.html#mozTocId971997">QuikGrid
+(Winmain) </a><br>
+<a href="Internals%20documentation.html#mozTocId176172">Loaddata</a> <br>
+<a href="Internals%20documentation.html#mozTocId879546">Scaling to the
+Windows World </a><br>
+<a href="Internals%20documentation.html#mozTocId294962">Centering and
+zooming the display</a> <br>
+<a href="Internals%20documentation.html#mozTocId726096">Painting the
+display.</a><br>
+<a href="Internals%20documentation.html#mozTocId21805">Paint2dRectangle</a>
+<br>
+<a href="Internals%20documentation.html#mozTocId517667">Paint3dCube</a>
+<br>
+<a href="Internals%20documentation.html#mozTocId83848">Grid Resolution </a><br>
+<a href="Internals%20documentation.html#mozTocId727184">Xpand (Grid
+generation)</a><br>
+<a href="Internals%20documentation.html#mozTocId515382">Xpand Algorithm</a>
+<br>
+<a href="Internals%20documentation.html#mozTocId750479">Xpand Speed
+considerations: </a><br>
+<a href="Internals%20documentation.html#mozTocId845089">Grid Generation
+Artifacts</a> <br>
+<a href="Internals%20documentation.html#mozTocId130163">Contour
+(Contour line generation)</a> <br>
+<a href="Internals%20documentation.html#mozTocId521987">Paintcon</a><br>
+<a href="#HelpFile">Help Facility</a>&nbsp; <br>
+</div>
+<ol>
+  <ol>
+    <ol>
+    </ol>
+  </ol>
+</ol>
+<h2><a name="mozTocId478644"></a><font face="Times New Roman, serif"><font
+ size="5"><b>Introduction</b></font></font></h2>
+<p><font face="Times New Roman, serif">I initially wrote QuikGrid as
+an exercise to learn C++ programming under Windows. It was
+implemented and has been maintained using Borland C++ compilers, most
+recently version 5.0B (1996). My primary source of information for
+the Windows programming environment (API) has been from the books
+published by Petzold. My use of classes is primarily to simplify
+memory management. The code does not make use of any Windows Object
+Oriented classes like the MS MFC or Borland's OWL.&nbsp; QuikGrid
+consists of approximately 37 separate source (.cpp) files with
+associated .h files, etc. Originally the program was called “Surface”
+and you will occasionally find references to surface in the code
+(e.g. surface.ico is the icon for QuikGrid). </font>
+</p>
+<p><font face="Times New Roman, serif">The programming style varies
+as I have been learning C++ as I go along. My many years of
+experience with the FORTRAN language shows through. (The contouring
+and grid expansion routines are originally translations of FORTRAN
+code.) Also I tended to experiment with different techniques as I
+developed the code. </font>
+</p>
+<p><font face="Times New Roman, serif">The contouring and grid
+expansion routines have been distributed as free software under the
+GNU Lesser GPL license. They are available from my web site
+</font><a href="http://www.perspectiveedge.com/"><font
+ face="Times New Roman, serif">www.perspectiveedge.com</font></a>
+<font face="Times New Roman, serif">. That is the more appropriate
+source code to download if you are only interested in one of those
+routines. The code has been compiled and tested under Linux and I have
+a report that it compiles under MS VC.&nbsp; </font>
+</p>
+<p><font face="Times New Roman, serif"><b>quikgrid.cpp</b> implements
+<b>Winmain</b>. The <b>dialog boxes</b> are implemented in
+<b>dialogbx.cpp</b> and files named <b>dlg*.cpp</b>. The routine
+<b>paintcon.cpp</b> is the core code for all drawing (think of “paint
+contours”, which is all it did originally). The core code for
+data input is in <b>loaddata.cpp</b>. Data output tends to be handled
+by a host of different files, for example, <b>vrml.cpp</b> for vrml
+output, <b>datawrit.cpp</b> to output scattered data points,
+<b>dxfwrite.cpp</b> to output DXF files, etc. Command files are all
+handled in <b>cmdfile.cpp</b>. The saving and restoring of
+preferences is all in <b>prefer.cpp</b>. There are lots of little
+support routines implemented in files like <b>utilitys.cpp</b> and
+<b>grid.cpp</b>. If I can't remember where a function is implemented
+I usually find it by doing a “grep” like search on the
+source files. </font>
+</p>
+<h2><a name="mozTocId971997"></a><font face="Times New Roman, serif">QuikGrid
+(Winmain) </font>
+</h2>
+<p><font face="Times New Roman, serif">At startup WM_CREATE&nbsp; does
+initializations then posts an IDM_STARTUP message. IDM_STARTUP
+checks to see if there are any command line arguments. This will
+happen if QuikGrid is invoked from a DOS command of the form
+“<b>QuikGrid input.* output.*</b>” or is linked to from
+another program using such a command. This is also what it looks like
+to QuikGrid if a data file is “dragged and dropped” onto
+the QuikGrid Icon or if a file association is made between some file
+types and QuikGrid and a user double clicks on the data file. . </font>
+</p>
+<p><font face="Times New Roman, serif">If there are no command line
+arguments QuikGrid goes into a normal Windows wait state. </font>
+</p>
+<p><font face="Times New Roman, serif">If a command line argument is
+present QuikGrid assumes the argument is a file name and processes
+the file as if a person had started QuikGrid and then selected an
+“File... Input scattered data points...” or File...
+Process command file” menu operation. Which command is
+determined from the file Suffix as described in the documentation.
+Similarly if there is a second argument it is assumed to be a file
+name and QuikGrid generates a grid and does an appropriate output
+command. If a second argument is present QuikGrid then terminates. If
+only one argument is present it processes the input file, generates a
+grid if it was not a command file, then goes into a normal Windows
+wait state. </font>
+</p>
+<h2><a name="mozTocId176172"></a><font face="Times New Roman, serif"><font
+ size="5">Loaddata</font></font></h2>
+<p><font face="Times New Roman, serif">The storage of the input data
+is handled by the class <b>scatdata.cpp</b> . Speed of access to the
+x, y and z data points is one of the critical areas with respect to
+CPU usage. The points are stored as three arrays x[], y[] and z[],
+each of which is one block of contiguous memory. Other storage
+schemes seem to produce higher overhead. Initially the code allocates
+enough space for 16,000 data points. If it runs out it allocates new
+space which is 2.5 times bigger, copies the data over to the new
+space and releases the old. This will be repeated as often as
+necessary until all the data points are stored. The upper limit of
+128 million is just a sanity check. It also maintains an array of
+pointers to optional comments attached to a data point and an array
+of type char which is used to store flags (Of which only one is used
+- namely the flag that says this data point should be ignored during
+grid generation). </font>
+</p>
+<p><font face="Times New Roman, serif">The Scatdata class keeps track
+of the max and mins for x, y and z. It also maintains a value called
+<b>zadjust</b> which is used to asure that all the z coordinates are
+positive. Negative values are used to flag unevaluated grid
+intersections throughout the program.&nbsp; The x and y values are
+normalized by subtracting the x,y value of the first data point from
+all data points. The normalization values are stored as <b>dxnormalize</b>
+and <b>dynormalize</b>. They may be retrieved using the function
+<b>LoadNormalization</b>. This allows all the computations to proceed
+using single precision arithmetic. Any time an internal value is to
+be displayed it must be modified by zadjust, dxnormalize or
+dynormalize. Similarly numbers entered in a dialog box must also be
+modified appropriately. This was not implemented very neatly and I
+have never taken the time to clean it up. Be careful - it is a
+constant source of error - although one easily dealt with. </font>
+</p>
+<p><font face="Times New Roman, serif">All the data input are read as
+strings and the conversion to floating point is done by QuikGrid, not
+by the IO routines. There is a story behind that! Years ago Microsoft
+released a version of Microsoft Plus for Windows 95 that broke the
+floating point input routines for programs compiled using the Borland
+Compiler. (The bug didn't affect MS C++ compiled programs). The fix
+was a service pack that was 10 times the size of QuikGrid and I
+rebelled at the thought of expecting my customers to have to download
+and install a service pack if they were using Microsoft Plus. Rather
+than spend money on the Microsoft Compiler (and being more than a
+little annoyed at MS) I elected to read the data as strings and
+convert them to floating point internally. </font>
+</p>
+<p><font face="Times New Roman, serif">The focus of the display is
+always the generated grid so LoadData will create an appropriate grid
+and initialize it (see function <b>InitializeGrid</b>in<b>grid.cpp</b>).
+If a grid has been loaded QuikGrid will create a dummy set of 2
+scattered data points which spans the space. (Any set of data points
+that contains less than 3 points is considered a “dummy”
+set internally, but it will be set so that the max and min's are
+appropriate to the grid input so an attempt to display just the data
+set in cases like this will not fail). </font>
+</p>
+<h2><a name="mozTocId521987"></a><font face="Times New Roman, serif"><font
+ size="5"><b>Paintcon</b></font></font></h2>
+<p><font face="Times New Roman, serif">QuikGrid handles a WM_PAINT
+call differently depending on whether the program is in 2d or 3d
+mode. In either case there are three steps</font></p>
+<p><font face="Times New Roman, serif">1. Determine the scaling
+required for the image (Scale2dRectangle or Scale3dCube). <br>
+2.
+Centre the image on the screen (CentreDisplay) <br>
+3. Paint the
+screen (Paint2dSurface, Paint3dSurface). </font>
+</p>
+<p><font face="Times New Roman, serif">All those entry points are in
+Paintcon. </font>
+</p>
+<p><font face="Times New Roman, serif">QuikGrid runs in mapmode
+MM_ISOTROPIC. The data is scaled to fit into the Windows world of 0
+to 32k and all scaling, zooming, panning etc. is handled by changing
+the Windows window and viewport (SetWindow* and SetViewport*) and
+redrawing the screen. I think of it as “vector” mode as
+opposed to a “bitmap” mode. The code only rarely has to
+dip down and deal with the world of bits (but it must occasionally to
+determine things like line thickness in the Isotropic world –
+which is not specified in bits, and so the thickness changes
+depending on the amount of zooming that is being done). </font>
+</p>
+<h3><a name="mozTocId879546"></a><font face="Times New Roman, serif">Scaling
+to the Windows World </font>
+</h3>
+<p><font face="Times New Roman, serif">The job of <b>Scale2dRectangle</b>
+and <b>Scale3dCube</b> is to determine the maximum and minimum values
+for the image and set up the scaling parameters for the inline
+functions <b>ScaleX</b> and <b>ScaleY</b> (and <b>UnScaleX</b> and
+<b>UnScaleY</b> – their inverse). Those inline functions map
+the data from the QuikGrid floating point world into the Windows
+integer Isotropic world.</font> <font face="Times New Roman, serif">This
+is a trivial exercise for Scale2dRectangle.</font> <font
+ face="Times New Roman, serif">The
+scaling is always determined by the grid, not the scattered data
+points, which is why a grid must always be present, even if only the
+scattered data points are to be displayed.</font></p>
+<p><font face="Times New Roman, serif">Things are a little more
+complex in the 3d world. Scale3dCube rotates the extremes of the 3d
+cube to determine the maximum extents of the rotated 2d image. </font>
+</p>
+<p><font face="Times New Roman, serif">The value <b>Margin</b>
+controls the white space at the edge of the image. <b>MaxScale</b> is
+a constant set so that the image can nicely be both zoomed and
+unzoomed (set MaxScale too high and the image can only be zoomed in
+on). Once this is set up all you have to do is remember to scale
+everything via ScaleX or ScaleY before handing them to any Windows
+drawing function. </font>
+</p>
+<h3><a name="mozTocId294962"></a><font face="Times New Roman, serif">Centering
+and zooming the display</font></h3>
+<p><font face="Times New Roman, serif">The idea here is that the
+image is probably being redrawn because the user has clicked
+somewhere in the image, indicating it should be redrawn,
+zoomed/unzoomed/panned with the mouse location to be the centre of
+the new image. <b>CentreDisplay</b> handles the calculation of the
+new Window and Viewport. By the time CentreDisplay is called the
+zooming and panning information has already been handled via Paintcon
+functions like <b>ZoomViewDouble</b>,<b>ZoomIn</b>,<b>ZoomOut</b> and
+<b>PanView</b>.</font> </p>
+<p><font face="Times New Roman, serif">For example, when the user
+left clicks the mouse, case WM_LBUTTONDOWN is invoked in
+quikgrid.cpp. It sets the mapmode to MM_ISOTROPIC, determines the
+position of the mouse, converts it to the Windows Isotropic world,
+then calls ZoomViewDouble, which updates the QuikGrid internal
+parameters for the desired Window. It then invalidates the current
+display (done by function <b>PictureChanged</b>) which triggers the
+WM_PAINT call to redraw the screen. WM_PAINT calls Scale2dRectangle
+(or Scale3dCube) then calls CentreDisplay to set up the viewport and
+window, then finally calls Paint2dSurface or Paint3dSurface to do the
+actual drawing. For the most part you can ignore the fact that
+scaling and zooming is being done while you work in the
+Paint2dRectangle or Paint3dCube code. </font>
+</p>
+<h3><a name="mozTocId726096"></a><font face="Times New Roman, serif">Painting
+the display.</font></h3>
+<p>There is a lot of code in Paintcon that is soley there to reduce
+the time taken to paint the image. The code would be a fraction of
+it's current size and much simpler to follow if the code just painted
+the image in a straightforward fashion. <br>
+</p>
+<p>I reduce the time taken to
+display the image in two main ways. <br>
+</p>
+<p>First the code attempts to remove lines and features which are not
+visible, i.e. not within the viewing window. The functions <b>Visible,
+VisibleX, VisibleY</b> and <b>InTheGrid </b>in paintcon.cpp are used
+for this. For example the routine that displays the 3d hidden grid, <span
+ style="font-weight: bold;">Hatch3d (in hatch.cpp)</span>, calls these
+routines to determine if a grid rectangle is in the viewing window and
+doesn't draw it if it is not eligible to be viewed. <br>
+</p>
+<p>Secondly the code assembles contiguous line segments into Windows
+polylines (See the code in <span style="font-weight: bold;">drawstuff</span>.<span
+ style="font-weight: bold;">cpp </span>in particular function
+<b>PlotTo</b>). <br>
+</p>
+<p>These two mechanisms greatly
+reduce the number of calls across the Operating System Interface and
+reduce the time taken to draw an image, especially when a lot of
+zooming is going
+on. <br>
+</p>
+<p>In other situations I pre-compute scaled and rotated values and
+save them for later use. </p>
+<h4><a name="mozTocId21805"></a><font face="Times New Roman, serif">Paint2dRectangle</font></h4>
+<p><font face="Times New Roman, serif">Life is relatively easy in the
+2d world. You can take any QuikGrid x,y position, scale it with
+ScaleX and ScaleY and pass it to a Windows drawing API function like
+<b>LineTo </b>or <b>MoveToExt </b>and it will work fine. However
+most
+of the routines <span style="text-decoration: underline;">do not</span>
+make heavy use of those functions. Instead
+they call internal QuikGrid functions like <b>PlotTo </b>and
+<b>PolyBuffer </b>which are defined in the module <b>drawstuf.cpp</b>.
+</font>
+</p>
+<p><font face="Times New Roman, serif"><b>PlotTo</b> removes line
+segments that are not within the viewed window (i.e. Visible). It does
+not attempt to do any clipping though. If the line pierces the window
+or potentially passes through it the line is handed to Windows to clip.
+This
+decreases the time it takes to display the image, especially if any
+zooming is going on. The calling sequence is PlotTo(x,y,pen) where
+x,y are the scaled x,y coordinates and pen is zero for a move and 1
+or 2 for a draw. A pen of 1 selects a normal black line and a pen of
+2 selects a bold line. A negative pen value tells PlotTo to flush the
+polyline buffer.&nbsp; </font>
+</p>
+<p><font face="Times New Roman, serif"><b>Polybuffer</b> assembles
+individual line segments together into Windows “polylines”.
+Polybuffer(x,y,draw) is primarily called by PlotTo. The arguments are
+the scaled x,y coordinates and draw is 0 for a move or 1 for a draw
+(PlotTo selects the bold face pen before calling PolyBuffer when a
+bold line is required). A negative draw tells PolyBuffer to flush the
+polyline buffer. </font>
+</p>
+<p><font face="Times New Roman, serif"><b>Drawing the grid</b>: In an
+ideal world a grid line could be draw straight across from min to max
+in one draw. But we have undefined grid intersections that can force
+a blank segment into the line at any time. Function <b>Draw2dGridline</b>
+takes care of this complexity for non-coloured grid squares. Function
+<b>Hatch2d</b> from <b>hatch.cpp</b> is used to paint coloured grids.
+</font></p>
+<p><font face="Times New Roman, serif"><b>Contour lines: </b>Black
+and bold contour lines are only computed the first time they are
+defined for a given image. The generated and scaled line coordinates
+are saved in <b>Save2dContours</b> which is defined by the class
+<b>SaveLineType</b>. If the user zooms in on an image the precomputed
+and scaled coordinates are retrieved and passed on quite rapidly. 3d
+contour lines are handled similarly using <b>Save3dContours</b>.&nbsp;</font>
+</p>
+<h4><a name="mozTocId517667"></a><font face="Times New Roman, serif">Paint3dCube</font></h4>
+<p><font face="Times New Roman, serif">In the 3d world a lot more has
+to be kept in mind. </font>
+</p>
+<ol>
+  <li>
+    <p><font face="Times New Roman, serif">The points all have to be
+rotated and optionally a perspective projection applied.<br>
+The rotation math is all in <b>rotate.cpp</b> . When the viewer
+changes the angle of view <b>RotateInitialize</b> is called to set the
+rotation matrix constants. Thereafter any set of x,y,z coordinates can
+be rotated by calling the function <b>rotate</b>. Perspective
+projection is handled separately by function <b>Project</b>.
+Separating out the perspective projection saves cpu time if an
+orthographic projection only is wanted. (This was important in the
+early days).&nbsp; </font> </p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, serif">Typically the z-axis is
+scaled to be some fraction of the size of the x-axis (see <b>zratio</b>
+in the documentation) <br>
+The grid is stored in <b>Zgrid</b> which is defined by the class <b>SurfaceGrid</b>.
+The implementation of this class is in <b>surfgrid.cpp</b>. The
+application of the <b>zratio</b> is done within the class. The scaling
+of the z grid coordinate is initially done by Scale3dCube through the
+function <b>ApplyzRatio</b>. Depending on what is going on the zratio
+scaling may be turned off for some computations, for example to obtain
+the true value of a grid coordinate to determine the colour of the grid
+square. (There is some real messy code in this area).&nbsp; </font> </p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, serif">Hidden line removal is
+achieved by drawing stuff the farthest away from the viewer first.<br>
+I believe this is called "the poor mans hidden surface algorithm". The
+code draws the xy axes first, and the z axis first or last depending on
+the angle of the view. The grid surface is drawn from the back to the
+front. This logic is all handled by function <b>Hatch3d </b>in <b>hatch.cpp</b>.
+Scattered data points and the outline are displayed last and are never
+hidden. If hidden contour lines are desired (the default) they are
+generated on a grid by grid basis by Hatch3d (which is slow!). Non
+hidden contour lines are rendered by CNTOUR in the same fashion as the
+2d case. Non hidden contour lines draw very fast as polylines are
+generated. Labels can be applied if the 3d contour lines
+are not hidden. </font> </p>
+  </li>
+</ol>
+<p>The entire grid is rotated, scaled and stored in the variable
+<b>xyGrid</b> early on in the procedure using the Paintcon function
+<b>RotateGrid</b>. xyGrid is defined by the class <b>xyGridClass</b>which
+is located in <b>xygrid.cpp</b> . </p>
+<h4><a name="mozTocId83848"></a><font face="Times New Roman, serif">Grid
+Resolution </font>
+</h4>
+<p>QuikGrid can display every nth grid line (which I call grid
+resolution) or a section of a grid. This can greatly speed up the
+viewing of a large grid. This is a relatively recent innovation and
+so far I have only made use of the grid resolution feature. The nitty
+gritty is in the class <b>SurfaceGrid </b>and also in the module
+<b>gridres.cpp</b>.</p>
+<h2><a name="mozTocId727184"></a>Xpand (Grid generation)</h2>
+<p><font face="Times New Roman, serif">Source files: XPAND.CPP,
+XPAND.H<br>
+void Xpand( SurfaceGrid &amp;Zgrid, ScatData &amp;RandomData)</font></p>
+<p><font face="Times New Roman, serif">Undefined grid intersections
+are flagged, by default, as -99999. QuikGrid adjusts the z
+coordinates so they are always positive and then corrects the values
+for display purposes. Contour makes use of this convention as well
+and does not contour negative areas of the grid.</font></p>
+<h3><a name="mozTocId515382"></a>Xpand Algorithm</h3>
+<p><font face="Times New Roman, serif">XPAND is basically a Nearest
+Neighbour algorithm with eight sectors. The algorithm lends itself to
+an efficient implementation, which is why XPAND is fast.</font></p>
+<p><font face="Times New Roman, serif">Xpand is organized so that
+each grid intersection can be evaluated in a separate function call.
+This feature was included to allow a grid to be evaluated in the
+background under Windows 3.1. Under Windows 3.1 timesharing only
+worked if each program voluntarily relinquished control back to the
+OS after a small time period. With Xpand this was accomplished by
+only computing one Grid Intersection at a time. The functions
+involved include XpandInit - to initialize everything and XpandPoint,
+which evaluated one grid intersection only. It is very unlikely that
+these functions have any external use any more. </font>
+</p>
+<p><font face="Times New Roman, serif">Routine <b>Xpand</b> calls
+<b>XpandInit</b> to set everything up and then calls <b>XpandPoint</b>
+for each grid intersection until the grid is evaluated.</font></p>
+<p><font face="Times New Roman, serif">Initialization is handled by
+the functions <b>XpandInit</b> and <b>LocateInit</b>. <b>XpandInit</b>
+initializes a lot of local variables and then calls LocateInit.
+<b>LocateInit</b> makes use of the Class GridXtype which sets up an
+array called <b>Locator</b>, which contains all the scattered data
+points and associates with each data point the grid intersection it
+is closest to. The array is then sorted by grid intersection. It then
+creates a lookup table that makes it very fast to find all the data
+points that are close to a given grid intersection. </font>
+</p>
+<p><font face="Times New Roman, serif">The procedure is then
+identical for the calculation of each grid intersection.</font></p>
+<p><font face="Times New Roman, serif">First the closest data points
+in each octant are determined. This is done by looking at all the
+data points close to the grid intersection to be evaluated and then
+scanning the data points for nearby grid intersections by shelling
+out from the intersection being evaluated. The process will
+eventually stop due to:</font></p>
+<p><font face="Times New Roman, serif">- An edge of the grid is
+reached. <br>
+- The distance from the grid intersection being
+evaluated becomes too large. <br>
+- The distance becomes far enough
+that any new data points can not contribute appreciably to the
+weighted value of the intersection.</font></p>
+<p><font face="Times New Roman, serif">Function <b>PutInOctant</b>
+keeps track of the closest data point in each octant. </font>
+</p>
+<p><font face="Times New Roman, serif">Once the scanning process is
+complete the weighted average of the selected points are used to
+determine the value for the grid intersection. The grid intersection
+may be left unevaluated because there are no points nearby or because
+the points are all on one side of the grid intersection. </font>
+</p>
+<h3><a name="mozTocId750479"></a>Xpand Speed considerations: </h3>
+<p><font face="Times New Roman, serif">Speed of access to the
+scattered data points is the most critical part of the program.
+Storing the data points as single dimensioned contiguous memory
+arrays for X, Y and Z seemed to produce the best results for me. My
+tests showed that storing them as a structure of x,y,z was slower and
+storing them as any sort of chained blocks of memory (which I did for
+data sets larger than 16000 points under Windows 3.1) was much
+slower. All this was done back in the Windows 3.1 days. Perhaps the
+compilers are smarter optimizers now? </font>
+</p>
+<p><font face="Times New Roman, serif">The rest of the time critical
+code pretty well cascades back from there to the table lookup for
+data points close to a given grid intersection (<b>ScanOneGrid</b>)
+and the shelling out process (<b>SelectPoints</b>). </font>
+</p>
+<p><font face="Times New Roman, serif">The sorting of the array of
+data points and associated grid intersections is another time eater.
+Xpand uses the standard Unix math function <b>Qsort</b> for this
+purpose. I don't know what has been going on in the world of sorting
+these days but back in the 1970's the Quick Sort algorithm was about
+as good as you could get and the one provided in the library should
+be written in assembler and highly optimized (but maybe not?). </font>
+</p>
+<p><font face="Times New Roman, serif">Much of this code dates back
+to 1993 when I was using a <span style="text-decoration: underline;">25Mhz
+cpu with no floating point
+processor</span>. I suppose you might say it was fine tuned for that
+type of
+platform. </font>
+</p>
+<h3><a name="mozTocId845089"></a>Grid Generation Artifacts</h3>
+<p><font face="Times New Roman, serif">Xpand suffers from the same
+artifacts that all grid generation schemes share. For example the
+contour lines may not "honour" the scattered data points
+(i.e. the contour line may go on the wrong side of the data point -
+this is because it is the generated grid being contoured, not the
+original data points). </font>
+</p>
+<p><font face="Times New Roman, serif">The algorithm works best with
+scattered data points that are more or less evenly distributed. The
+most common artifact is typically a "ripple" in the
+generated grid that goes at 45 or 90 degree angles. This may become
+pronounced if your scattered data points tend to be oriented in rows
+or columns. The effect is generated as a column or row of data points
+moves from one octant to another as grid intersections are evaluated.
+</font></p>
+<p><font face="Times New Roman, serif">The algorithm is
+interpolative, not extrapolative. If you ask it to extrapolate to the
+edges when there are no points "out there" the results may
+be quite strange (play with the Edge Sensitivity and Distance cutoff
+to experiment with this - different data sets will behave in
+different ways). </font>
+</p>
+<p><font face="Times New Roman, serif">If the data points are
+clustered, leaving large areas of the grid with no data points
+nearby, the grid generation times will suffer. By default these grid
+intersections may be left unevaluated but you may over-ride this by
+used the Distance cutoff parameter (and increasing the grid
+generation time). If the scattered data points are very sparse in
+comparison to the grid (a dense grid), grid generation times will
+suffer. Basically anything that causes Xpand to shell out a long way
+to find data points will cause the grid generation time to suffer. </font>
+</p>
+<h2><a name="mozTocId130163"></a>Contour (Contour line generation)</h2>
+<p><font face="Times New Roman, serif">Sourcefiles : CONTOUR.CPP,
+CONTOUR.H, SWITCH.CPP<br>
+void Contour( SurfaceGrid &amp;Zgrid, float
+ContourValue )</font></p>
+<p><font face="Times New Roman, serif">Will contour a grid for a
+single contour value. Call it repeatedly to contour more than one
+contour value. The function void <b>DoLineTo(float x, float y, int
+draw)</b>, which is defined in <b>Paintcon</b>, will be called
+repeatedly as the contour line is traced. Contour lines which
+intercept the edge of the grid are contoured first, then interior
+closed contour lines are traced. </font>
+</p>
+<p><font face="Times New Roman, serif">CONTOUR assigns the average of
+the four corners of a grid to the centre of the grid and then
+contours the 4 triangles. There is only one way a contour line can
+traverse a triangle. Because each contour line is traced continuously
+from edge to edge or back on itself (in the case of closed contours)
+the lines can be “painted” using Windows polylines. </font>
+</p>
+<h2><a name="HelpFile"></a>Help File</h2>
+The help facility is maintained using an ancient version of Microsoft
+Help Workshop, Version&nbsp; 4.03.0002, 1997. You may have trouble
+locating a copy (Try Google for "hcw.exe help workshop". The last time
+I downloaded it (April, 2005) it was available in
+<a
+ href="http://download.microsoft.com/download/office97dev/helpws97/4.03/WIN98/EN-US/Hcwsetup.exe">http://download.microsoft.com/download/office97dev/helpws97/4.03/WIN98/EN-US/Hcwsetup.exe</a>.
+I was not able to find it using the Microsoft Search facility on their
+site (I did find a reference that noted it was obsolete). I maintained
+the
+help file using Word 97 or Word 2000. The
+concept for this version of Help Workshop is that the document is
+maintained as a word document and exported (or saved) as an .rtf file.
+The .rtf file is used as input to Help Workshop. Documentation is
+included with Help Workshop if you can find a copy. Open Office does
+not export an .rtf file that is compatible with Help Workshop. <br>
+<br>
+Microsoft considers this version of&nbsp; Help Workshop to be obsolete.
+The newer version of Help Workshop is HTML based. Probably time to
+change to a new program. <br>
+<br>
+<p><br>
+</p>
+</body>
+</html>

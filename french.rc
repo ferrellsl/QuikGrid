@@ -1,0 +1,758 @@
+#define CM_ENTREDEPOINTSDISPERSSITEM1	62976
+#define IDC_EDIT4	104
+#define IDC_EDIT3	103
+#define IDC_EDIT2	102
+#define IDC_EDIT1	101
+#include "rc.h"
+
+Surface ICON "surface.ico"
+
+QuikGrid MENU 
+{
+ POPUP "Fichier..."
+ {
+  MENUITEM "Exécuter fichier de commande... ", IDM_INPUTCOMMANDFILE
+  MENUITEM SEPARATOR
+  POPUP "Entrée de points dispersés"
+  {
+   MENUITEM "Entrer points métriques...", IDM_OPENMETRIC
+   MENUITEM "Entrer points Lat/Lon (dddmm.mmm) ...  ", IDM_OPENLATLON
+   MENUITEM "Entrer points NOAA/NGS (ddd mm ss.sssss) ...", IDM_OPENNOAA
+   MENUITEM "Entrer points NOAA/NOS (dddmmssss)...", IDM_OPENNOS
+   MENUITEM "Entrer points DCA...", IDM_OPENDCA
+   MENUITEM "Entrer points DXF...", IDM_OPENDXF
+   MENUITEM "Entrer points Submetrix .sxp...", IDM_OPENSUBMETRIXSXP
+  }
+
+  MENUITEM "Entrer données de test", IDM_LOADTESTDATA
+  MENUITEM SEPARATOR
+  POPUP "Charger un quadrillage"
+  {
+   MENUITEM "Charger un fichier quadrillage QuikGrid....", IDM_OPENGRID
+   MENUITEM "Charger un fichier 1-Degree USGS DEM... ", IDM_USGSDEM
+   MENUITEM "Charger un fichier raster ER Mapper... ", IDM_LOADERMAPPER
+  }
+
+  MENUITEM SEPARATOR
+  MENUITEM "Entrer données de bordure...", IDM_OPENOUTLINE
+  MENUITEM "Effacer données de bordure", IDM_CLEAROUTLINE
+  MENUITEM SEPARATOR
+  MENUITEM "Sauvegarder les données dans un fichier...", IDM_SAVEDATAPOINTS
+  MENUITEM SEPARATOR
+  POPUP "Sauvegarder le quadrillage actuel "
+  {
+   MENUITEM "Sauvegarder le quadrillage au format QuikGrid... ", IDM_SAVE
+   MENUITEM "Sauvegarder le quadrillage au format ER Mapper...", IDM_ERMAPPER
+   MENUITEM "Sauvegarder le quadrillage au format Surfer GRD...", IDM_SAVEGRD
+   MENUITEM "Sauvegarder le quadrillage en triplés x,y,z...", IDM_SAVEXYZ
+  }
+
+  MENUITEM SEPARATOR
+  MENUITEM "Exporter un fichier DXF...", IDM_OUTPUTDXF
+  MENUITEM "Exporter un fichier DXF 3D Face...", IDM_DXF3DFACE
+  MENUITEM "Exporter un fichier VRML...", IDM_OUTPUTWRL
+  MENUITEM SEPARATOR
+  MENUITEM "Imprimer...", IDM_PRINT
+  MENUITEM SEPARATOR
+  MENUITEM "Quitter", IDM_EXIT
+ }
+
+ POPUP "Affichage..."
+ {
+  MENUITEM "Editer toutes les options d'affichage...", IDM_EDITVIEWOPTIONS
+  MENUITEM SEPARATOR
+  MENUITEM "...2d vue de dessus \aAlt 2", IDM_2DSURFACE, CHECKED
+  MENUITEM "...Surface 3d \aAlt 3", IDM_3DSURFACE
+  MENUITEM SEPARATOR
+  MENUITEM "... avec contours", IDM_CONTOUR
+  MENUITEM "... avec quadrillage transparent", IDM_GRIDPLOT
+  MENUITEM "... avec quadrillage de surface caché", IDM_GRIDHIDE, CHECKED
+  MENUITEM "... avec quadrillage caché en couleur", IDM_COLOUREDGRID
+  MENUITEM "... avec points de données", IDM_DATAPLOT
+  MENUITEM SEPARATOR
+  MENUITEM "... avec données latitude/longitude", IDM_LATLON
+  MENUITEM SEPARATOR
+  MENUITEM "Etat du programme", IDM_VIEWSTATISTICS
+ }
+
+ POPUP "Edition..."
+ {
+  MENUITEM "Titre... ", IDM_TITLE
+  MENUITEM "Couleur des éléments...", IDM_COLORFEATURES
+  MENUITEM "Table des couleurs... ", IDM_COLOURMAPPING
+  MENUITEM "Intervalles des contours et Etiquettes...", IDM_CONTVALS
+  MENUITEM "Angle...", IDM_ANGLE
+  MENUITEM "Nombre de lignes de quadrillage...", IDM_NUMBEROFGRIDLINES
+  MENUITEM "Coordonnées des lignes de quadrillage...", IDM_GRIDDIM
+  MENUITEM "Options de création du quadrillage...", IDM_TECHNICAL
+  MENUITEM "Options de sorties... ", IDM_DATAOUTPUTOPTIONS
+  MENUITEM "Options d'entrées... ", IDM_DATAINPUTOPTIONS
+  MENUITEM "Options de visualisation des points de données...", IDM_DATAPOINTOPTIONS
+  MENUITEM "Facteur d'échelle verticale... ", IDM_EDITZRATIO
+  MENUITEM "Options du bouton droit de la souris...", IDM_RIGHTCLICKOPTIONS
+  MENUITEM "Options de Zoom et Panoramique...", IDM_ZOOMRATIO
+ }
+
+ POPUP "Fenêtre..."
+ {
+  MENUITEM "Envoyer au presse papiers en bitmap\aCtrl B", IDM_COPYBITMAP
+  MENUITEM "Envoyer au presse papiers en métafichier\aCtrl C", IDM_COPYMETA
+  MENUITEM SEPARATOR
+  MENUITEM "Ajuster à l'écran (dézoomer)\aHome", IDM_UNZOOM
+  MENUITEM "Zoom précédent\aEnd", IDM_PREVIOUSZOOM
+  MENUITEM "Zoom plus\aPage Up", IDM_ZOOMIN
+  MENUITEM "Zoom moins\aPage Down", IDM_ZOOMOUT
+  MENUITEM "Pan gauche\aFlèche gauche", IDM_PANLEFT
+  MENUITEM "Pan droite\aFlèche droite", IDM_PANRIGHT
+  MENUITEM "Pan haut\aFlèche haut", IDM_PANUP
+  MENUITEM "Pan bas\aFlèche bas", IDM_PANDOWN
+  MENUITEM SEPARATOR
+  MENUITEM "...Geler le zoom (Panoramique)\aCtrl F", IDM_ZOOMFREEZE
+  MENUITEM "...Zoom négatif\aCtrl N", IDM_NEGATIVEZOOM
+ }
+
+ POPUP "Quadrillage..."
+ {
+  MENUITEM "Quadriller le jeu complet de données", IDM_GENGRIDORIGINAL
+  MENUITEM "Quadriller la vue 2d", IDM_GENGRIDZOOM
+  MENUITEM "Rogner la vue 2d", IDM_CROP2DVIEW
+  MENUITEM "Ajuster la table de couleurs au quadrillage", IDM_COLOURMAPGRIDEXTENTS
+  MENUITEM SEPARATOR
+  MENUITEM "Pleine résolution\a*", IDM_GRIDRESFULL, GRAYED
+  MENUITEM SEPARATOR
+  MENUITEM "Augmenter la résolution\a+", IDM_GRIDRESINCREASE, GRAYED
+  MENUITEM "Diminuer la résolution\a-", IDM_GRIDRESDECREASE, GRAYED
+  MENUITEM SEPARATOR
+  MENUITEM "...Résolution automatique du quadrillage\aCtrl A", IDM_GRIDRESAUTO
+  MENUITEM SEPARATOR
+  MENUITEM "...Verrouiller le quadrillage actuel comme gabarit", IDM_GRIDLOCK
+  MENUITEM "Sauvegarder le quadrillage actuel comme gabarit par défaut", IDM_SAVETEMPLATE
+  MENUITEM "Arréter de charger le quadrillage actuel comme gabarit par défaut", IDM_CLEARTEMPLATE
+  MENUITEM SEPARATOR
+  MENUITEM "...Quadrillage automatique ", IDM_AUTOGRIDGEN, CHECKED
+  MENUITEM "Quadriller maintenant!", IDM_GENGRID
+ }
+
+ POPUP "Fonction..."
+ {
+  MENUITEM "Copier le quadrillage à la couche vitesse et verrouiller le gabarit", IDM_COPYGRIDSPEED
+  MENUITEM "Copier le quadrillage à la couche direction et verrouiller le gabarit", IDM_COPYGRIDDIRECTION
+  MENUITEM "Copier le quadrillage à la couche couleur et verrouiller le gabarit", IDM_COPYGRIDCOLOUR
+  MENUITEM SEPARATOR
+  MENUITEM "Couche couleur = couche couleur - quadrillage", IDM_COLOURLAYERDIFFERENCE
+  MENUITEM SEPARATOR
+  MENUITEM "Régler le z mini du quadrillage sur indéfini laissant une bordure", IDM_SETMINUNDEFINED
+  MENUITEM "Régler le z maxi du quadrillage sur indéfini laissant une bordur", IDM_SETMAXUNDEFINED
+  MENUITEM SEPARATOR
+  MENUITEM "Régler les intersections indéfinies du quadrillage sur z mini", IDM_SETUNDEFINEDMINZ
+  MENUITEM "Régler les intersections indéfinies du quadrillage sur z maxi", IDM_SETUNDEFINEDMAXZ
+ }
+
+ MENUITEM "A propos", IDM_ABOUT
+ MENUITEM "\aAide", IDM_HELP
+}
+
+
+AboutBox DIALOG 36, 38, 118, 132
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "A propos de QuikGrid"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 112, 48, 16
+ CONTROL "Surface", -1, "STATIC", SS_ICON | WS_CHILD | WS_VISIBLE, 3, 15, 16, 16
+ CONTROL "John Coulthard", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 27, 20, 70, 8
+ CONTROL "Version 5.4: Dec. 06, 2009", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 2, 64, 113, 8
+ CONTROL "Perspective Edge Software", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 24, 32, 88, 8
+ CONTROL "www.galiander.ca", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 1, 49, 117, 8
+ CONTROL "Copyright (c) 1993 - 2007", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 24, 0, 86, 9
+ CONTROL "Avertissement et  infos d'enregistrement dans l'aide.", IDD_DISCLAIMER, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_GROUP, 3, 80, 110, 28
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 64, 112, 48, 16
+}
+
+GridgenBox DIALOG 20, 17, 128, 89
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Création de quadrillage en cours"
+{
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 2, 72, 27, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 34, 72, 26, 14
+ CONTROL 0, IDD_PERCENTDONE, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 92, 73, 22, 9
+ CONTROL 0, IDD_PERCENTSHELL, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 88, 60, 29, 9
+ CONTROL 0, IDD_SCANBANDWIDTH, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 88, 48, 29, 9
+ CONTROL 0, IDD_NUMDATAPOINTS, "static", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 84, 37, 40, 9
+ CONTROL 0, IDD_SAMPLENUMBER, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 92, 26, 23, 9
+ CONTROL 0, IDD_GRIDSIZEY, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 88, 13, 32, 9
+ CONTROL 0, IDD_GRIDSIZEX, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 44, 13, 30, 9
+ CONTROL "%Fait:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 64, 73, 25, 10
+ CONTROL "Quadrillage: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 8, 13, 36, 8
+ CONTROL "par", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 76, 13, 11, 8
+ CONTROL "Larg.Band.Balay. moyen:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 2, 48, 83, 8
+ CONTROL "Nombre de données: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 9, 37, 75, 8
+ CONTROL "Rayon recherche moyen:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 60, 71, 8
+ CONTROL "Avant tri des données", IDD_GRIDGENSTATUS, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 31, 3, 77, 8
+ CONTROL "Etat", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 6, 3, 22, 8
+ CONTROL "Echantillone tous les:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 1, 26, 90, 8
+}
+
+NewGridLines DIALOG 11, 14, 167, 185
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Coordonnées des lignes de quadrillage"
+{
+ CONTROL "", IDD_XSTART, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 56, 88, 52, 11
+ CONTROL "", IDD_XINCREMENT, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 56, 100, 52, 11
+ CONTROL "", IDD_XEND, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 56, 112, 52, 11
+ CONTROL "", IDD_YSTART, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 88, 52, 11
+ CONTROL "", IDD_YINCREMENT, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 100, 52, 11
+ CONTROL "", IDD_YEND, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 112, 52, 11
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 169, 33, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 65, 169, 33, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 124, 169, 30, 14
+ CONTROL "Nb de lignes:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 6, 47, 68, 8
+ CONTROL "X ", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 88, 3, 11, 8
+ CONTROL "Y", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 139, 4, 7, 7
+ CONTROL "Minimum:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 34, 14, 34, 8
+ CONTROL "Maximum:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 29, 32, 34, 8
+ CONTROL "Début:", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 20, 87, 34, 8
+ CONTROL "Fin:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 39, 112, 15, 8
+ CONTROL "Etendue: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 40, 23, 24, 8
+ CONTROL "1", IDD_XMIN, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 71, 14, 44, 7
+ CONTROL "2", IDD_YMIN, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 121, 14, 44, 7
+ CONTROL "5", IDD_XMAX, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 70, 32, 45, 8
+ CONTROL "6", IDD_YMAX, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 120, 32, 45, 7
+ CONTROL "Incrément:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 20, 100, 35, 8
+ CONTROL "Entrée données", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 5, 16, 22, 17
+ CONTROL "3", IDD_XRANGE, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 70, 23, 45, 7
+ CONTROL "4", IDD_YRANGE, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 120, 23, 45, 7
+ CONTROL "Lignes de quad", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 0, 88, 18, 32
+ CONTROL "Régler lignes pour inclure vue (2d) en cours", IDD_CALCULATEGRID, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 2, 142, 163, 10
+ CONTROL "Mettre # lignes requises pour Début,Incrément,Fin. ", IDD_CALCULATELINE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 3, 74, 162, 10
+ CONTROL "Régler lignes pour inclure toutes les données", IDD_CALCULATERESET, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 2, 127, 163, 10
+ CONTROL "", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_GROUP, 1, 67, 166, 3
+ CONTROL "7", IDD_XGRIDLINES, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 77, 47, 30, 9
+ CONTROL "8", IDD_YGRIDLINES, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 124, 47, 38, 10
+}
+STRINGTABLE 
+{
+ IDS_HELP, "QuikGrid affiche des données dispersées ou des quadrillages représentant une surface en 3d ou en contours. Il est encore en développement. L'aide n'est pas encore intégrée. "
+ IDS_NOINPUTFILE, "Impossible d'ouvrir le fichier de données dispersées. "
+ IDS_TOOMUCHDATA, "Trop de données - entrée tronquée. "
+ IDS_FILTERSTRING, "Tous fichiers(*.*)|*.*|Fichiers texte(*.txt)|*.txt|"
+ IDS_TOOFEWPOINTS, "Moins de trois points de données, non pris en compte ."
+ IDS_TOOMANYTIMERS, "Trop d'horloges ou de compteurs - vous devez fermer manuellement la boite de dialogue à la fin du processus. "
+ IDS_DATANORANGE, "Pas de variation en x ou y - ignoré. "
+ IDS_GRIDTOOLARGE, "Le quadrillage est trop grand.  "
+ IDS_GENGRIDNODATA, "Impossible d'établir un quadrillage. Pas de données. "
+ IDS_NOTIRREGULAR, "Cannot generate an irregular grid where there are less data points then grid lines. Use a regular grid or a smaller one."
+ IDS_NOOUTPUTFILE, "Erreur - Impossible d'ouvrir le fichier de sortie. "
+ IDS_NOINPUTGRIDFILE, "Impossible d'ouvrir le fichier pour importer le quadrillage. "
+ IDS_NOMETATEXT, "La création de Métafichiers de cet écran n'est pas supportée. "
+ IDM_GENGRID, "L'impression de cet écran n'est pas supportée. "
+ IDS_NOCLIPTEXT, "La copie d'écran de textes vers le presse-papiers n'est pas intégée . "
+ IDS_TOOMANYCONTOURS, "Mémoire insuffisante pour les segments de contours (ils ne seront pas tous redessinés) . Utiliser un quadrillage plus petit ou moins de contours. "
+ IDS_NOTNOSDATA, "Les données n'ont pas l'air d'être au format NOS latitude/longitude - essayez le format Métrique. "
+ IDS_INCREMENTNEGATIVE, "L'incrément pour générer des contours doit être supérieur à zéro. "
+ IDS_GRIDINCRNEGATIVE, "L'incrément pour les coorconnées x ou y du quadrillage doit être supérieur à zéro. "
+ IDS_GRIDRATIOINVALID, "Le rapport de taille automatique de quadrillage doit être compris entre 1 et 20. "
+ IDS_ENDLTSTART, "La valeur finale doit être supérieure à celle de début. "
+ IDS_NO3DINFORMATION, "Information bouton droit de la souris non disponible en mode 3d quadrillage caché. Utilisez l'option quadrillage transparent. "
+ IDS_NOINPUTDATA, "Pas de données en entrée. Commande ignorée. "
+ IDS_GRIDNOTGENERATED, "Pas de quadrillage. Commande ignorée. "
+ IDS_SAMPLESIZESMALL, "La taille de l'échantillon chargé fait que moins de trois données seront utilisées pour le quadrillage. Valeur ignorée. "
+ IDS_GRIDLINESLT3, "Le nombre de lignes de quadrillage suivant l'axe des x ou y est de moins de 3 ou très grand.  "
+ IDS_NOERMAPPEREXT, "Les fichiers ER Mapper doivent avoir l'extension .ERS "
+ IDS_BADCODEORNAME, "Code erroné ou le nom comporte moins de 7 caractères!"
+ IDS_SCATDATANOTONGRIDLOCK, "Les données sont toutes extérieures au quadrillage. Décochez \"Quadrillage...Verrouiller le quadrillage actuel comme gabarit\" pour déverrouiller le quadrillage, et recharger les données?  "
+ IDS_SCATDATANOTONGRID, "Les données sont toutes extérieures au quadrillage et ne sertont pas affichées. "
+ IDS_OUTLINENOTONGRID, "Les données de bordure sont toutes extérieures au quadrillage et ne sertont pas affichées."
+ IDS_GRIDNOZRANGE, "Le quadrillage n'a pas de variations en z (Maxi Quad = Mini Quad) et n'est pas affiché"
+ IDS_ABOUTVERSION, "QuikGrid version 5.0 est du logiciel libre. Voir l'Aide pour les explications et l'avertissement."
+ IDS_GRIDLOCKEDTEMPLATE, "Le quadrillage courant est verrouillé comme gabarit - requête ignorée."
+ IDS_FUNCTIONNOTAVAILABLE, "Fonction non disponible quand les coordonnées du quadrillage sont verrouillées"
+ IDS_OPENINPUTFILEFAIL, "Ne peut ouvrir le fichier %s - entrée terminée"
+ IDS_FLOATINGPOINTFAIL, "Erreur d'interprétation du nombre à virgule flottante %s numéro de ligne approximatif %i dans le fichier %s "
+ IDS_MISSINGMESSAGENUMBER, "Message d'erreur manquant %i devrait s'afficher ici (erreur interne)."
+ IDS_CONVERSIONFAIL, "Erreur d'interprétation de %s %s à la ligne %i "
+ IDS_NOTENOUGHNUMBERS, "La ligne numéro %i du fichier %s n'à apparemment pas assez de données. Le contenu est: %s"
+ IDS_UNEXPECTEDEOF, "Fin de fichier (EOF)inatendue à peu près à la ligne %i du fichier %s"
+ IDS_INVALIDNUMBEROFLINES, "Nombre invalide de lignes non étiquetées - réessayez"
+ IDS_SUBMETRIXNOT1OR2, "Valeur du Z Submetrix n'est ni 1 ni 2 - 1 sera utilisé"
+ IDS_ZOOMCHANGEBAD, "La valeur de variation du Zoom est trop petite ou trop grande. Elle doit être entre 2 et 300."
+ IDS_PANCHANGEBAD, "La valeur de variation du Pan est trop petite ou trop grande. Elle doit être entre 2 et 49."
+ IDS_COLOURMAPPINGERROR, "Erreur de table des couleurs. Max inférieur à Min ? Valeurs ignorées."
+ IDS_TOOMANYCONTOURLINES, "ATTENTION: Vous avez demandé trop de contours. Seulement les 1000 premiers seront affichés"
+ IDS_FLOATINGPOINTERROR, "Erreur d'interprétation du nombre à virgule flottante %s. Réessayez. "
+ IDS_LATLONERROR, "Erreur d'interprétation valeurs Lat/Lon %s. réessayez. "
+ IDS_TABEXPANDERROR, "Echec du remplacement des tabulations de la ligne d'entrée"
+ IDS_GRIDCOMMENTERROR, "Vous essayez de mettre un commentaire à une intersection du quadrillage ! ignoré."
+ IDS_NOGRIDTOCOPY, "Pas de quadrillage - copie impossible."
+ IDS_COMMANDWORDLARGE, "Trop grand mot de Commande! Est-ce un fichier de commandes? "
+ IDS_COMMANDFLOATERROR, "Erreur d'interprétation du nombre à virgule flottante: \"%s\"  pendant le traitement du fichier de commandes: \r\n\"%s\""
+ IDS_COMMANDINTEGERERROR, "Erreur en lecture d'un entier: \"%s\"  pendant le traitement de la commande: \r\n\"%s\""
+ IDS_COMMANDRBGERROR, "Erreur en lecture valeur RGB: \"%s\"  pendant le traitement de la commande: \r\n\"%s\" - la valeur RGB doit être entre 0 et 255"
+ IDS_COMMANDFAIL, "%s Erreur du fichier de commandes à la ligne %i près de la position %i près de \"%s\". Le contenu est: \r\n \"%s\""
+ IDS_MISSINGANGLE, "Valeur angulaire manquante: "
+ IDS_ANGLEVALUEERROR, "Valeur invalide pour angle azimut ou élévation:"
+ IDS_PROJECTIONVALUEERROR, "Valeur invalide pour projection en perspective:"
+ IDS_BADSAMPLINGVALUE, "L'échantillonnage doit être entre 0 et 999: "
+ IDS_GRIDINCREMENTERROR, "L'incrémentation en X ou l'incrémentation en Y est nulle ou négative:"
+ IDS_GRIDLINESERROR, "Le nombre de lignes de quadrillage est trop grand ou inférieur à 3:"
+ IDS_EXITTIMERERROR, "Valeur invalide de la temporisation de sortie du programme:"
+ IDS_MARGINERROR, "La marge définie par la commande est trop grande ou trop petite:"
+ IDS_WINDOWSIZEERROR, "Mauvaise taille de fenêtre:"
+ IDS_INVALIDCOMMAND, "Commande invalide rencontrée:"
+ IDS_GENERATINGGRIDFROM, "Fichier de commande en traitement: Création de quadrillage en cours avec les données de %s"
+ IDS_COMMANDTERMINATED, "Traitement du fichier de commandes stoppé à cause d'une erreur."
+ IDS_PROCESSINGDATAINPUT, "Fichier de commande en traitement: Traitement des données du fichier %s "
+ IDS_READINGINPUTFROM, "Traitement des données du fichier %s"
+ IDS_QUIKGRID, "QuikGrid"
+ IDS_THEREISNOGRID, " Pas de quadrillage - toutes les valeurs saisies seront écrasées pendant la création d'un quadrillage "
+ IDS_RED, "rouge"
+ IDS_BLUE, "bleu"
+ IDS_GREEN, "vert"
+ IDS_WHITE, "blanc"
+ IDS_DARKEST, "le plus sombre"
+ IDS_IGNORED, "ignoré"
+ IDS_DIALOGFIELDPOSITIONBAD, "La valeur position de champ doit être entre 1 et 30. 1 sera utilisé."
+ IDS_COMMANDFIELDPOSITIONBAD, "La valeur position de champ doit être entre 1 et 30"
+ IDS_NOSERROR, "Erreur en lecture valeur NOAA/NOS: \"%s\"  Le contenu est: \r\n\"%s\""
+ IDS_NOAAERROR, "Erreur en lecture valeur NOAA/NGS \"%s\"  Le contenu est: \r\n\"%s\""
+}
+
+Rotate DIALOG 18, 18, 142, 82
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Paramètres de la rotation 3d"
+{
+ CONTROL "", IDD_ABOVE, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 94, 6, 16, 12
+ CONTROL "", IDD_ABOUT, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 94, 20, 16, 12
+ CONTROL "", IDD_PROJECTION, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 94, 35, 16, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 67, 32, 13
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 51, 67, 33, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 98, 67, 30, 14
+ CONTROL "Angle au dessus", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 31, 7, 59, 8
+ CONTROL "Angle relatif", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 33, 22, 58, 8
+ CONTROL "Projection en perspective", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 14, 38, 76, 8
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 52, 105, 10
+}
+
+
+Contours DIALOG 32, 20, 125, 193
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Contours"
+{
+ CONTROL "", IDD_CONTOURINCR, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 72, 124, 40, 12
+ CONTROL "3", IDD_SECONDARYLINES, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 108, 144, 16, 12
+ CONTROL "Moins", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 8, 76, 16, 8
+ CONTROL "", IDD_LABELNDIGITS, "EDIT", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 64, 44, 16, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 172, 32, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 44, 172, 34, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 84, 172, 33, 14
+ CONTROL "0", IDD_ZMAX, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 32, 20, 66, 8
+ CONTROL "0", IDD_ZMIN, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 32, 11, 63, 8
+ CONTROL "Etendue des données ", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 24, 0, 82, 8
+ CONTROL "De :: ", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 8, 10, 22, 8
+ CONTROL "A :", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 19, 16, 8
+ CONTROL "Nombre de lignes:", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 2, 28, 90, 8
+ CONTROL "Interligne lignes épaisses étiquetées", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 4, 120, 64, 16
+ CONTROL "Précision étiquette:", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 4, 40, 56, 16
+ CONTROL "ScrollBar1", IDD_SCROLLDISTANCE, "scrollbar", SBS_HORZ | WS_CHILD | WS_VISIBLE, 28, 76, 68, 8
+ CONTROL "Distance entre étiquettes", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 16, 64, 100, 8
+ CONTROL "Plus", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 100, 76, 20, 8
+ CONTROL "10", IDD_NCONTOURS, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 96, 28, 16, 8
+ CONTROL "Nombre lignes fines intermédiaires sans étiquette", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 4, 140, 100, 20
+ CONTROL "Sauvegarder préférences ", IDPREFERENCE, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 104, 112, 12
+ CONTROL "Contours en couleur.", IDD_COLORCONTOURS, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 88, 96, 12
+}
+
+Technical DIALOG 34, 55, 142, 109
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options de génération de quadrillage "
+FONT 10, "System"
+{
+ CONTROL 0, IDD_INTERNALSAMPLE, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 104, 8, 16, 12
+ CONTROL 0, IDD_BANDWIDTHCUTOFF, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 104, 20, 30, 12
+ CONTROL 0, IDD_DENSITYRATIO, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 104, 32, 30, 12
+ CONTROL 0, IDD_EDGESENSITIVITY, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 104, 44, 30, 12
+ CONTROL "0", IDD_VALUEUNDEF, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 104, 76, 36, 12
+ CONTROL "Régler les indéfinis à:", IDD_SETGRIDUNDEF, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 76, 97, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 12, 92, 28, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 56, 92, 31, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 100, 92, 28, 14
+ CONTROL "Limite larg.band. recherche: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 28, 20, 74, 8
+ CONTROL "Limite en distance [%]: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 38, 32, 64, 8
+ CONTROL "Tolérance des bords (%):", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 35, 44, 67, 8
+ CONTROL "Echantillone tous les:", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 13, 8, 89, 8
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 60, 112, 12
+}
+
+Title DIALOG 12, 70, 207, 50
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Entrer un nouveau titre"
+{
+ CONTROL "", IDD_TITLETEXT, "EDIT", ES_LEFT | ES_AUTOHSCROLL | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 8, 12, 190, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 36, 31, 31, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 88, 31, 35, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 143, 31, 29, 14
+}
+
+ReadingData DIALOG 18, 18, 142, 43
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "PATIENTEZ"
+{
+ CONTROL "Lecture des données... ", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 8, 8, 84, 8
+ CONTROL "5", IDD_POINTSREAD, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 88, 8, 36, 8
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 52, 24, 48, 12
+}
+
+GridCoordinateInfo DIALOG 16, 24, 111, 140
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Renseignements sur"
+FONT 10, "System"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 124, 29, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 38, 124, 30, 14
+ CONTROL "", IDD_COMMENT, "EDIT", ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | WS_TABSTOP, 4, 68, 104, 36
+ CONTROL "Exclure du  quadrillage", IDD_IGNOREPOINT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 108, 108, 12
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 73, 124, 34, 14
+ CONTROL "x", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 19, 11, 16, 8
+ CONTROL "y", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 19, 19, 16, 8
+ CONTROL "z", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 18, 28, 16, 8
+ CONTROL "Point ...", IDD_POINTTYPE, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 0, 2, 56, 8
+ CONTROL 0, IDD_GRIDLOCATIONX, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 57, 2, 22, 8
+ CONTROL 0, IDD_GRIDLOCATIONY, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 84, 2, 23, 8
+ CONTROL 0, IDD_GRIDVALUEX, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 40, 10, 47, 8
+ CONTROL 0, IDD_GRIDVALUEY, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 40, 18, 47, 8
+ CONTROL "Contour le plus proche: en z", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 3, 40, 68, 16
+ CONTROL 0, IDD_CLOSECONTOUR, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 76, 44, 35, 8
+ CONTROL "", IDD_GRIDVALUEZ, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 36, 28, 64, 12
+ CONTROL "Commentaire", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 20, 60, 64, 8
+}
+
+
+
+DataInputOptions DIALOG 54, 5, 169, 284
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Options d'importation de données "
+{
+ CONTROL "Edit2", IDD_GRIDSIZERATIO, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 96, 196, 28, 10
+ CONTROL "Edit3", IDD_GRIDSIZERATIOMAX, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 212, 28, 10
+ CONTROL 0, IDD_KEEPEVERY, "EDIT", ES_RIGHT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 76, 228, 16, 10
+ CONTROL "Ignorer lignes fausses ou avec blancs", IDD_IGNOREERRORLINES, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 17, 139, 12
+ CONTROL "Utiliser l'ancien format métrique/NOS. ", IDD_NEWSTYLEINPUT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 32, 140, 8
+ CONTROL "Pas de commentaires au chargement. ", IDD_IGNORECOMMENTS, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 44, 144, 8
+ CONTROL "Inverser x et y au chargement. ", IDD_FLIPXY, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 56, 130, 12
+ CONTROL "Inverser signe du z au chargement. ", IDD_REVERSEZSIGN, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 68, 128, 12
+ CONTROL "Ignorer les points avec z égal à", IDD_IGNOREZENABLE, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 82, 131, 10
+ CONTROL "Calculer "" coordonnées xy"" sympas ", IDD_NICEXYCOORDS, "button", BS_AUTOCHECKBOX | BS_VCENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 104, 140, 12
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 32, 248, 92, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 17, 264, 32, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 60, 264, 35, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 108, 264, 32, 14
+ CONTROL "Rapport quadrillage auto", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 196, 80, 8
+ CONTROL "Taille maxi quadrillage auto", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 212, 96, 8
+ CONTROL "zéro (données DCA seulement). ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 32, 92, 101, 8
+ CONTROL "pour données format métrique", -1, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 32, 116, 68, 8
+ CONTROL "èmes données. ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 92, 228, 46, 8
+ CONTROL "Echantillonner les ", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 10, 228, 64, 8
+ CONTROL "au chargement   (1 =  tout garder).", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 236, 137, 8
+ CONTROL "1", IDD_SUBMETRIXZ, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 96, 180, 32, 10
+ CONTROL "Choix valeur Z Submetrix", -1, "static", SS_LEFTNOWORDWRAP | WS_CHILD | WS_VISIBLE, 12, 180, 84, 8
+ CONTROL "Entrée de points au fond", IDD_USETHREADS, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 4, 132, 12
+ CONTROL "1", IDD_XFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 80, 140, 12, 12
+ CONTROL "La position de champ", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 4, 140, 76, 12
+ CONTROL "2", IDD_YFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 96, 140, 12, 12
+ CONTROL "3", IDD_ZFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 140, 12, 12
+ CONTROL "4", IDD_CFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 128, 140, 12, 12
+ CONTROL "X", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 80, 132, 12, 8
+ CONTROL "Y", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 96, 132, 12, 8
+ CONTROL "Z", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 112, 132, 12, 8
+ CONTROL "Commentaire", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 124, 132, 44, 8
+ CONTROL "1", IDD_NOAAXFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 80, 156, 12, 12
+ CONTROL "NOAA/NGS position de champ", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 4, 152, 76, 20
+ CONTROL "4", IDD_NOAAYFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 96, 156, 12, 12
+ CONTROL "7", IDD_NOAAZFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 112, 156, 12, 12
+ CONTROL "8", IDD_NOAACFIELDPOSITION, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 128, 156, 12, 12
+}
+Zratio DIALOG 18, 56, 126, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Facteur d'échelle verticale "
+{
+ CONTROL "", IDD_ZRATIO, "EDIT", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER, 84, 4, 23, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 52, 34, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 88, 52, 36, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 44, 52, 38, 14
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 36, 108, 12
+ CONTROL "(En % de l'axe X , 0 = pas d'échelle)", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 0, 20, 124, 8
+ CONTROL " Fact. d'Ech. Vert.", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 8, 4, 72, 12
+}
+ViewDataPointOptions DIALOG 79, 66, 109, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options d'affichage des données"
+{
+ CONTROL "Marques", IDD_MARKPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 16, 44, 12
+ CONTROL "Coordonnées X, Y", IDD_XYPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 50, 93, 12
+ CONTROL "Coordonnées Z", IDD_ZPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 63, 98, 12
+ CONTROL "Commentaires", IDD_COMMENTPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 76, 98, 12
+ CONTROL "Relier les points", IDD_LINEPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 89, 98, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 121, 32, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 40, 121, 30, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 73, 121, 32, 14
+ CONTROL "Numéro de point", IDD_NUMBERPLOT, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 40, 92, 8
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 140, 92, 12
+ CONTROL "Points intérieurs seulement", IDD_DATAPOINTSONGRIDONLY, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 104, 104, 12
+ CONTROL "Afficher", -1, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 4, 4, 32, 8
+ CONTROL "Petite marque", IDD_SMALLMARK, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 28, 68, 8
+}
+
+Register DIALOG 18, 18, 175, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enregistrement"
+{
+ CONTROL "Cette boite de dialogue sert à rentrer votre nom et votre code après l'achat de QuikGrid", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 5, 4, 163, 19
+ CONTROL "Pour trouver comment acheter une version enregistrée, voir l'aide. ", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 4, 26, 160, 18
+ CONTROL "Nom: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 2, 49, 25, 8
+ CONTROL "Code secret:", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 2, 63, 62, 8
+ CONTROL "", IDD_NAMETEXT, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 28, 47, 138, 12
+ CONTROL "", IDD_CODETEXT, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 68, 61, 98, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 15, 77, 29, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 69, 77, 31, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 128, 77, 29, 14
+}
+
+
+NumberOfGridLines DIALOG 60, 133, 194, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Changer le nombre de lignes de quadrillage"
+FONT 10, "System"
+{
+ CONTROL "", IDD_XGRIDLINES, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 91, 20, 36, 12
+ CONTROL "", IDD_YGRIDLINES, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 144, 19, 38, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 12, 43, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 72, 43, 50, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 132, 43, 50, 14
+ CONTROL "Nombre de lignes de quadrillage: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 9, 23, 76, 8
+ CONTROL "X", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 104, 5, 15, 8
+ CONTROL "Y", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 159, 5, 15, 8
+}
+
+Statistics DIALOG 0, 0, 361, 215
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Etat du programme"
+FONT 8, "MS Sans Serif"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 148, 198, 50, 14
+ CONTROL "Statistiques ", IDD_STATISTICS, "edit", ES_LEFT | ES_MULTILINE | ES_READONLY | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | WS_TABSTOP, 8, 4, 344, 190
+}
+
+
+
+PleaseRegister DIALOG 38, 50, 263, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "                                            Enregistrez vous s'il vous plait"
+FONT 10, "MS Sans Serif"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 136, 50, 14
+ CONTROL "Informations d'enregistrement", IDHELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 164, 136, 96, 14
+ CONTROL "MERCI D'AVOIR ESSAYE QUIKGRID", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 56, 8, 162, 15
+ CONTROL "QuikGrid peut être facilement et rapidement enregistré ($37.50 US). ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 16, 24, 224, 12
+ CONTROL "En utilisant Mastercard, VISA, Discover ou Amex ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 16, 36, 160, 12
+ CONTROL "Vous pouvez le faire: ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 16, 48, 68, 12
+ CONTROL "Par internet : rapide, facile, sécurisé ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 36, 64, 128, 9
+ CONTROL "En appelant un numéro (800). ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 36, 84, 108, 10
+ CONTROL "Par FAX ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 36, 94, 32, 10
+ CONTROL "Par email. ", -1, "STATIC", SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 36, 74, 52, 9
+ CONTROL "Pour les détails cliquez sur ""Informations d'enregistrement""", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 20, 108, 216, 12
+ CONTROL "Restrictions d'évaluation", IDD_EVALUATIONRESTRICTIONS, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 64, 136, 94, 14
+ CONTROL "Cliquez sur ""OK"" pour utiliser QuikGrid", -1, "STATIC", SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 12, 120, 225, 14
+}
+
+QuikGrid ACCELERATORS 
+{
+ "3", IDM_3DSURFACE, VIRTKEY, ALT
+ "2", IDM_2DSURFACE, VIRTKEY, ALT
+ VK_HOME, IDM_UNZOOM, VIRTKEY
+ "F", IDM_ZOOMFREEZE, VIRTKEY, CONTROL
+ VK_END, IDM_PREVIOUSZOOM, VIRTKEY
+ "N", IDM_NEGATIVEZOOM, VIRTKEY, CONTROL
+ VK_F1, IDM_HELP, VIRTKEY
+ VK_PRIOR, IDM_ZOOMIN, VIRTKEY
+ VK_NEXT, IDM_ZOOMOUT, VIRTKEY
+ VK_DOWN, IDM_PANDOWN, VIRTKEY
+ VK_UP, IDM_PANUP, VIRTKEY
+ VK_RIGHT, IDM_PANRIGHT, VIRTKEY
+ VK_LEFT, IDM_PANLEFT, VIRTKEY
+ VK_MULTIPLY, IDM_GRIDRESFULL, VIRTKEY
+ VK_ADD, IDM_GRIDRESINCREASE, VIRTKEY
+ VK_SUBTRACT, IDM_GRIDRESDECREASE, VIRTKEY
+ "8", IDM_GRIDRESFULL, SHIFT, VIRTKEY
+ 187, IDM_GRIDRESINCREASE, SHIFT, VIRTKEY
+ 189, IDM_GRIDRESDECREASE, VIRTKEY
+ "A", IDM_GRIDRESAUTO, VIRTKEY, CONTROL
+ "^C", IDM_COPYMETA, ASCII
+ "^B", IDM_COPYBITMAP, ASCII
+ VK_UP, IDD_TILTUP, VIRTKEY, SHIFT
+ VK_DOWN, IDD_TILTDOWN, VIRTKEY, SHIFT
+ VK_RIGHT, IDD_TURNRIGHT, VIRTKEY, SHIFT
+ VK_LEFT, IDD_TURNLEFT, VIRTKEY, SHIFT
+ VK_UP, IDD_TILTUPTINY, VIRTKEY, CONTROL
+ VK_DOWN, IDD_TILTDOWNTINY, VIRTKEY, CONTROL
+ VK_RIGHT, IDD_TURNRIGHTTINY, VIRTKEY, CONTROL
+ VK_LEFT, IDD_TURNLEFTTINY, VIRTKEY, CONTROL
+}
+
+
+ZoomRatio DIALOG 6, 15, 249, 87
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Changement du pourcentage de zoom. "
+FONT 10, "System"
+{
+ CONTROL "", IDD_ZOOMRATIO, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 180, 6, 42, 13
+ CONTROL "", IDD_PANRATIO, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 180, 25, 42, 14
+ CONTROL "OK", IDOK, "BUTTON", BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 68, 46, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 100, 68, 48, 14
+ CONTROL "Aide", IDD_HELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 180, 68, 48, 14
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 64, 48, 116, 14
+ CONTROL "Le zoom change la taille de ce %", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 6, 8, 170, 15
+ CONTROL "Les flèches agissent (pan)  de ce % de la fenêtre", -1, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 7, 27, 167, 14
+}
+
+DataOutputOptions DIALOG 58, 51, 219, 177
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Options d'exportation de données"
+FONT 10, "System"
+{
+ CONTROL "Utiliser tabulation pour sortie XYZ", IDD_USETABSEPARATOR, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 16, 166, 12
+ CONTROL "Créer des polylignes en sortie DXF", IDD_POLYLINES, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 64, 153, 12
+ CONTROL "XYZ: Exporter valeurs des z indéfinis du quadrillage:", IDD_OUTPUTUNDEFINED, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 28, 204, 12
+ CONTROL "Exporter points de données sur couches DXF nommées.", IDD_USESCATTEREDDATALAYERS, "BUTTON", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 76, 204, 12
+ CONTROL "Sortie DXF3DFACE ou VRML: Echelle coordonnée z.", IDD_DXFFACESCALEZ, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 40, 208, 13
+ CONTROL "Sortie DXF en haute précision. ", IDD_HIGHDXFOUTPUTPRECISION, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 90, 196, 9
+ CONTROL "", IDD_UNDEFINEDVALUE, "EDIT", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 152, 2, 58, 12
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 12, 157, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 84, 157, 50, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 148, 157, 50, 14
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 36, 140, 144, 14
+ CONTROL "%: Hauteur texte DXF en % hauteur du dessin", -1, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 36, 123, 160, 12
+ CONTROL "2", IDD_DXFTEXTHEIGHT, "edit", ES_RIGHT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 8, 121, 24, 12
+ CONTROL "Exporter données XYZ or GRD indéfinies à :", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 4, 4, 144, 12
+ CONTROL "Pas d'étiquettes sur les contours en DXF", IDD_DXFNEVERLABEL, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 52, 196, 12
+ CONTROL "Le production de VRML de triangulate", IDD_VRMLTRIANGLES, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 104, 148, 8
+}
+
+ColorFeatures DIALOG 0, 1, 169, 175
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Choix de la couleur des éléments"
+FONT 10, "System"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 156, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 60, 156, 50, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 116, 156, 50, 14
+ CONTROL "Couleur des lignes de quadrillage ", IDD_COLORGRIDLINE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 4, 136, 12
+ CONTROL "Couleur des contours", IDD_COLORCONTOURLINE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 20, 136, 12
+ CONTROL "Couleur des bordures", IDD_COLOROUTLINE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 36, 136, 12
+ CONTROL "Couleur des flèches", IDD_COLORARROWS, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 52, 136, 12
+ CONTROL "Couleur des points ", IDD_COLORDATAPOINTS, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 68, 136, 11
+ CONTROL "Enregistrer couleurs personnalisées", IDPREFERENCE, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 4, 136, 160, 12
+ CONTROL "Couleur du fond", IDD_COLORBACKGROUND, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 116, 136, 12
+ CONTROL "Couleur des axes", IDD_COLORAXIS, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 84, 136, 12
+ CONTROL "Couleur des textes ", IDD_COLORTEXT, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 100, 136, 11
+}
+
+
+
+
+
+
+GridCoordinateInfoTerse DIALOG 6, 15, 168, 57
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
+CAPTION "Renseignements sur la donnée"
+FONT 8, "MS Sans Serif"
+{
+ CONTROL "Commentaires ici. ", IDD_COMMENT, "EDIT", ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_TABSTOP, 4, 10, 154, 42
+ CONTROL "Valeur X", IDD_GRIDVALUEX, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 8, 0, 52, 9
+ CONTROL "Valeur Y", IDD_GRIDVALUEY, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 68, 0, 60, 8
+}
+
+RightButtonOptions DIALOG 0, 0, 240, 66
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Options du bouton droit de la souris. "
+FONT 10, "System"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 24, 48, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 92, 48, 50, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 156, 48, 50, 14
+ CONTROL "Edit1", IDD_RIGHTBUTTONBOXTITLE, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 68, 4, 160, 12
+ CONTROL "Titre de la boite de dialogue. ", -1, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 4, 4, 64, 9
+ CONTROL "Utiliser boite de dialogue réduite", IDD_SHOWCOMMENTSONLY, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 8, 17, 144, 11
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "button", BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 36, 28, 156, 14
+}
+
+EditViewOptions DIALOG 0, 0, 276, 282
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CONTEXTHELP | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edition de toutes les options d'affichage "
+FONT 10, "System"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 36, 264, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 112, 264, 50, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 184, 264, 50, 14
+ CONTROL "2d du dessus ", IDM_2DSURFACE, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 112, 4, 60, 8
+ CONTROL "Surface 3d", IDM_3DSURFACE, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 112, 12, 56, 8
+ CONTROL "Contours ", IDM_CONTOUR, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 40, 72, 8
+ CONTROL "Etiquettes sur contours", IDM_CONTOURLABELS, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 28, 48, 96, 12
+ CONTROL "Axes", IDM_3DAXES, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 68, 44, 12
+ CONTROL "Sauvegarder préférences ", IDPREFERENCE, "button", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 56, 244, 180, 14
+ CONTROL "Points  -> ", IDM_DATAPLOT, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 164, 40, 14
+ CONTROL "Coordonnées des coins", IDM_SHOWCORNERS, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 176, 108, 14
+ CONTROL "Edition options affichage points ", IDM_DATAPOINTOPTIONS, "button", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 64, 164, 116, 12
+ CONTROL "Noir et blanc ", IDM_NOCOLOR, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 192, 68, 9
+ CONTROL "Bordure épaisse ", IDM_BOLDOUTLINE, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 204, 80, 9
+ CONTROL "Affichage ", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 68, 4, 36, 8
+ CONTROL "Inclure", -1, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 12, 32, 40, 8
+ CONTROL "Inclure les lignes sur quadrillage coloré", IDD_GRIDLINECOLOUREDGRID, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 24, 152, 148, 12
+ CONTROL "Axes toujours au dessus (toujours visibles)", IDD_AXESONTOP, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 28, 80, 156, 12
+ CONTROL "Inclure légende des couleurs", IDD_INCLUDECOLOURLEGEND, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 24, 140, 144, 12
+ CONTROL "Quadrillage transparent ", IDM_GRIDPLOT, "button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 104, 120, 12
+ CONTROL "Quadrillage de surface caché ", IDM_GRIDHIDE, "button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 116, 160, 12
+ CONTROL "Quadrillage de surface caché en couleur ", IDM_COLOUREDGRID, "button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 128, 156, 12
+ CONTROL "Différence de volume", IDD_COLOURDIFFERENCE, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 216, 92, 8
+ CONTROL "Rafraîchissement rapide de l'écran ", IDD_SAVERESTOREMEMORY, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 228, 132, 8
+ CONTROL "Contours toujours visibles ", IDD_NEVERHIDECONTOURS, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 28, 60, 104, 8
+ CONTROL "Pas de quadrillage ", IDM_NOGRIDPLOT, "button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 16, 92, 112, 12
+ CONTROL "La taille de texte", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 192, 28, 56, 8
+ CONTROL "0", IDD_TEXTSIZE, "edit", ES_CENTER | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 248, 28, 20, 12
+ CONTROL "Dessiner l'axe de Z", -1, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 200, 100, 72, 8
+ CONTROL "De z maxi:", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 192, 112, 44, 8
+ CONTROL "A z mini:", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 200, 132, 36, 8
+ CONTROL "0", IDD_ZMAXLABEL, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 240, 112, 20, 12
+ CONTROL "0", IDD_ZMINLABEL, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 240, 132, 20, 12
+ CONTROL "Frame1", -1, "static", SS_ETCHEDFRAME | WS_CHILD | WS_VISIBLE, 192, 96, 80, 56
+ CONTROL "Frame2", -1, "static", SS_ETCHEDFRAME | WS_CHILD | WS_VISIBLE, 188, 24, 84, 20
+ CONTROL "Frame3", -1, "static", SS_ETCHEDFRAME | WS_CHILD | WS_VISIBLE, 64, 0, 116, 28
+ CONTROL "Frame4", -1, "static", SS_ETCHEDFRAME | WS_CHILD | WS_VISIBLE, 4, 32, 184, 208
+}
+
+ColourMapping DIALOG 0, 0, 245, 166
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CONTEXTHELP | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edition table de couleurs"
+FONT 10, "System"
+{
+ CONTROL "OK", IDOK, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 12, 148, 50, 14
+ CONTROL "Annuler", IDCANCEL, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 96, 148, 50, 14
+ CONTROL "Aide", IDHELP, "BUTTON", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 176, 148, 50, 14
+ CONTROL "Dégradé Rouge/Vert/Bleu", IDD_BLENDEDCOLOUR, "button", BS_AUTORADIOBUTTON | BS_NOTIFY | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 20, 5, 140, 13
+ CONTROL "Monochrome vers le blanc ->", IDD_SHADEDMONOCHROME, "button", BS_AUTORADIOBUTTON | BS_NOTIFY | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 20, 18, 112, 22
+ CONTROL "Edit1", IDD_COLOURZMAX, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 64, 96, 60, 13
+ CONTROL "Edit2", IDD_COLOURZMID, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 64, 112, 60, 13
+ CONTROL "Edit3", IDD_COLOURZMIN, "edit", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 64, 128, 60, 13
+ CONTROL "Rouge", IDD_RED, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 128, 96, 48, 13
+ CONTROL "Vert", IDD_GREEN, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 128, 112, 28, 13
+ CONTROL "Bleu", IDD_BLUE, "static", SS_LEFT | WS_CHILD | WS_VISIBLE, 128, 128, 52, 13
+ CONTROL "Maximum", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 20, 96, 40, 14
+ CONTROL "Milieu", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 24, 112, 36, 13
+ CONTROL "Minimum ", -1, "static", SS_RIGHT | WS_CHILD | WS_VISIBLE, 24, 128, 36, 13
+ CONTROL "Choisir la couleur ", IDD_CHOOSECOLOUR, "button", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 132, 24, 84, 12
+ CONTROL "Sauvegarder préférences", IDPREFERENCE, "button", BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 12, 56, 220, 12
+ CONTROL "Message ici. ", IDD_COLOURMAPHEADING, "static", SS_CENTER | WS_CHILD | WS_VISIBLE, 20, 72, 188, 20
+ CONTROL "Table inversée ", IDD_REVERSECOLOURMAP, "button", BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 20, 40, 80, 12
+}
+
+
+
+
