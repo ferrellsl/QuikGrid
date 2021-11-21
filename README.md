@@ -27,4 +27,8 @@ BUILDING:
 
 Double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft MFC application so building a native Linux or MacOS version is probably out of the question. 
 
+FOR QUESTIONS or COMMENTS:
+
+I can be reached at: sferrellblue <at> yahoo.com if you have any questions or comments.
+
 
