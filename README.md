@@ -27,7 +27,7 @@ KNOWN BUGS:
 
 BUILDING:
 
-Double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows.
+If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows.
 
 FOR QUESTIONS or COMMENTS:
 
