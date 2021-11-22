@@ -1,4 +1,4 @@
-# QuikGrid v5.4
+# QuikGrid v5.4 for 64-bit editions of MS Windows
 Contour mapping and 3D surface modeling app
 
 A 64-Bit Windows installer for QuikGrid can be found in the release section of this repo.
