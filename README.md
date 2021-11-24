@@ -47,6 +47,6 @@ I can be reached at: sferrellblue >at< yahoo.com if you have any questions or co
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz7.png?raw=true)
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/5ft-gradient.pdf?raw=true)
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/5ft-gradient.png?raw=true)
 
 
