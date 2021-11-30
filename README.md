@@ -1,6 +1,24 @@
 # QuikGrid v5.4 for 64-bit editions of MS Windows
 Contour mapping and 3D surface modeling app
 
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz2.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz3.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz5.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz6.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz7.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz-5ft-gradient.png?raw=true)
+
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/DXF-contours.png?raw=true)
+
 A 64-Bit Windows installer for QuikGrid can be found in the release section of this repo.
 
 This repo is for QuikGrid, the Windows-based application originally developed by John Coulthard at https://www.galiander.ca/quikgrid/
@@ -33,23 +51,7 @@ FOR QUESTIONS or COMMENTS:
 
 I can be reached at: sferrellblue >at< yahoo.com if you have any questions or comments.
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz2.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz3.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz5.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz6.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz7.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz-5ft-gradient.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/DXF-contours.png?raw=true)
 
 
 
