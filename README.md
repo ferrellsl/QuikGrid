@@ -45,7 +45,9 @@ KNOWN BUGS:
 
 BUILDING:
 
-If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows.
+If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows. I have confirmed that this build of QuikGrid runs under Ubuntu 20 via Wine.  I used the wine-devel release.
+
+
 
 FOR QUESTIONS or COMMENTS:
 
