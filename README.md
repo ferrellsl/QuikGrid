@@ -51,6 +51,7 @@ If you're using Visual Studio 2019 or later, double-click the Visual Studio Solu
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-Ubuntu.png?raw=true)
 
 
+
 FOR QUESTIONS or COMMENTS:
 
 I can be reached at: sferrellblue >at< yahoo.com if you have any questions or comments.
