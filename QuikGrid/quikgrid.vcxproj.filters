@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\SWITCHES.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UTILITYS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vrml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cmdfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Condraw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CONTOUR.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\datawrit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DIALOGBX.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dlgcolor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DLGGRID.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dlgright.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dlgstats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DLGUTIL.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dlgview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DRAWSTUF.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DXFFACE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DXFWRITE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ERWRITE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRDWRITE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRIDRES.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gridview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRIDXTYP.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HATCH.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LABELC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\loaddata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PAINTCON.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PREFER.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QUIKGRID.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ROTATE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SAVELINE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SCATDATA.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SURFGRID.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XPAND.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XYGRID.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SAVELINE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SCATDATA.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SURFGRID.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UTILITYS.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vrml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XPAND.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XYGRID.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ASSERT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cmdfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Condraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CONTOUR.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\datawrit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DLGUTIL.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DRAWSTUF.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DXFFACE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DXFWRITE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ERWRITE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRDWRITE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRIDRES.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gridview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRIDXTYP.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HATCH.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HELPMAP.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LABELC.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LOADDATA.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PAINTCON.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PREFER.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QUIKGRID.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ROTATE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\english.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\surface.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
