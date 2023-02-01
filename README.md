@@ -45,7 +45,10 @@ KNOWN BUGS:
 
 BUILDING:
 
-If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows. I have confirmed that this build of QuikGrid runs under Ubuntu 20 via Wine so it should also in theory run just as well under MacOS using Wine.  I used the wine-devel release.
+If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows. I have confirmed that this build of QuikGrid runs under Ubuntu 22.10 via Wine so it should also in theory run just as well under MacOS using Wine.  To obtain help file support under Wine, you will need to install Gecko.
+Download the appropriate version of Gecko from here:  https://wiki.winehq.org/Gecko
+Next, open a terminal in the location where you downloaded Gecko and type:  wine msiexec /i wine-gecko-2.xxxxx.msi
+Replace the x's with your version.  In my case, that was wine-gecko-2.47.2-x86_64.msi
 
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Quikgrid-Ubuntu.png?raw=true)
