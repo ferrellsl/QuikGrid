@@ -37,6 +37,7 @@ I have since found an application called HelpNDoc (https://www.helpndoc.com/) th
 
 This release also supports multi-user preferences.  A QUIKGRID.INI file will be generated for every user with a valid username and it is stored under:
 c:\users\your-username\QUIKGRID.INI
+
 Usernames with spaces will probably not work properly and remains untested.
 
 The code has now been moved over to Visual Studio 2019 and I decided it was time to put this release on github as John and I are not young men anymore.  We're both retired but I won't divulge our ages!  LOL!
