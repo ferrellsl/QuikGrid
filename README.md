@@ -35,6 +35,10 @@ In regard to the obsolete HLP file, I looked for a tool or tools that would simp
 
 I have since found an application called HelpNDoc (https://www.helpndoc.com/) that's free for personal use that will import HLP files and generate CHM help files with zero effort. The CHM file created by HelpNDoc is included in the v5.4 release.
 
+This release also supports multi-user preferences.  A QUIKGRID.INI file will be generated for every user with a valid username and it is stored under:
+c:\users\your-username\QUIKGRID.INI
+Usernames with spaces will probably not work properly and remains untested.
+
 The code has now been moved over to Visual Studio 2019 and I decided it was time to put this release on github as John and I are not young men anymore.  We're both retired but I won't divulge our ages!  LOL!
 
 KNOWN BUGS:  
