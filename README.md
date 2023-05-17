@@ -44,7 +44,7 @@ Usernames with spaces will probably not work properly and remains untested.
 
 The code has now been moved over to Visual Studio 2019 and I decided it was time to put this release on github as John and I are not young men anymore.  We're both retired but I won't divulge our ages!  LOL!
 
-Users who wish to create VRML models should note that QuikGrid generates VRML version 1.0 files which are ancient so I've added a converter/updgrade tool in the VRML 1.0 to VRML 2.0 Converter folder.  I've also added a VRML Viewer app in the VRML Viewer folder.  A sample VRML file of Wizard Island is located in the Sample Data folder.
+Users who wish to create VRML models should note that QuikGrid generates VRML version 1.0 files which are ancient and many more modern applications that purport to read/write VRML files no longer support VRML 1.0.  To address this issue, I've added a converter/updgrade tool in the VRML 1.0 to VRML 2.0 Converter folder.  I've also added a VRML Viewer app in the VRML Viewer folder.  A sample VRML file of Wizard Island is located in the Sample Data folder.
 
 KNOWN BUGS:  
 
