@@ -44,6 +44,8 @@ Usernames with spaces will probably not work properly and remains untested.
 
 The code has now been moved over to Visual Studio 2019 and I decided it was time to put this release on github as John and I are not young men anymore.  We're both retired but I won't divulge our ages!  LOL!
 
+Users who wish to create VRML models should note that QuikGrid generates VRML version 1.0 files which are ancient so I've added a converter/upgrade tool in the VRML 1.0 to VRML 2.0 Converter folder.  I've also added a VRML Viewer app in the VRML Viewer folder.
+
 KNOWN BUGS:  
 
 1.  If the user tries to access the help menu from within QuikGrid after opening a data file or a grid file, they'll receive an error message that help isn't available.  The workaround for this is to open the help file from within QuikGrid BEFORE importing/loading a dataset or grid file.  Help will then function properly for the rest of your session even if you choose to close and re-open the Help file.  Another option is to just double-click on the QuikGrid.chm file whenever you need it.  I'm unsure why this happens and haven't been motivated enough to find the cause and fix it.
