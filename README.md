@@ -5,6 +5,8 @@ Contour mapping and 3D surface modeling app
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz2.png?raw=true)
 
+![wiz-vrml](https://github.com/ferrellsl/QuikGrid/assets/5926287/295e3dae-e627-4603-8084-947a175ffa2a)
+
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz3.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
