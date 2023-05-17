@@ -1,0 +1,72 @@
+1. Usage
+   vrml1to2 infile [outfile] [-r[z][v]] [-space N] [-help]
+
+     infile:   	specifies input filename
+     outfile:  	specifies output filename
+		If outfile is not specified, the result is outputed to stdout.
+     -space N:	specifies TAB indentation(N is the number of space).
+     -help:	displays help message.
+
+   additional functions
+
+     1) -r option
+
+      - convert the WRL file in WWWInline recurcively.
+      - If the WRL file is gzipped, it will be melted automaticaly and
+        converted. The temporary files will be removed.
+        The gzip commend is required to use "-r" option.
+
+      - If the directory to make the translated file does not exist,
+        It will be created.
+
+      - If the name of the input directory is same to the output directory,
+        the name of the output directory will be added "20" strings.
+
+        example) convert with -r option.
+
+            WWWInline { name "b.wrl.gz" } -> Inline { url "b20.wrl" }
+
+            conver with -rz optin.
+
+            WWWInline { name "b.wrl.gz" } -> Inline { url "b20.wrl.gz" }
+
+     2) -z option
+        
+      - The converted output file will be gzipped.
+        This option will work with -r option.
+
+     3) -v option
+
+      - output the message in stderr format.
+        This option will work with -r option.
+
+  ex) % vrml1to2 vrml1.wrl vrml2.wrl
+2. Translation table
+This program supports the following nodes.
+	Rotation:            'Tranform' node's 'rotation' field
+	IndexedLineSet:      not supported.
+	PointSet:            not supported.
+	WWWAnchor:           'Anchor' node
+	AsciiText:           'Text' node
+	PerspectiveCamera:   'Viewpoint' node
+	OrthographicCamera:  'Viewpoint' node
+	Cube:                'Box' node
+	Info:                'WorldInfo' node
+	Separator:           'Transform' node
+	WWWInline:           'Inline' node
+	MaterialBinding:     'IndexedFaceSet' node's 'colorPerVerTex' field
+	NormallBinding:      'IndexedFaceSet' node's 'normalPerVerTex' field
+	ShapeHints:          'IndexedFaceSet' node's 'convex' field
+	TextureCoordinate2:  'IndexedFaceSet' node's 'texCoord' field
+	FonstStyle:          'Text' node's 'fontStyle' field
+The following nodes are converted into the nodes which are correspond to VRML2.0.
+	Cone, Coordinate3, Cylinder, DirectionalLight, 	Group,
+	IndexedFaceSet, LOD, Material, Normal, PointLight,
+	Normal, PointLight, Sphere, Switch, SpotLight
+3. Version
+version 1.6 - Sept 20 1996
+version 1.3 - Jun 13 1996
+version 1.2a - Jun 05 1996
+version 1.2 - May 30 1996
+Copyright(C) 1996 Sony Corporation.
+based on final VRML 2.0 (August 4, 1996)
