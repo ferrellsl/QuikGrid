@@ -7,6 +7,8 @@ Contour mapping and 3D surface modeling app
 
 ![wiz-vrml](https://github.com/ferrellsl/QuikGrid/assets/5926287/295e3dae-e627-4603-8084-947a175ffa2a)
 
+![crater-lake](https://github.com/ferrellsl/QuikGrid/assets/5926287/37f64102-4d5b-4008-98e9-b4ff4124e6f4)
+
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz3.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
