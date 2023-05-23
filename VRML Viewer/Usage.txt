@@ -1,0 +1,12 @@
+gl3dv - 3D mesh viewer version 1.2
+by George Litos (gl@cyberpunk.gr)
+
+usage: gl3dv [filename] [options]
+options:
+        --stereo        --background R G B
+        --size W H      --numpasses N
+        --anaglyph      --stereooffset N
+filename:
+        VRML file (wrl)
+        PTS pointset file (pts)
+        Inventor file (iv)
