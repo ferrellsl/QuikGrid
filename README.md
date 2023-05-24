@@ -48,7 +48,7 @@ The code has now been moved over to Visual Studio 2019 and I decided it was time
 
 Users who wish to create VRML models should note that QuikGrid generates VRML version 1.0 files which are ancient and many more modern applications that purport to read/write VRML files no longer support VRML 1.0.  To address this issue, I've added a converter/updgrade tool in the VRML 1.0 to VRML 2.0 Converter folder.  I've also added a new VRML Viewer app in the VRML Viewer folder.  The viewer is based on the Coin3D library version 4 and is 64-bit, so it will load very large models and is not prone to crashing as the earlier loader was.  I've successfully loaded VRML2.0 files that were in excess of 500MB in size.  See the Usage.txt for more info.  You can drag and drop a VRML2.0 file onto the executable to load/view it, or use the command line.  It also has a GUI.  The sourcecode for the viewer can be found at:  https://github.com/glls/gl3dv  A sample VRML file of Wizard Island is located in the Sample Data folder.
 
-I don't recommend loading large VRML1.0 terrain models with the viewer as it literally takes hours to render VRML1.0 files.  A 280 MB VRML1.0 file of Crater Lake takes 2 hours to render while the same file converted to VRML2.0 loads in seconds even though the VRML2.0 files is 534 MB, or nearly twice the size of the VRML1.0 file.
+I don't recommend loading large VRML1.0 terrain models with the viewer as it literally takes hours to render VRML1.0 files.  A 280 MB VRML1.0 file of Crater Lake takes 2 hours to render while the same file converted to VRML2.0 renders in seconds even though the VRML2.0 file is 534 MB, or nearly twice the size of the VRML1.0 file.
 
 KNOWN BUGS:  
 
