@@ -679,11 +679,15 @@ void RestoreCursor()
 //******************************************************
 char *INIfileName()
 {
-	char* szINIfile=0;
-   size_t sz = 0;
-   _dupenv_s(&szINIfile, &sz, "USERPROFILE");
-  strcat( szINIfile, "\\QUIKGRID.INI");
-  return szINIfile; 
+  static char szINIfile[1024];
+  szINIfile[0] = '\0';
+  char* szUserProfile=0;
+  size_t sz = 0;
+  _dupenv_s(&szUserProfile, &sz, "USERPROFILE");
+  strcpy(szINIfile, szUserProfile);
+  strcat(szINIfile, "\\QUIKGRID.INI");
+  free(szUserProfile);
+  return szINIfile;
 }
 
 //********************************************************

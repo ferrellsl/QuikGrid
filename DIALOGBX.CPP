@@ -113,6 +113,7 @@ extern int UseThreads;
 extern int InputFieldPosition[] ;
 extern int NOAAInputFieldPosition[] ;
 extern int VRMLtriangles;
+extern int VRML2format;
 
 static char szBuffer[256];
 
@@ -772,7 +773,8 @@ static void CheckAndStashInput( HWND hDlg )
 static void CheckAndStashOutput( HWND hDlg )
 {
   static double temp;
-  VRMLtriangles =   IsDlgButtonChecked( hDlg, IDD_VRMLTRIANGLES );
+  VRMLtriangles = IsDlgButtonChecked(hDlg, IDD_VRMLTRIANGLES);
+  VRML2format = IsDlgButtonChecked(hDlg, IDD_VRML2OUTPUT);
   UsePolyline =     IsDlgButtonChecked( hDlg, IDD_POLYLINES );
   UseTabSeparator = IsDlgButtonChecked( hDlg, IDD_USETABSEPARATOR );
   NeverLabelDXFContours = IsDlgButtonChecked( hDlg, IDD_DXFNEVERLABEL );
@@ -805,6 +807,7 @@ switch (message)
         CheckDlgButton( hDlg, IDD_HIGHDXFOUTPUTPRECISION, HighDXFOutputPrecision ) ;
         CheckDlgButton( hDlg, IDD_DXFNEVERLABEL, NeverLabelDXFContours );
         CheckDlgButton( hDlg, IDD_VRMLTRIANGLES, VRMLtriangles ); 
+        CheckDlgButton( hDlg, IDD_VRML2OUTPUT, VRML2format ); 
 		  SetDlgItemFloat( hDlg, IDD_UNDEFINEDVALUE, UndefinedValue );
         SetDlgItemFloat( hDlg, IDD_DXFTEXTHEIGHT, DXFTextHeightRatio*100.);
 		  return TRUE;

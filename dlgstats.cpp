@@ -154,13 +154,13 @@ BOOL FAR PASCAL StatisticsDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 
        if( Dgrid.xsize() > 2 )
           Buf << "\r\nA direction grid is defined."
-              << "\r\n\The direction ranges between "
+              << "\r\nThe direction ranges between "
               << Dgrid.zmin() << " and " << Dgrid.zmax()<< "\r\n";
 
 
        if( Cgrid.xsize() > 2 )
           Buf << "\r\nA colour grid is defined."
-              << "\r\n\The z value ranges between "
+              << "\r\nThe z value ranges between "
               << (Cgrid.zmin()-CgridZadjust) << " and "
               << (Cgrid.zmax()-CgridZadjust) <<"\r\n";
 

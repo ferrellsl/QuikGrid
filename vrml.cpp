@@ -50,8 +50,9 @@
 #include "loaddata.h"
 #include "condraw.h" 
 using namespace std;
-int DXFFaceScaleZ = FALSE;
+extern int DXFFaceScaleZ;
 int VRMLtriangles = TRUE;
+int VRML2format = FALSE;
 
 static ofstream WRLoutFile(" ", ios::out );
 static double dxnormalize, dynormalize;
@@ -70,6 +71,7 @@ extern int ColouredGrid;
 extern SurfaceGrid Cgrid;
 extern ContourOptionsType DrawingOptions;
 extern ScatData OutLine;
+static int ci;
 
 //******************************************************************
 //         A b o r t   W r i t e  WRL  F i l e
@@ -78,380 +80,610 @@ static void AbortWriteWRLFile( char FileName[] )
 {
   ostrstream Buf;
 
-  Buf << "Error writing WRNL output to the file "
-	   << FileName 
-           << ". Output terminated. " << ends; 
+  Buf << "Error writing VRML output to the file "
+      << FileName
+      << ". Output terminated. " << ends;
 
   char *szBuf = Buf.str();
   NotifyUser( szBuf );
   delete szBuf;
 
   RestoreCursor();
- }
-  
-//**************************************************************
-//      W r i t e   T r i a n g l e
-//**************************************************************
-static void WriteTriangle( int i, int j, int k )
-{
- Colour = ChooseZColour( AverageZ );
- WRLoutFile << " Material { " << endl
-            << "   diffuseColor "
-            << ((float)GetRValue(Colour)/255.)<< " "
-            << ((float)GetGValue(Colour)/255.)<< " "
-            << ((float)GetBValue(Colour)/255.)<< endl
-            << "   ambientColor .2 .2 .2 " << endl
-            << "   specularColor 0 0 0 " << endl
-            << "   emissiveColor 0 0 0 " << endl
-            << "   shininess .2 " << endl
-            << "   transparency 0 } # end Material " << endl
-            << " IndexedFaceSet { coordIndex [ " ;
- WRLoutFile << (i) << ", " // i,j,k point to the cordners of the triangle
-            << (j) << ", "
-            << (k) << ", -1,]}" << endl;
 }
 //**************************************************************
-//      W r i t e   S q u a r e
+//      W r i t e   G r i d   S q u a r e   C o l o u r
 //**************************************************************
-static void WriteSquare( int i, int j, int k, int l )
+static void WriteGridSquareColour( int i, int j )
 {
- Colour = ChooseZColour( AverageZ );
- WRLoutFile << " Material { " << endl
-            << "   diffuseColor "
-            << ((float)GetRValue(Colour)/255.)<< " "
-            << ((float)GetGValue(Colour)/255.)<< " "
-            << ((float)GetBValue(Colour)/255.)<< endl
-            << "   ambientColor .2 .2 .2 " << endl
-            << "   specularColor 0 0 0 " << endl
-            << "   emissiveColor 0 0 0 " << endl
-            << "   shininess .2 " << endl
-            << "   transparency 0 } # end Material " << endl
-            << " IndexedFaceSet { coordIndex [ " ;
- WRLoutFile << (i) << ", " // i,j,k, l point to the cordners of the triangle
-            << (j) << ", "
-            << (k) << ", "
-            << (l) << ", -1,]}" << endl;
-}
-//**************************************************************
-//      W r i t e   G r i d    s q u a r e
-//**************************************************************
-static void WriteGridSquare( int i, int j )
-{
-
-   // i,j define the corner of the grid square to be output.
- 	// Draw two triangles per qrid square.. clockwise.
+  // i,j define the corner of the grid square to be output.
+  // Draw two triangles per qrid square. clockwise.
   if( Zgrid.z(i,j) < 0.0 ) return;     // Don't draw triangle
   if( Zgrid.z(i+1,j+1) < 0.0 ) return; // if a node is undefined.
 
-  if( VRMLtriangles ) // Output triangles. 
-{
-  if(Zgrid.z(i,j+1) >= 0.0)
+  if( VRMLtriangles ) // Output triangles.
   {
-    AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i,j+1))/3.;
-    // if Cgrid exists use colour values from it instead.
-    if( Cgrid.xsize() > 2 )
-     {
-       if( Cgrid.z(i,j) < 0.0 ) return;  // Unless undefined.
-       if( Cgrid.z(i+1,j+1) < 0.0 ) return;
-       if( Cgrid.z(i,j+1) < 0.0 ) return;
-       AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i,j+1))/3.;
-     }
-    WriteTriangle( i*ny+j, i*ny+j+1,(i+1)*ny+j+1); // clockwise
-  } // end if( zgrid.z...
-  if(Zgrid.z(i+1,j) >= 0.0)
+    if(Zgrid.z(i,j+1) >= 0.0)
+    {
+      AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i,j+1))/3.;
+      // if Cgrid exists use colour values from it instead.
+      if( Cgrid.xsize() > 2 )
+      {
+        if( Cgrid.z(i,j) < 0.0 ) return;  // Unless undefined.
+        if( Cgrid.z(i+1,j+1) < 0.0 ) return;
+        if( Cgrid.z(i,j+1) < 0.0 ) return;
+        AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i,j+1))/3.;
+      }
+      Colour = ChooseZColour( AverageZ );
+      WRLoutFile << "    "
+                 << ((float)GetRValue(Colour)/255.) << " "
+                 << ((float)GetGValue(Colour)/255.) << " "
+                 << ((float)GetBValue(Colour)/255.) << ", \n";
+      ci++;
+    } // end if( zgrid.z...
+    if(Zgrid.z(i+1,j) >= 0.0)
+    {
+      AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i+1,j))/3.;
+      if( Cgrid.xsize() > 2 )
+      {
+        if( Cgrid.z(i,j) < 0.0 ) return;
+        if( Cgrid.z(i+1,j+1) < 0.0 ) return;
+        if( Cgrid.z(i+1,j) < 0.0 ) return;
+        AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i+1,j))/3.;
+      }
+      Colour = ChooseZColour( AverageZ );
+      WRLoutFile << "    "
+                 << ((float)GetRValue(Colour)/255.) << " "
+                 << ((float)GetGValue(Colour)/255.) << " "
+                 << ((float)GetBValue(Colour)/255.) << ", \n";
+      ci++;
+    }  // end if( zgrid.z
+  } // end if( VRMLtriangles )
+  else // output squares
   {
-    AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i+1,j))/3.;
-    if( Cgrid.xsize() > 2 )
-     {
-       if( Cgrid.z(i,j) < 0.0 ) return;
-       if( Cgrid.z(i+1,j+1) < 0.0 ) return;
-       if( Cgrid.z(i+1,j) < 0.0 ) return;
-       AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i+1,j))/3.;
-     }
-    WriteTriangle( i*ny+j,(i+1)*ny+j+1, (i+1)*ny+j); // clockwise
-  }  // end if( zgrid.z
-
-} // end if( VRMLtriangles )
-
-else // output squares
-{
-   if(Zgrid.z(i,j+1) < 0.0) return;
-   if(Zgrid.z(i+1,j) < 0.0) return;
-   AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i,j+1)+Zgrid.z(i+1,j))/4.;
-   if( Cgrid.xsize() > 2 ) // if colour grid exists take colour from it.
-   {
-       if( Cgrid.z(i,j) < 0.0 ) return;  // Unless undefined.
-       if( Cgrid.z(i+1,j+1) < 0.0 ) return;
-       if( Cgrid.z(i,j+1) < 0.0 ) return;
-       if( Cgrid.z(i+1,j) < 0.0 ) return;
-       AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i+1,j)+Cgrid.z(i+1,j))/4.;
-   } // end if Cgrid.xsize
-  WriteSquare( i*ny+j, i*ny+j+1,(i+1)*ny+j+1, (i+1)*ny+j); // clockwise
-} // end else - output squares.
+    if(Zgrid.z(i,j+1) < 0.0) return;
+    if(Zgrid.z(i+1,j) < 0.0) return;
+    AverageZ = (Zgrid.z(i,j)+Zgrid.z(i+1,j+1)+Zgrid.z(i,j+1)+Zgrid.z(i+1,j))/4.;
+    if( Cgrid.xsize() > 2 ) // if colour grid exists take colour from it.
+    {
+      if( Cgrid.z(i,j) < 0.0 ) return;  // Unless undefined.
+      if( Cgrid.z(i+1,j+1) < 0.0 ) return;
+      if( Cgrid.z(i,j+1) < 0.0 ) return;
+      if( Cgrid.z(i+1,j) < 0.0 ) return;
+      AverageZ = (Cgrid.z(i,j)+Cgrid.z(i+1,j+1)+Cgrid.z(i+1,j)+Cgrid.z(i+1,j))/4.;
+    } // end if Cgrid.xsize
+    Colour = ChooseZColour( AverageZ );
+    WRLoutFile << "    "
+               << ((float)GetRValue(Colour)/255.) << " "
+               << ((float)GetGValue(Colour)/255.) << " "
+               << ((float)GetBValue(Colour)/255.) << ", \n";
+    ci++;
+  } // end else - output squares.
 }
 //**************************************************************
-//      G e t  V R M L  f i l e N a m e
+//      W r i t e   G r i d   S q u a r e   C o o r d i n a t e s
+//**************************************************************
+static void WriteGridSquareCoordinates(int i, int j)
+{
+  float z = Zgrid.z(i, j);
+  if (z < 0) z = 0; // Set undefined nodes to zero (they will be ignored anyhow).
+  else if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
+      z = (z - zMin) * zScale;
+  float x = Zgrid.x(i) + dxnormalize;
+  float y = Zgrid.y(j) + dynormalize;
+  WRLoutFile << "    " << x << " " << y << " " << z << ",\n";
+}
+//**************************************************************
+//      W r i t e   G r i d   S q u a r e   C o o r d i n a t e   I n d i c e s
+//**************************************************************
+static void WriteGridSquareCoordinateIndices(int i, int j)
+{
+  // Draw two triangles per qrid square.. clockwise.
+  if( Zgrid.z(i,j) < 0.0 ) return;     // Don't draw triangle
+  if( Zgrid.z(i+1,j+1) < 0.0 ) return; // if a node is undefined.
+
+  int ij = i*ny+j;            // Calculate the offsets for the 4 vertices
+  int i1j = (i+1)*ny+j;       // of the grid square oriented at "ij".
+  int ij1 =  i*ny+j+1;        // i1j == vertice at "i+1", "j" etc.
+  int i1j1 = (i+1)*ny+j+1;
+
+  if (!ColouredGrid || VRMLtriangles) {
+    if (Zgrid.z(i,j+1) >= 0.0)
+      WRLoutFile << "    " << ij << ", " << ij1 << ", " << i1j1 << ", -1,\n";  // Clockwise.
+
+    if (Zgrid.z(i+1,j) >= 0.0)
+      WRLoutFile << "    " << ij << ", " << i1j1 << ", " << i1j << ", -1,\n";  // Clockwise
+  }
+  else {
+    if(Zgrid.z(i,j+1) < 0.0) return;
+    if(Zgrid.z(i+1,j) < 0.0) return;
+    WRLoutFile << "    " << ij << ", " << ij1 << ", " << i1j1 << ", " << i1j << ", -1,\n"; // clockwise
+  }
+}
+//**************************************************************
+//      G e t   V R M L   f i l e N a m e
 //**************************************************************
 int GetVRMLFileName( HWND &hwnd, char szFile[] )
 {
- szFile[0] = '\0';
+  szFile[0] = '\0';
 
- memset( &ofn, 0, sizeof(OPENFILENAME) ); // zero structure members
+  memset( &ofn, 0, sizeof(OPENFILENAME) ); // zero structure members
 
- ofn.lStructSize = sizeof(OPENFILENAME);
- ofn.hwndOwner = hwnd;  // =NULL if no owner required.
- ofn.lpstrFilter = "VRML files\0*.wrl\0All files\0*.*\0\0";
- ofn.nFilterIndex = 1;
- ofn.lpstrFile = szFile;
- ofn.nMaxFile = 255;        //sizeof(szFile);
- ofn.Flags = OFN_PATHMUSTEXIST|OFN_OVERWRITEPROMPT;
- ofn.lpstrTitle = "Generate VRML output to file" ;
- ofn.lpstrDefExt = "wrl";
- if( !GetSaveFileName( &ofn ) ) return 0;
- return 1;
+  ofn.lStructSize = sizeof(OPENFILENAME);
+  ofn.hwndOwner = hwnd;  // =NULL if no owner required.
+  ofn.lpstrFilter = "VRML files\0*.wrl\0All files\0*.*\0\0";
+  ofn.nFilterIndex = 1;
+  ofn.lpstrFile = szFile;
+  ofn.nMaxFile = 255;        //sizeof(szFile);
+  ofn.Flags = OFN_PATHMUSTEXIST|OFN_OVERWRITEPROMPT;
+  ofn.lpstrTitle = "Generate VRML output to file" ;
+  ofn.lpstrDefExt = "wrl";
+  if( !GetSaveFileName( &ofn ) ) return 0;
+  return 1;
 }
-
 //**************************************************************
-//       O u t p u t  V R M L   f i l e
+//      Output   V R M L 1   F o r m a t
+//**************************************************************
+static int OutputVRML1Format()
+{
+  WRLoutFile << "#VRML V1.0 ascii\n"   // Output Header information.
+             << "Separator {\n"
+             << " DEF SceneInfo Info { string \"Generated by"
+             << " QuikGrid.\" } # end SceneInfo\n"
+             << " ShapeHints {\n"
+             << "  vertexOrdering CLOCKWISE\n"
+             << "  shapeType UNKNOWN_SHAPE_TYPE\n"
+             << "  faceType CONVEX\n"
+             << "  creaseAngle 0.0\n"
+             << " } # end ShapeHints\n";
+
+  WRLoutFile << " DEF X1_X2_GRID Separator {\n"
+             << "  Material {\n"
+             << "   diffuseColor ";
+
+  nx = Zgrid.xsize();
+  ny = Zgrid.ysize();
+
+  zRatio = (float)PaintSurfaceRatio()*.01;
+  xRange = Zgrid.x(nx-1) - Zgrid.x(0);
+  zMin   = Zgrid.zmin();
+  zRange = Zgrid.zmax() - Zgrid.zmin();
+  zScale = zRatio*(xRange/zRange);
+
+  float xmax = Zgrid.xmax() + dxnormalize;          // For axes on the generated grid.
+  float ymax = Zgrid.ymax() + dynormalize;
+  float xmin = Zgrid.xmin() + dxnormalize;
+  float ymin = Zgrid.ymin() + dynormalize;
+
+  // Z axes get special treatment - if overridden or scaled.
+
+  float zmax = Zgrid.zmax();
+  float zmin = Zgrid.zmin();
+
+  // if the axes are to be plotted at a different z minimum.
+  if ((ZmaxLabel != ZminLabel) &&
+      (ZmaxLabel > zmin - zadjust) &&
+      (ZminLabel < zmax - zadjust))
+  {
+      zmin = ZminLabel + zadjust;
+      zmax = ZmaxLabel + zadjust;
+  }
+
+  if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
+  {
+      zmin = (zmin - zMin) * zScale;
+      zmax = (zmax - zMin) * zScale;
+  }
+
+  // end special treatment for z axis.
+
+  if (ColouredGrid)
+  {
+    WRLoutFile << "[\n";
+    // Output a Coloured Grid - each grid triangle is it's own colour
+    for ( int i = 0; i<(nx-1); i++ )
+    { for ( int j = 0; j<(ny-1); j++ )
+      {
+        WriteGridSquareColour(i, j);
+        if (WRLoutFile.fail()) return 0;
+      }
+    } // End nested for's.
+    WRLoutFile << "   ]\n";
+  } // end if( ColouredGrid)
+  else // Each grid triangle is the same colour - more compact output.
+  {
+    WRLoutFile << ((float)GetRValue(GridPen)/255.) << " "
+               << ((float)GetGValue(GridPen)/255.) << " "
+               << ((float)GetBValue(GridPen)/255.) << endl;
+  } // end else - output non coloured grid.
+  WRLoutFile << "   ambientColor .2 .2 .2\n"
+             << "   specularColor 0 0 0\n"
+             << "   emissiveColor 0 0 0\n"
+             << "   shininess .2\n"
+             << "   transparency 0\n"
+             << "  } # end Material\n"
+             << "  MaterialBinding { value PER_FACE }\n";
+
+  // Output the grid coordinates.
+  WRLoutFile << "  Coordinate3 { point [\n"
+             << "   # Grid coordinates follow\n";
+  for ( int i = 0; i<nx; i++ )
+  { for ( int j = 0; j<ny; j++ )
+    {
+     WriteGridSquareCoordinates(i, j);
+     if (WRLoutFile.fail()) return 0;
+    }
+  }
+  WRLoutFile << "   ] # end point\n"
+             << "  } # end Coordinate 3\n";
+
+  WRLoutFile << " IndexedFaceSet { coordIndex [\n";
+
+  for ( int i = 0; i<(nx-1); i++ )
+  { for ( int j = 0; j<(ny-1); j++ )
+    {
+      WriteGridSquareCoordinateIndices(i, j);
+      if (WRLoutFile.fail()) return 0;
+    }
+  }  // end nested for's
+
+  WRLoutFile << "   ] # end coordIndex\n";
+
+  if (ColouredGrid)
+  {
+    WRLoutFile << "   materialIndex [\n";
+    WRLoutFile << "    ";
+    for ( int i = 0; i<ci; i++ )
+    {
+      WRLoutFile << i << ", ";
+      if (i && (i % 20) == 0) WRLoutFile << "\n    ";
+    }
+    WRLoutFile << "\n";
+    if (WRLoutFile.fail()) return 0;
+
+    WRLoutFile << "   ] # end materialIndex\n";
+  }
+  WRLoutFile << "  } # end IndexedFaceSet\n"
+             << " } # end GRID Separator\n";
+
+  // Grid is done - output the 3d Axes (three simple lines).
+  if (DrawingOptions.threedaxes)
+  {
+    int iAxesOrigin = 0;
+    int iAxesZmax = 1;
+    int iAxesXmax = 2;
+    int iAxesYmax = 3;
+    WRLoutFile << " DEF AXES Separator {\n"
+               << "  Material {\n"
+               << "   diffuseColor "
+               << ((float)GetRValue(AxisPen)/255.) << " "
+               << ((float)GetGValue(AxisPen)/255.) << " "
+               << ((float)GetBValue(AxisPen)/255.) << endl
+               << "   ambientColor .2 .2 .2\n"
+               << "   specularColor 0 0 0\n"
+               << "   emissiveColor 0 0 0\n"
+               << "   shininess .2\n"
+               << "   transparency 0\n"
+               << "  } # end Material\n"
+               << "  Coordinate3 { point [\n"
+               << "   # Axes coordinates follow\n"
+               << "   " << xmin << " " << ymin << " " << zmin << ",\n"
+               << "   " << xmin << " " << ymin << " " << zmax << ",\n"
+               << "   " << xmax << " " << ymin << " " << zmin << ",\n"
+               << "   " << xmin << " " << ymax << " " << zmin << ",\n"
+               << "   ] # end point\n"
+               << "  } # end Coordinate 3\n"
+               << "  IndexedLineSet { coordIndex [\n"
+               << "   " << iAxesOrigin << ", " << iAxesZmax << ", -1,\n"
+               << "   " << iAxesOrigin << ", " << iAxesXmax << ", -1,\n"
+               << "   " << iAxesOrigin << ", " << iAxesYmax << ", -1 ] }\n"
+               << " } # end AXES Separator\n";
+  }
+
+  // Now output the outline.
+  int SizeOfOutline = OutLine.Size();
+  if( SizeOfOutline > 1 )
+  {
+    WRLoutFile << " DEF OUTLINE Separator {\n"
+               << "  Material {\n"
+               << "   diffuseColor "
+               << ((float)GetRValue(OutlinePen)/255.) << " "
+               << ((float)GetGValue(OutlinePen)/255.) << " "
+               << ((float)GetBValue(OutlinePen)/255.) << endl
+               << "   ambientColor .2 .2 .2\n"
+               << "   specularColor 0 0 0\n"
+               << "   emissiveColor 0 0 0\n"
+               << "   shininess .2\n"
+               << "   transparency 0\n"
+               << "  } # end Material\n";
+
+    WRLoutFile << "  Coordinate3 { point [\n"
+               << "   # Outline coordinates follow\n";
+
+    // Output the Outline Coordinates.
+
+    // Set z to zmin if no Z coordinate read for outline.
+    bool NoZ = false;
+    if (OutLine.zMin() == OutLine.zMax()) NoZ = true;
+    for ( int i = 0; i < SizeOfOutline; i++ )
+    {
+      float x = OutLine.x(i) + dxnormalize;
+      float y = OutLine.y(i) + dynormalize;
+      float z = zmin + zadjust;
+      if (!NoZ) z = OutLine.z(i) + zadjust;
+      if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
+        z = (z - zMin) * zScale;
+
+      WRLoutFile << "   " << x << " " << y << " " << z << ",\n";
+    } // End for ( i =
+
+    WRLoutFile << "  ] # end point\n"
+               << " } # end Coordinate 3\n";
+
+    WRLoutFile << " IndexedLineSet { coordIndex [\n";
+    for ( int i = 0; i < SizeOfOutline; i++ )
+    {
+      if( OutLine.flags(i) & 1 ) WRLoutFile << " -1, \n"; // Move here?
+      WRLoutFile << i << ", \n";
+    }
+    WRLoutFile << " -1 ] }\n"
+               << " } # end OUTLINE Separator\n";
+  } // End if( OutlineSize > 1 )
+
+  WRLoutFile << "} # end VRML Separator\n";
+  return 1;
+}
+//**************************************************************
+//      Output   V R M L 2   F o r m a t
+//**************************************************************
+static int OutputVRML2Format()
+{
+  WRLoutFile << "#VRML V2.0 utf8\n"   // Output Header information.
+             << "Group {\n"
+             << " children [\n"
+             << "  DEF SceneInfo WorldInfo { title \"Generated by"
+             << " QuikGrid.\" }, # end SceneInfo\n";
+
+  WRLoutFile << "  DEF X1_X2_GRID Group {\n"
+             << "   children\n"
+             << "    DEF _shape Shape {\n"
+             << "     appearance Appearance {\n"
+             << "      material Material {\n"
+             << "       diffuseColor "
+             << ((float)GetRValue(GridPen) / 255.) << " "
+             << ((float)GetGValue(GridPen) / 255.) << " "
+             << ((float)GetBValue(GridPen) / 255.) << "\n"
+             << "      }\n"
+             << "     }\n"
+             << "     geometry IndexedFaceSet {\n"
+             << "      coord Coordinate {\n"
+             << "       point [\n"
+             << "        # Grid coordinates follow\n";
+
+  nx = Zgrid.xsize();
+  ny = Zgrid.ysize();
+
+  zRatio = (float)PaintSurfaceRatio()*.01;
+  xRange = Zgrid.x(nx-1) - Zgrid.x(0);
+  zMin   = Zgrid.zmin();
+  zRange = Zgrid.zmax() - Zgrid.zmin();
+  zScale = zRatio*(xRange/zRange);
+
+  float xmax = Zgrid.xmax() + dxnormalize;          // For axes on the generated grid.
+  float ymax = Zgrid.ymax() + dynormalize;
+  float xmin = Zgrid.xmin() + dxnormalize;
+  float ymin = Zgrid.ymin() + dynormalize;
+
+  // Z axes get special treatment - if overridden or scaled.
+
+  float zmax = Zgrid.zmax();
+  float zmin = Zgrid.zmin();
+
+  // if the axes are to be plotted at a different z minimum.
+  if ((ZmaxLabel != ZminLabel) &&
+      (ZmaxLabel > zmin - zadjust) &&
+      (ZminLabel < zmax - zadjust))
+  {
+      zmin = ZminLabel + zadjust;
+      zmax = ZmaxLabel + zadjust;
+  }
+
+  if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
+  {
+      zmin = (zmin - zMin) * zScale;
+      zmax = (zmax - zMin) * zScale;
+  }
+
+  // end special treatment for z axis.
+
+  // Output the grid coordinates.
+  for ( int i = 0; i<nx; i++ )
+  { for ( int j = 0; j<ny; j++ )
+    {
+     WriteGridSquareCoordinates(i, j);
+     if (WRLoutFile.fail()) return 0;
+    }
+  }
+  WRLoutFile << "       ] # end point\n"
+             << "      } # end Coordinate\n"
+             << "      normal Normal {\n"
+             << "       vector [ ]\n"
+             << "      } # end Normal\n";
+
+  if (ColouredGrid)
+  {
+    WRLoutFile << "      color Color {\n"
+               << "       color [\n";
+    // Output a Coloured Grid - each grid triangle is it's own colour
+    for ( int i = 0; i<(nx-1); i++ )
+    { for ( int j = 0; j<(ny-1); j++ )
+      {
+        WriteGridSquareColour(i, j);
+        if (WRLoutFile.fail()) return 0;
+      }
+    } // End nested for's.
+    WRLoutFile << "       ] # end color\n"
+               << "      } # end Color\n"
+               << "      colorPerVertex FALSE\n";
+  } // end if( ColouredGrid)
+
+  WRLoutFile << "      coordIndex [\n";
+
+  for ( int i = 0; i<(nx-1); i++ )
+  { for ( int j = 0; j<(ny-1); j++ )
+    {
+      WriteGridSquareCoordinateIndices(i, j);
+      if (WRLoutFile.fail()) return 0;
+    }
+  }  // end nested for's
+
+  WRLoutFile << "      ] # end coordIndex\n";
+
+  if (ColouredGrid)
+  {
+    WRLoutFile << "      colorIndex [\n";
+    WRLoutFile << "       ";
+    for ( int i = 0; i<ci; i++ )
+    {
+      WRLoutFile << i << ", ";
+      if (i && (i % 20) == 0) WRLoutFile << "\n       ";
+    }
+    WRLoutFile << "\n";
+    if (WRLoutFile.fail()) return 0;
+
+    WRLoutFile << "      ] # end colorIndex\n";
+  }
+  WRLoutFile << "      ccw FALSE\n"
+             << "      solid FALSE\n"
+             << "      convex TRUE\n"
+             << "      creaseAngle 0\n"
+             << "     } # end IndexedFaceSet\n"
+             << "    } # end Shape\n"
+             << "  } # end GRID Group\n";
+
+  // Grid is done - output the 3d Axes (three simple lines).
+  if (DrawingOptions.threedaxes)
+  {
+    int iAxesOrigin = 0;
+    int iAxesZmax = 1;
+    int iAxesXmax = 2;
+    int iAxesYmax = 3;
+    WRLoutFile << "  ,\n"
+               << "  DEF AXES Group {\n"
+               << "   children\n"
+               << "    DEF _shape Shape {\n"
+               << "     appearance Appearance {\n"
+               << "      material Material {\n"
+               << "      diffuseColor "
+               << ((float)GetRValue(AxisPen) / 255.) << " "
+               << ((float)GetGValue(AxisPen) / 255.) << " "
+               << ((float)GetBValue(AxisPen) / 255.) << "\n"
+               << "      }\n"
+               << "     }\n"
+               << "     geometry IndexedLineSet {\n"
+               << "      coord Coordinate {\n"
+               << "       point [\n"
+               << "        # Axes coordinates follow\n"
+               << "        " << xmin << " " << ymin << " " << zmin << ",\n"
+               << "        " << xmin << " " << ymin << " " << zmax << ",\n"
+               << "        " << xmax << " " << ymin << " " << zmin << ",\n"
+               << "        " << xmin << " " << ymax << " " << zmin << ",\n"
+               << "       ] # end point\n"
+               << "      } # end Coordinate\n"
+               << "      coordIndex [\n"
+               << "       " << iAxesOrigin << ", " << iAxesZmax << ", -1,\n"
+               << "       " << iAxesOrigin << ", " << iAxesXmax << ", -1,\n"
+               << "       " << iAxesOrigin << ", " << iAxesYmax << ", -1\n"
+               << "      ]\n"
+               << "     } # end IndexedLineSet\n"
+               << "    } # end Shape\n"
+               << "  } # end AXES Group\n";
+  }
+
+  // Now output the outline.
+  int SizeOfOutline = OutLine.Size();
+  if( SizeOfOutline > 1 )
+  {
+    WRLoutFile << "  ,\n"
+               << "  DEF OUTLINE Group {\n"
+               << "   children\n"
+               << "    DEF _shape Shape {\n"
+               << "     appearance Appearance {\n"
+               << "      material Material {\n"
+               << "       diffuseColor "
+               << ((float)GetRValue(OutlinePen) / 255.) << " "
+               << ((float)GetGValue(OutlinePen) / 255.) << " "
+               << ((float)GetBValue(OutlinePen) / 255.) << "\n"
+               << "      }\n"
+               << "     }\n"
+               << "     geometry IndexedLineSet {\n"
+               << "      coord Coordinate {\n"
+               << "       point [\n"
+               << "        # Outline coordinates follow\n";
+
+    // Output the Outline Coordinates.
+
+    // Set z to zmin if no Z coordinate read for outline.
+    bool NoZ = false;
+    if (OutLine.zMin() == OutLine.zMax()) NoZ = true;
+    for ( int i = 0; i < SizeOfOutline; i++ )
+    {
+      float x = OutLine.x(i) + dxnormalize;
+      float y = OutLine.y(i) + dynormalize;
+      float z = zmin + zadjust;
+      if (!NoZ) z = OutLine.z(i) + zadjust;
+      if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
+        z = (z - zMin) * zScale;
+
+      WRLoutFile << "       " << x << " " << y << " " << z << ",\n";
+    } // End for ( i =
+
+    WRLoutFile << "       ] # end point\n"
+               << "      } # end Coordinate\n"
+               << "      coordIndex [\n";
+
+    WRLoutFile << "       ";
+    for ( int i = 0; i < SizeOfOutline; i++ )
+    {
+      if( OutLine.flags(i) & 1 ) WRLoutFile << " -1, \n"; // Move here?
+      WRLoutFile << i << ", ";
+      if (i && (i % 20) == 0) WRLoutFile << "\n       ";
+    }
+    WRLoutFile << "      ]\n"
+               << "     } # end IndexedLineSet\n"
+               << "    } # end Shape\n"
+               << "  } # end OUTLINE Group\n";
+  } // End if( OutlineSize > 1 )
+
+  WRLoutFile << " ] # end children\n"
+             << "} # end Group\n";
+  return 1;
+}
+//**************************************************************
+//       O u t p u t   V R M L   f i l e
 //**************************************************************
 int OutputVRMLFile( char szFile[] )
 {
-  static int i, j, ij, i1j, i1j1, ij1,
-             AxesOffset, OutlineOffset,
-             iAxesOrigin, iAxesZmax, iAxesXmax, iAxesYmax,
-             SizeOfOutline;
-  static float x, y, z,
-               xmin, xmax, ymin, ymax, zmin, zmax;
-  static bool NoZ; 
-
+  ci = 0;
 
   WRLoutFile.open( szFile, ios::out );
 
   if( !WRLoutFile )
-    { NotifyUser( IDS_NOOUTPUTFILE );
-      return 0;
-    }
-
- LoadNormalization( dxnormalize, dynormalize );
- zadjust = ScatterData.zAdjust();
-
- SetWaitCursor();
-
- Zgrid.zratio(0);
- WRLOutputFailed = FALSE;
-
- WRLoutFile << "#VRML V1.0 ascii" << endl   // Output Header information.
-	 << "Separator { " << endl
-	 << "   DEF SceneInfo Info { string \"Generated by ";
-
- WRLoutFile << "QuikGrid.\" } # end SceneInfo" <<  endl;
-
- WRLoutFile << "ShapeHints { "      << endl
-	 << "   vertexOrdering CLOCKWISE"  << endl
-    << "   shapeType UNKNOWN_SHAPE_TYPE"      << endl
-    << "   faceType CONVEX" << endl
-    << "   creaseAngle 0.0 } # end ShapeHints " << endl;
-
- WRLoutFile << "DEF X1_X2_GRID Separator { " << endl
-            << "  Material { " << endl
-            << "    diffuseColor "
-                << ((float)GetRValue(GridPen)/255.)<< " "
-                << ((float)GetGValue(GridPen)/255.)<< " "
-                << ((float)GetBValue(GridPen)/255.)<< endl
-            << "    ambientColor .2 .2 .2 " << endl
-            << "    specularColor 0 0 0 " << endl
-            << "    emissiveColor 0 0 0 " << endl
-            << "    shininess .2 " << endl
-            << "    transparency 0 } # end Material " << endl;
-
- WRLoutFile << " Coordinate3 {  point [ " << endl;
-
- nx = Zgrid.xsize();
- ny = Zgrid.ysize();
-
- zRatio = (float)PaintSurfaceRatio()*.01;
- xRange = Zgrid.x(nx-1) - Zgrid.x(0);
- zMin   = Zgrid.zmin();
- zRange = Zgrid.zmax() - Zgrid.zmin();
- zScale = zRatio*(xRange/zRange);
-
- // Output the grid coordinates.
- WRLoutFile << "# Grid coordinates follow - Offset 0 " << endl;
- for (   i = 0; i<nx; i++ )
- { for ( j = 0; j<ny; j++ )
-	{
-    z = Zgrid.z(i,j);
-    if( z < 0 ) z = 0; // Set undefined nodes to zero (they will be ignored anyhow).
-    else if( DXFFaceScaleZ &&( zRatio!=0.0) )  // Scale z axis if requested.
-             z  = (z-zMin) *zScale;
-    x = Zgrid.x(i)+dxnormalize;
-    y = Zgrid.y(j)+dynormalize;
-    WRLoutFile << x << " " << y << " " << z << "," << endl;
-   }
- }
-
- // Output the Axes coordinates.
-
- AxesOffset = nx*ny;
- xmax = Zgrid.xmax()+ dxnormalize;          // For axes on the generated grid.
- ymax = Zgrid.ymax()+ dynormalize;
- xmin = Zgrid.xmin()+ dxnormalize;
- ymin = Zgrid.ymin()+ dynormalize;
-
- // Z axes get special treatment - if overridden or scaled.
-
- zmax = Zgrid.zmax();
- zmin = Zgrid.zmin();
-
- // if the axes are to be plotted at a different z minimum.
-   if( (ZmaxLabel != ZminLabel) &&
-       (ZmaxLabel > zmin-zadjust) &&
-       (ZminLabel < zmax-zadjust) )
-  {
-   zmin = ZminLabel+zadjust;
-   zmax = ZmaxLabel+zadjust; 
+  { NotifyUser( IDS_NOOUTPUTFILE );
+    return 0;
   }
 
-  if( DXFFaceScaleZ &&( zRatio!=0.0) )  // Scale z axis if requested.
-            {zmin  = (zmin-zMin) *zScale;
-             zmax  = (zmax-zMin) *zScale; }
+  LoadNormalization( dxnormalize, dynormalize );
+  zadjust = ScatterData.zAdjust();
 
- // end special treatment for z axis.
+  SetWaitCursor();
 
- WRLoutFile << "# Axes coordinates follow - Offset " <<  AxesOffset << endl;
- WRLoutFile << xmin << " " << ymin << " " << zmin << "," << endl;
- WRLoutFile << xmin << " " << ymin << " " << zmax << "," << endl;
- WRLoutFile << xmax << " " << ymin << " " << zmin << "," << endl;
- WRLoutFile << xmin << " " << ymax << " " << zmin << "," << endl;
- iAxesOrigin = AxesOffset;
- iAxesZmax   = AxesOffset+1;
- iAxesXmax   = AxesOffset+2;
- iAxesYmax   = AxesOffset+3;
+  Zgrid.zratio(0);
+  WRLOutputFailed = FALSE;
 
- OutlineOffset = AxesOffset + 4;
+  int success = VRML2format ? OutputVRML2Format() : OutputVRML1Format();
+  if (!success) AbortWriteWRLFile(szFile);
 
- // Output the Outline Coordinates.
-
- SizeOfOutline = OutLine.Size();
- if( SizeOfOutline > 1 )
- {
-   WRLoutFile << "# Outline coordinates follow - Offset " <<  OutlineOffset << endl;
-   // Set z to zmin if no Z coordinate read for outline.
-   NoZ = false;
-   if( OutLine.zMin() == OutLine.zMax() ) NoZ = true;
-   for ( i = 0; i < SizeOfOutline; i++ )
-   {
-     x = OutLine.x(i)+ dxnormalize;
-     y = OutLine.y(i)+ dynormalize;
-     z = zmin + zadjust;
-     if( !NoZ ) z = OutLine.z(i)+ zadjust;
-     if( DXFFaceScaleZ &&( zRatio!=0.0) )  // Scale z axis if requested.
-            z  = (z-zMin) *zScale;
-             
-     WRLoutFile << x << " " << y << " " << z << "," << endl;
-   } // End for ( i =
-} // End if Outline() < 2
-
- WRLoutFile << "   ] # end point " << endl
-            << " } # end Coordinate 3" << endl;
-
- if( ColouredGrid)
- {
-   // Output a Coloured Grid - each grid triangle is it's own colour
-   for ( i = 0; i<(nx-1); i++ )
-  { for ( j = 0; j<(ny-1); j++ )
-	{
-     WriteGridSquare( i, j );
-     if( WRLoutFile.fail() )
-			{ AbortWriteWRLFile( szFile );  WRLoutFile.close(); return 0; }
-	}
- } // End nested for's.
- } // end if( ColouredGrid)
- else // Each grid triangle is the same colour - more compact output.
- {
- WRLoutFile << " IndexedFaceSet {  coordIndex [ " << endl;
-
- for (   i = 0; i<(nx-1); i++ )
- { for ( j = 0; j<(ny-1); j++ )
-	{
-	// Draw two triangles per qrid square.. clockwise.
-     if( Zgrid.z(i,j) < 0.0 ) continue;     // Don't draw triangle
-     if( Zgrid.z(i+1,j+1) < 0.0 ) continue; // if a node is undefined.
-
-         ij = i*ny+j;            // Calculate the offsets for the 4 vertices
-         i1j = (i+1)*ny+j;       // of the grid square oriented at "ij".
-         ij1 =  i*ny+j+1;        // i1j == vertice at "i+1", "j" etc.
-         i1j1 = (i+1)*ny+j+1;
-
-         if(Zgrid.z(i,j+1) >= 0.0)
-         WRLoutFile << ij << ", " << ij1 << ", " << i1j1 << ", -1," << endl;  // Clockwise.
-
-         if(Zgrid.z(i+1,j) >= 0.0)
-         WRLoutFile << ij << ", " << i1j1 << ", " << i1j << ", -1," << endl;  // Clockwise
-
-     if( WRLoutFile.fail() )
-			{ AbortWriteWRLFile( szFile );  WRLoutFile.close(); return 0; }
-	}
- }  // end nested for's
-
- WRLoutFile << "    ] # end coordIndex " << endl
-            << "  } # end IndexedFaceSet " << endl;
- } // end else - output non coloured grid.
-
- // Grid is done - output the 3d Axes (three simple lines).
- if( DrawingOptions.threedaxes )
- {
-   WRLoutFile << endl << " # The 3d Axes follow " << endl;
-   Colour = AxisPen;
-   WRLoutFile << " Material { " << endl
-            << "   diffuseColor "
-            << ((float)GetRValue(Colour)/255.)<< " "
-            << ((float)GetGValue(Colour)/255.)<< " "
-            << ((float)GetBValue(Colour)/255.)<< endl
-            << "   ambientColor .2 .2 .2 " << endl
-            << "   specularColor 0 0 0 " << endl
-            << "   emissiveColor 0 0 0 " << endl
-            << "   shininess .2 " << endl
-            << "   transparency 0 } # end Material " << endl
-            << " IndexedLineSet { coordIndex [ " << endl;
-    WRLoutFile << iAxesOrigin << ", " << iAxesZmax << ", -1," << endl;
-
-    WRLoutFile << iAxesOrigin << ", " << iAxesXmax << ", -1," << endl;
-    WRLoutFile << iAxesOrigin << ", " << iAxesYmax << ", -1 ] }" << endl;
-  }
-
-  // Now output the outline.
-
-if( SizeOfOutline > 1 )
-{
-  WRLoutFile << endl << " # The Outline follows " << endl;
- Colour = OutlinePen;
- WRLoutFile << " Material { " << endl
-            << "   diffuseColor "
-            << ((float)GetRValue(Colour)/255.)<< " "
-            << ((float)GetGValue(Colour)/255.)<< " "
-            << ((float)GetBValue(Colour)/255.)<< endl
-            << "   ambientColor .2 .2 .2 " << endl
-            << "   specularColor 0 0 0 " << endl
-            << "   emissiveColor 0 0 0 " << endl
-            << "   shininess .2 " << endl
-            << "   transparency 0 } # end Material " << endl;
-
- WRLoutFile << " IndexedLineSet { coordIndex [ " << endl;
- for ( i = 0; i < SizeOfOutline; i++ )
-   {
-     if( OutLine.flags(i)&1 )WRLoutFile << " -1, " << endl; // Move here? 
-     WRLoutFile << (i+OutlineOffset) << ", " << endl;
-   }
-   WRLoutFile << " -1 ] }" << endl;
- } // End if( OutlineSize > 1 )
-
-
- WRLoutFile << " } # end QuikGrid Separator " << endl
-            << "} # end VRML Separator "    << endl;
-
- WRLoutFile.close();
- RestoreCursor();
- return 1;
+  WRLoutFile.close();
+  RestoreCursor();
+  return success;
 }
-

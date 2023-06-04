@@ -506,7 +506,7 @@ BEGIN
     RTEXT           "For arrow keys Pan this percent of the window",-1,7,27,167,14
 END
 
-DATAOUTPUTOPTIONS DIALOG 58, 51, 219, 174
+DATAOUTPUTOPTIONS DIALOG 58, 51, 219, 188
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Data Output Options"
 FONT 10, "System"
@@ -522,16 +522,17 @@ BEGIN
     CONTROL         "Use high precision for DXF output. ",IDD_HIGHDXFOUTPUTPRECISION,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,90,196,9
     EDITTEXT        IDD_UNDEFINEDVALUE,140,2,58,12
-    PUSHBUTTON      "OK",IDOK,12,157,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,84,157,50,14
-    PUSHBUTTON      "Help",IDHELP,148,157,50,14
-    PUSHBUTTON      "Save as preference",IDPREFERENCE,36,140,144,14
-    LTEXT           "%: Size of DXF text as a % of the drawing height",-1,36,123,160,12,NOT WS_GROUP
-    EDITTEXT        IDD_DXFTEXTHEIGHT,8,121,24,12,ES_RIGHT
+    PUSHBUTTON      "OK",IDOK,12,171,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,84,171,50,14
+    PUSHBUTTON      "Help",IDHELP,148,171,50,14
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,36,154,144,14
+    LTEXT           "%: Size of DXF text as a % of the drawing height",-1,36,137,160,12,NOT WS_GROUP
+    EDITTEXT        IDD_DXFTEXTHEIGHT,8,135,24,12,ES_RIGHT
     RTEXT           "Output undefined XYZ or GRD values as:",-1,4,4,136,12,NOT WS_GROUP
     CONTROL         "Never label DXF contour polylines ",IDD_DXFNEVERLABEL,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,52,196,12
     CONTROL         "Triangulate VRML output",IDD_VRMLTRIANGLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,104,148,8
+    CONTROL         "Output VRML 2 format",IDD_VRML2OUTPUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,118,148,8
 END
 
 COLORFEATURES DIALOG 0, 1, 169, 175

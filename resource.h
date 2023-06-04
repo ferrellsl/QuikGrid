@@ -1345,6 +1345,7 @@
 #define IDD_VRMLTRIANGLES               281
 #define WM_GESTURE                      0x0119
 #define WM_GESTURENOTIFY                0x011A
+#define IDD_VRML2OUTPUT                 282
 #define WM_MENUSELECT                   0x011F
 #define WM_MENUCHAR                     0x0120
 #define WM_ENTERIDLE                    0x0121

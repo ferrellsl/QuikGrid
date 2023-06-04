@@ -79,6 +79,7 @@ int UseThreads;
 extern int TextSize;
 extern float ZmaxLabel, ZminLabel;
 extern int VRMLtriangles;
+extern int VRML2format;
 extern float ArrowSize;
 
 extern COLORREF GridPen,
@@ -93,7 +94,7 @@ extern COLORREF GridPen,
                 AxisPen;
 
 static double xadjust, yadjust;
-static char szTemp[100], *endptr;
+static char szTemp[1000], *endptr;
 static int UseTabSeparator;
 extern int GridlineColouredGrid;
 extern int SmallMark;
@@ -233,6 +234,7 @@ void LoadPreferences( HMENU &hMenu)
   UndefinedValue = GetProfileDouble( "Input Output", "Undefined value", "-99999." );
   DXFFaceScaleZ = GetProfileInt( "Input Output", "DXF3DFACE Scale Z", "1" );
   VRMLtriangles = GetProfileInt( "Input Output", "VRML triangles", "1" );
+  VRML2format = GetProfileInt( "Input Output", "VRML2 format", "0" );
   HighDXFOutputPrecision = GetProfileInt( "Input Output", "High DXF output precision", "1" );
   SubmetrixSelectZ = GetProfileInt( "Input Output", "SubmetrixZ", "1" );
   DXFTextHeightRatio = GetProfileDouble( "Input Output", "DXF Text Height Ratio", ".02");
@@ -411,6 +413,7 @@ void SaveOutputOptions()
   WriteProfileDouble( "Input Output", "Undefined value", UndefinedValue);
   WriteProfileInt( "Input Output", "DXF3DFACE Scale Z", DXFFaceScaleZ );
   WriteProfileInt( "Input Output", "VRML triangles", VRMLtriangles );
+  WriteProfileInt( "Input Output", "VRML2 format", VRML2format );
   WriteProfileInt( "Input Output", "High DXF output precision", HighDXFOutputPrecision );
   WriteProfileDouble( "Input Output", "DXF Text Height Ratio", DXFTextHeightRatio );
   WriteProfileInt( "Input Output", "Never label DXF contours", NeverLabelDXFContours );
