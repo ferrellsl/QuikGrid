@@ -26,6 +26,7 @@
 // May 15/01: Try shape type = UNKNOWN_SHAPE_TYPE
 // Nov. 13/03: Force all Material out for each triangle to make it
 //             work with TrueSpace (Increases file size a lot!).
+// Jun. 4/23 VRML2.0 support and output optimizations added by Volker Enderlein.
 //***********************************************************************
 
 #include <windows.h>
