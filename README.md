@@ -1,4 +1,4 @@
-# QuikGrid v5.4.2 for 64-bit editions of MS Windows
+# QuikGrid v5.4.3 for 64-bit editions of MS Windows
 Contour mapping and 3D surface modeling app
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
