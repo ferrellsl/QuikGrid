@@ -1,0 +1,869 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+#include <windows.h>
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+SURFACE                 ICON                    "surface.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+QUIKGRID MENU
+BEGIN
+    POPUP "File..."
+    BEGIN
+        MENUITEM "Process command file... ",    IDM_INPUTCOMMANDFILE
+        MENUITEM SEPARATOR
+        POPUP "Input scattered data points"
+        BEGIN
+            MENUITEM "Input metric data points...", IDM_OPENMETRIC
+            MENUITEM "Input Lat/Lon (dddmm.mmmm) data points... ", IDM_OPENLATLON
+            MENUITEM "Input NOAA/NGS Lat/Lon (ddd mm ss.sssss) data points...", IDM_OPENNOAA
+            MENUITEM "Input NOAA/NOS integer Lat/Lon (dddmmssss) data points...", IDM_OPENNOS
+            MENUITEM "Input DCA data points...",    IDM_OPENDCA
+            MENUITEM "Input DXF data points...",    IDM_OPENDXF
+            MENUITEM "Input Submetrix .sxp data points...", IDM_OPENSUBMETRIXSXP
+        END
+        MENUITEM "Load test data ",             IDM_LOADTESTDATA
+        MENUITEM SEPARATOR
+        POPUP "Input a grid"
+        BEGIN
+            MENUITEM "Load a QuikGrid grid from file.... ", IDM_OPENGRID
+            MENUITEM "Load a 1-Degree USGS DEM from file... ", IDM_USGSDEM
+            MENUITEM "Load an ER Mapper raster file... ", IDM_LOADERMAPPER
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Input outline data...",       IDM_OPENOUTLINE
+        MENUITEM "Clear outline data ",         IDM_CLEAROUTLINE
+        MENUITEM SEPARATOR
+        MENUITEM "Save data points to a file...", IDM_SAVEDATAPOINTS
+        MENUITEM SEPARATOR
+        POPUP "Save the current grid "
+        BEGIN
+            MENUITEM "Save the grid in the QuikGrid format... ", IDM_SAVE
+            MENUITEM "Save the grid in the ER Mapper format...", IDM_ERMAPPER
+            MENUITEM "Save the grid in the Surfer GRD format...", IDM_SAVEGRD
+            MENUITEM "Save the grid as x,y,z triplets...", IDM_SAVEXYZ
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Export a DXF file...",        IDM_OUTPUTDXF
+        MENUITEM "Export a DXF 3D Face file...", IDM_DXF3DFACE
+        MENUITEM "Export a VRML file...",       IDM_OUTPUTWRL
+        MENUITEM SEPARATOR
+        MENUITEM "Print... ",                   IDM_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "View..."
+    BEGIN
+        MENUITEM "Edit all view options... ",   IDM_EDITVIEWOPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "...2d from above \aAlt 2",    IDM_2DSURFACE, CHECKED
+        MENUITEM "...3d Surface\aAlt 3",        IDM_3DSURFACE
+        MENUITEM SEPARATOR
+        MENUITEM "... with contours ",          IDM_CONTOUR
+        MENUITEM "... with transparent grid",   IDM_GRIDPLOT
+        MENUITEM "... with hidden surface grid. ", IDM_GRIDHIDE, CHECKED
+        MENUITEM "... with hidden coloured grid.", IDM_COLOUREDGRID
+        MENUITEM "... with data points",        IDM_DATAPLOT
+        MENUITEM SEPARATOR
+        MENUITEM "... as latitude/longitude data", IDM_LATLON
+        MENUITEM SEPARATOR
+        MENUITEM "Program status",              IDM_VIEWSTATISTICS
+    END
+    POPUP "Edit..."
+    BEGIN
+        MENUITEM "Title... ",                   IDM_TITLE
+        MENUITEM "Colour of Features...",       IDM_COLORFEATURES
+        MENUITEM "Colour Map... ",              IDM_COLOURMAPPING
+        MENUITEM "Contour Intervals and Labels...", IDM_CONTVALS
+        MENUITEM "Angle...",                    IDM_ANGLE
+        MENUITEM "Number of grid lines ...",    IDM_NUMBEROFGRIDLINES
+        MENUITEM "Grid Line Coordinates...",    IDM_GRIDDIM
+        MENUITEM "Grid Generation Options...",  IDM_TECHNICAL
+        MENUITEM "Output Options... ",          IDM_DATAOUTPUTOPTIONS
+        MENUITEM "Input Options... ",           IDM_DATAINPUTOPTIONS
+        MENUITEM "View Data Point Options...",  IDM_DATAPOINTOPTIONS
+        MENUITEM "Vertical Scale Factor... ",   IDM_EDITZRATIO
+        MENUITEM "Right mouse button options...", IDM_RIGHTCLICKOPTIONS
+        MENUITEM "Zoom and Pan Options...",     IDM_ZOOMRATIO
+    END
+    POPUP "Window..."
+    BEGIN
+        MENUITEM "Copy to clipboard as bitmap\aCtrl B", IDM_COPYBITMAP
+        MENUITEM "Copy to clipboard as metafile\aCtrl C", IDM_COPYMETA
+        MENUITEM SEPARATOR
+        MENUITEM "Fit to screen (unzoom)\aHome", IDM_UNZOOM
+        MENUITEM "Previous zoom\aEnd",          IDM_PREVIOUSZOOM
+        MENUITEM "Zoom in\aPage Up",            IDM_ZOOMIN
+        MENUITEM "Zoom out\aPage Down",         IDM_ZOOMOUT
+        MENUITEM "Pan left\aLeft arrow",        IDM_PANLEFT
+        MENUITEM "Pan right\aRight arrow",      IDM_PANRIGHT
+        MENUITEM "Pan up\aUp arrow",            IDM_PANUP
+        MENUITEM "Pan down\aDown arrow",        IDM_PANDOWN
+        MENUITEM SEPARATOR
+        MENUITEM "...Freeze zoom level (Pan)\aCtrl F", IDM_ZOOMFREEZE
+        MENUITEM "...Negative zoom\aCtrl N",    IDM_NEGATIVEZOOM
+    END
+    POPUP "Grid..."
+    BEGIN
+        MENUITEM "Grid full dataset",           IDM_GENGRIDORIGINAL
+        MENUITEM "Grid 2d view",                IDM_GENGRIDZOOM
+        MENUITEM "Crop 2d view ",               IDM_CROP2DVIEW
+        MENUITEM "Set colour map to grid extents", IDM_COLOURMAPGRIDEXTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Full resolution\a*",          IDM_GRIDRESFULL, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Increase resolution\a+",      IDM_GRIDRESINCREASE, GRAYED
+        MENUITEM "Decrease resolution\a-",      IDM_GRIDRESDECREASE, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "...Automatic grid resolution\aCtrl A", IDM_GRIDRESAUTO
+        MENUITEM SEPARATOR
+        MENUITEM "...Lock current grid as template", IDM_GRIDLOCK
+        MENUITEM "Save current grid as default template. ", IDM_SAVETEMPLATE
+        MENUITEM "Stop loading default template", IDM_CLEARTEMPLATE
+        MENUITEM SEPARATOR
+        MENUITEM "...Generate grid automatically ", IDM_AUTOGRIDGEN, CHECKED
+        MENUITEM "Generate grid now!",          IDM_GENGRID
+    END
+    POPUP "Function..."
+    BEGIN
+        MENUITEM "Copy grid to speed layer and lock template", IDM_COPYGRIDSPEED
+        MENUITEM "Copy grid to direction layer and lock template", IDM_COPYGRIDDIRECTION
+        MENUITEM "Copy grid to colour layer and lock template", IDM_COPYGRIDCOLOUR
+        MENUITEM SEPARATOR
+        MENUITEM "Colour layer = colour layer - grid. ", IDM_COLOURLAYERDIFFERENCE
+        MENUITEM SEPARATOR
+        MENUITEM "Set minimum grid z to undefined leaving a border", IDM_SETMINUNDEFINED
+        MENUITEM "Set maximum grid z to undefined leaving a border", IDM_SETMAXUNDEFINED
+        MENUITEM SEPARATOR
+        MENUITEM "Set undefined grid intersections to minimum z", IDM_SETUNDEFINEDMINZ
+        MENUITEM "Set undefined grid intersections to maximum z", IDM_SETUNDEFINEDMAXZ
+    END
+    MENUITEM "About",                       IDM_ABOUT
+    MENUITEM "Help",                        IDM_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOG 36, 38, 122, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About QuikGrid"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,8,104,48,16
+    ICON            "Surface",-1,3,15,16,16
+    CTEXT           "John Coulthard",-1,27,24,70,8
+    CTEXT           "Version 5.4.2: Jun. 02, 2023",-1,2,52,118,8
+    CTEXT           "www.galiander.ca",-1,1,36,117,8
+    LTEXT           "Copyright (c) 1993 - 2007",-1,24,0,86,9
+    CTEXT           "QuikGrid is free software. See the help file for a disclaimer. ",IDD_DISCLAIMER,4,68,110,28,WS_BORDER
+    PUSHBUTTON      "Help",IDD_HELP,64,104,48,16
+END
+
+GRIDGENBOX DIALOG 24, 17, 125, 89
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Grid Generation in Progress"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,2,72,27,14
+    PUSHBUTTON      "Help",IDD_HELP,34,72,26,14
+    CTEXT           SW_HIDE,IDD_PERCENTDONE,92,73,22,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_PERCENTSHELL,88,60,29,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_SCANBANDWIDTH,88,48,29,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_NUMDATAPOINTS,84,37,40,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_SAMPLENUMBER,92,26,23,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_GRIDSIZEY,88,13,32,9,WS_BORDER | NOT WS_GROUP
+    CTEXT           SW_HIDE,IDD_GRIDSIZEX,44,13,30,9,WS_BORDER | NOT WS_GROUP
+    LTEXT           "%Done:",-1,64,73,25,10
+    LTEXT           "Grid size: ",-1,8,13,36,8
+    LTEXT           "by",-1,76,13,11,8
+    LTEXT           "Average scan bandwidth:",-1,2,48,83,8
+    LTEXT           "Number of data points: ",-1,9,37,75,8
+    LTEXT           "Average search shell:",-1,12,60,71,8
+    LTEXT           "Presorting Data Points",IDD_GRIDGENSTATUS,31,3,77,8
+    LTEXT           "Status:",-1,6,3,22,8
+    LTEXT           "Sampling every n'th point:",-1,1,26,90,8
+END
+
+NEWGRIDLINES DIALOG 11, 14, 167, 185
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Grid Line Coordinates"
+BEGIN
+    EDITTEXT        IDD_XSTART,56,88,52,11
+    EDITTEXT        IDD_XINCREMENT,56,100,52,11
+    EDITTEXT        IDD_XEND,56,112,52,11
+    EDITTEXT        IDD_YSTART,112,88,52,11
+    EDITTEXT        IDD_YINCREMENT,112,100,52,11
+    EDITTEXT        IDD_YEND,112,112,52,11
+    PUSHBUTTON      "OK",IDOK,8,169,33,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,169,33,14
+    PUSHBUTTON      "Help",IDD_HELP,124,169,30,14
+    LTEXT           "Number of grid lines:",-1,6,47,68,8
+    CTEXT           "X ",-1,88,3,11,8
+    CTEXT           "Y",-1,139,4,7,7
+    LTEXT           "Minimum:",-1,34,14,34,8
+    LTEXT           "Maximum:",-1,29,32,34,8
+    LTEXT           "Start:",-1,36,87,18,8
+    LTEXT           "End:",-1,39,112,15,8
+    LTEXT           "Range: ",-1,40,23,24,8
+    CTEXT           "1",IDD_XMIN,71,14,44,7
+    CTEXT           "2",IDD_YMIN,121,14,44,7
+    CTEXT           "5",IDD_XMAX,70,32,45,8
+    CTEXT           "6",IDD_YMAX,120,32,45,7
+    LTEXT           "Increment:",-1,20,100,35,8
+    LTEXT           "Input Data",-1,5,16,22,17
+    CTEXT           "3",IDD_XRANGE,70,23,45,7
+    CTEXT           "4",IDD_YRANGE,120,23,45,7
+    LTEXT           "Grid Lines",-1,0,96,18,19
+    PUSHBUTTON      "Set grid lines to enclose the current (2d) view",IDD_CALCULATEGRID,2,142,163,10
+    PUSHBUTTON      "Show # lines required for Start,Increment,End. ",IDD_CALCULATELINE,3,74,162,10
+    PUSHBUTTON      "Set grid lines to enclose all input data",IDD_CALCULATERESET,2,127,163,10
+    CTEXT           "",-1,1,67,166,3,WS_BORDER
+    CTEXT           "7",IDD_XGRIDLINES,77,47,30,9
+    CTEXT           "8",IDD_YGRIDLINES,124,47,38,10
+END
+
+ROTATE DIALOG 18, 18, 142, 82
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "3d Rotation Parameters"
+BEGIN
+    EDITTEXT        IDD_ABOVE,94,6,16,12
+    EDITTEXT        IDD_ABOUT,94,20,16,12
+    EDITTEXT        IDD_PROJECTION,94,35,16,12
+    PUSHBUTTON      "OK",IDOK,8,67,32,13
+    PUSHBUTTON      "Cancel",IDCANCEL,51,67,33,14
+    PUSHBUTTON      "Help",IDD_HELP,98,67,30,14
+    LTEXT           "Angle Above Grid",-1,31,7,59,8
+    LTEXT           "Angle About Grid",-1,33,22,58,8
+    LTEXT           "Perspective Projection",-1,14,38,76,8
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,16,52,105,10
+END
+
+CONTOURS DIALOG 32, 20, 118, 165
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Contour Lines "
+BEGIN
+    EDITTEXT        IDD_CONTOURINCR,80,108,24,12
+    EDITTEXT        IDD_SECONDARYLINES,100,128,16,12
+    LTEXT           "Less",-1,8,60,16,8
+    EDITTEXT        IDD_LABELNDIGITS,64,40,16,12,ES_CENTER
+    PUSHBUTTON      "OK",IDOK,4,148,32,14
+    PUSHBUTTON      "Cancel",IDCANCEL,44,148,34,14
+    PUSHBUTTON      "Help",IDD_HELP,84,148,33,14
+    LTEXT           "0",IDD_ZMAX,32,20,66,8
+    LTEXT           "0",IDD_ZMIN,32,11,63,8
+    CTEXT           "Data Range ",-1,24,0,82,8
+    RTEXT           "From: ",-1,0,10,30,8
+    RTEXT           "To:",-1,8,19,20,8
+    RTEXT           "Number of contour lines:",-1,2,28,90,8
+    RTEXT           "Distance between labeled bold lines",-1,0,104,70,16
+    RTEXT           "Label precision:",-1,0,40,60,12
+    SCROLLBAR       IDD_SCROLLDISTANCE,28,60,68,8
+    CTEXT           "Distance between labels",-1,16,52,100,8
+    LTEXT           "More",-1,100,60,20,8
+    LTEXT           "10",IDD_NCONTOURS,96,28,16,8
+    RTEXT           "Number of unlabeled lines between labeled bold lines",-1,0,124,93,19
+    PUSHBUTTON      "Save above as preference ",IDPREFERENCE,4,88,112,12
+    CONTROL         "Use coloured contours.",IDD_COLORCONTOURS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,72,96,12
+END
+
+TECHNICAL DIALOG 34, 55, 142, 109
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Grid Generation Options "
+FONT 10, "System"
+BEGIN
+    EDITTEXT        IDD_INTERNALSAMPLE,104,8,16,12
+    EDITTEXT        IDD_BANDWIDTHCUTOFF,104,20,30,12
+    EDITTEXT        IDD_DENSITYRATIO,104,32,30,12
+    EDITTEXT        IDD_EDGESENSITIVITY,104,44,30,12
+    EDITTEXT        IDD_VALUEUNDEF,104,76,36,12
+    CONTROL         "Set undefined grid loc'n to:",IDD_SETGRIDUNDEF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,97,12
+    PUSHBUTTON      "OK",IDOK,12,92,28,14
+    PUSHBUTTON      "Cancel",IDCANCEL,56,92,31,14
+    PUSHBUTTON      "Help",IDD_HELP,100,92,28,14
+    LTEXT           "Scan bandwidth cutoff: ",-1,28,20,74,8
+    LTEXT           "Distance cutoff [%]: ",-1,38,32,64,8
+    LTEXT           "Edge Sensitivity (%):",-1,35,44,67,8
+    RTEXT           "Sample every n'th point:",-1,13,8,89,8
+    PUSHBUTTON      "Set above as preference",IDPREFERENCE,16,60,112,12
+END
+
+TITLE DIALOG 12, 70, 207, 50
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter new title"
+BEGIN
+    EDITTEXT        IDD_TITLETEXT,8,12,190,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDOK,36,31,31,14
+    PUSHBUTTON      "Cancel",IDCANCEL,88,31,35,14
+    PUSHBUTTON      "Help",IDD_HELP,143,31,29,14
+END
+
+READINGDATA DIALOG 18, 18, 142, 43
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "WAIT"
+BEGIN
+    CTEXT           "Reading input data... ",-1,0,8,92,8
+    CTEXT           "5",IDD_POINTSREAD,88,8,36,8
+    PUSHBUTTON      "Cancel",IDCANCEL,52,24,48,12
+END
+
+GRIDCOORDINATEINFO DIALOG 16, 24, 111, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Information for"
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,4,124,29,14
+    PUSHBUTTON      "Cancel",IDCANCEL,38,124,30,14
+    EDITTEXT        IDD_COMMENT,4,68,104,36,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "Do not use for grid generation",IDD_IGNOREPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,108,108,12
+    PUSHBUTTON      "Help",IDD_HELP,73,124,34,14
+    CTEXT           "x",-1,19,11,16,8
+    CTEXT           "y",-1,19,19,16,8
+    CTEXT           "z",-1,18,28,16,8
+    LTEXT           "Data point...",IDD_POINTTYPE,0,2,56,8
+    CTEXT           SW_HIDE,IDD_GRIDLOCATIONX,57,2,22,8
+    CTEXT           SW_HIDE,IDD_GRIDLOCATIONY,84,2,23,8
+    LTEXT           SW_HIDE,IDD_GRIDVALUEX,40,10,47,8
+    LTEXT           SW_HIDE,IDD_GRIDVALUEY,40,18,47,8
+    LTEXT           "Closest contour line: (in ""z"" direction only)",-1,3,40,68,16
+    LTEXT           SW_HIDE,IDD_CLOSECONTOUR,76,44,35,8
+    EDITTEXT        IDD_GRIDVALUEZ,36,28,64,12
+    CTEXT           "Comment",-1,20,60,64,8,NOT WS_GROUP
+END
+
+DATAINPUTOPTIONS DIALOG 56, 3, 164, 264
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Data Input Options "
+BEGIN
+    EDITTEXT        IDD_GRIDSIZERATIO,88,176,28,10
+    EDITTEXT        IDD_GRIDSIZERATIOMAX,108,188,28,10
+    EDITTEXT        IDD_KEEPEVERY,72,204,16,10,ES_RIGHT
+    CONTROL         "Ignore lines in error or with blank fields",IDD_IGNOREERRORLINES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,16,139,10
+    CONTROL         "Use old style metric or NOS input. ",IDD_NEWSTYLEINPUT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,128,10
+    CONTROL         "Ignore comments during input. ",IDD_IGNORECOMMENTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,40,124,10
+    CONTROL         "Reverse x and y on data input. ",IDD_FLIPXY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,52,130,10
+    CONTROL         "Reverse sign of z on input. ",IDD_REVERSEZSIGN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,64,128,10
+    CONTROL         "Ignore points with z value equal to",IDD_IGNOREZENABLE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,76,131,10
+    CONTROL         "Calculate nice xy coordinates for",IDD_NICEXYCOORDS,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | WS_TABSTOP,8,96,140,10
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,24,228,108,12
+    PUSHBUTTON      "OK",IDOK,13,244,32,14
+    PUSHBUTTON      "Cancel",IDCANCEL,64,244,35,14
+    PUSHBUTTON      "HELP",IDHELP,116,244,32,14
+    LTEXT           "Automatic grid size ratio",-1,8,177,80,8
+    LTEXT           "Maximum automatic grid size",-1,8,189,96,8
+    LTEXT           "zero (for DCA data input only). ",-1,32,85,101,10
+    LTEXT           "'th data point. ",-1,88,204,46,8
+    RTEXT           "Sample only every ",-1,6,204,64,8
+    LTEXT           "during data input (1 means keep them all).",-1,8,213,137,8
+    EDITTEXT        IDD_SUBMETRIXZ,92,160,32,10
+    CONTROL         "Select Submetrix Z value",-1,"Static",SS_LEFTNOWORDWRAP,8,161,84,8
+    CONTROL         "Input data in the background. ",IDD_USETHREADS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,4,136,10
+    RTEXT           "NOAA/NGS Input Field Positions",-1,4,140,68,16,NOT WS_GROUP
+    EDITTEXT        IDD_XFIELDPOSITION,76,124,12,12,ES_CENTER
+    EDITTEXT        IDD_YFIELDPOSITION,96,124,12,12,ES_CENTER
+    EDITTEXT        IDD_ZFIELDPOSITION,116,124,12,12,ES_CENTER
+    EDITTEXT        IDD_CFIELDPOSITION,136,124,12,12,ES_CENTER
+    CTEXT           "Y",-1,96,116,12,8,NOT WS_GROUP
+    CTEXT           "Z",-1,116,116,12,8,NOT WS_GROUP
+    LTEXT           "Comment",-1,128,116,32,8,NOT WS_GROUP
+    CTEXT           "X",-1,76,116,12,8,NOT WS_GROUP
+    LTEXT           "metric style input",-1,32,105,92,10,NOT WS_GROUP
+    RTEXT           "Input Field Positions",-1,4,124,68,12,NOT WS_GROUP
+    EDITTEXT        IDD_NOAAXFIELDPOSITION,76,140,12,12,ES_CENTER
+    EDITTEXT        IDD_NOAAYFIELDPOSITION,96,140,12,12,ES_CENTER
+    EDITTEXT        IDD_NOAAZFIELDPOSITION,116,140,12,12,ES_CENTER
+    EDITTEXT        IDD_NOAACFIELDPOSITION,136,140,12,12,ES_CENTER
+END
+
+ZRATIO DIALOG 18, 59, 126, 61
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "    Change Vertical Scale Factor "
+BEGIN
+    EDITTEXT        IDD_ZRATIO,84,4,23,12,ES_CENTER | NOT WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,4,44,34,14
+    PUSHBUTTON      "Help",IDD_HELP,84,44,36,14
+    PUSHBUTTON      "Cancel",IDCANCEL,44,44,38,14
+    RTEXT           "Vertical Scale Factor",-1,4,4,76,8
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,8,28,108,12
+    LTEXT           "(As % of X axis, 0 means don't scale)",-1,4,16,120,8,NOT WS_GROUP
+END
+
+VIEWDATAPOINTOPTIONS DIALOG 79, 66, 109, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "View Data Point Options"
+BEGIN
+    CONTROL         "Marks",IDD_MARKPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,16,36,12
+    CONTROL         "X, Y coordinates",IDD_XYPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,50,93,12
+    CONTROL         "Z Coordinates",IDD_ZPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,63,98,12
+    CONTROL         "Comments",IDD_COMMENTPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,98,12
+    CONTROL         "Connect data points",IDD_LINEPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,89,98,12
+    PUSHBUTTON      "OK",IDOK,4,121,32,14
+    PUSHBUTTON      "Cancel",IDCANCEL,40,121,30,14
+    PUSHBUTTON      "Help",IDD_HELP,73,121,32,14
+    CONTROL         "Point number",IDD_NUMBERPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,40,92,8
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,20,140,72,12
+    CONTROL         "Points inside the grid only",IDD_DATAPOINTSONGRIDONLY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,104,96,12
+    LTEXT           "Display",-1,4,4,32,8,NOT WS_GROUP
+    CONTROL         "Small mark",IDD_SMALLMARK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,28,56,8
+END
+
+REGISTER DIALOG 18, 18, 175, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Registration "
+BEGIN
+    CTEXT           "This dialog box is used to enter your name and registration code after purchasing QuikGrid.",-1,5,4,163,19
+    CTEXT           "For information about how to purchase a registered copy please see the help facility. ",-1,4,26,160,18
+    LTEXT           "Name: ",-1,2,49,25,8
+    LTEXT           "Registration Code:",-1,2,63,62,8
+    EDITTEXT        IDD_NAMETEXT,28,47,138,12
+    EDITTEXT        IDD_CODETEXT,68,61,98,12
+    PUSHBUTTON      "OK",IDOK,15,77,29,14
+    PUSHBUTTON      "Cancel",IDCANCEL,69,77,31,14
+    PUSHBUTTON      "Help",IDD_HELP,128,77,29,14
+END
+
+NUMBEROFGRIDLINES DIALOG 60, 133, 194, 66
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Change number of  grid lines"
+FONT 10, "System"
+BEGIN
+    EDITTEXT        IDD_XGRIDLINES,91,20,36,12
+    EDITTEXT        IDD_YGRIDLINES,144,19,38,12
+    DEFPUSHBUTTON   "OK",IDOK,12,43,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,72,43,50,14
+    PUSHBUTTON      "Help",IDD_HELP,132,43,50,14
+    LTEXT           "Number of grid lines: ",-1,9,23,76,8
+    LTEXT           "X",-1,104,5,15,8
+    LTEXT           "Y",-1,159,5,15,8
+END
+
+STATISTICS DIALOG 0, 0, 361, 215
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Program Status"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,148,198,50,14
+    EDITTEXT        IDD_STATISTICS,8,4,344,190,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+END
+
+PLEASEREGISTER DIALOG 38, 50, 263, 155
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION 
+"                                                       Please Register"
+FONT 10, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,4,136,50,14
+    PUSHBUTTON      "Registration information",IDHELP,164,136,96,14
+    CTEXT           "THANK YOU FOR EVALUATING QUIKGRID",-1,56,8,162,15
+    LTEXT           "QuikGrid may easily and quickly registered ($37.50US). ",-1,16,24,175,16
+    LTEXT           "Using Mastercard, VISA, Discover or Amex ",-1,16,36,136,12
+    LTEXT           "You can do this: ",-1,16,48,56,12
+    LTEXT           "By using the internet - fast, easy, secure. ",-1,36,60,128,9
+    LTEXT           "By calling an 800 number. ",-1,36,80,80,10
+    LTEXT           "By FAX ",-1,36,90,32,10
+    LTEXT           "By email. ",-1,36,70,52,9
+    CTEXT           "For details click on ""Registration Information""",-1,20,108,216,12
+    PUSHBUTTON      "Evaluation restrictions",IDD_EVALUATIONRESTRICTIONS,64,136,94,14
+    CTEXT           "Click on ""OK"" to use QuikGrid",-1,12,120,225,14
+END
+
+ZOOMRATIO DIALOG 6, 15, 249, 73
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Zoom percent. "
+FONT 10, "System"
+BEGIN
+    EDITTEXT        IDD_ZOOMRATIO,180,6,42,13
+    EDITTEXT        IDD_PANRATIO,180,25,42,14
+    DEFPUSHBUTTON   "OK",IDOK,2,49,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,60,49,50,14
+    PUSHBUTTON      "Help",IDD_HELP,117,49,50,14
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,173,49,69,14
+    RTEXT           "For zooming change size by this percent",-1,6,8,170,15
+    RTEXT           "For arrow keys Pan this percent of the window",-1,7,27,167,14
+END
+
+DATAOUTPUTOPTIONS DIALOG 58, 51, 219, 188
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Data Output Options"
+FONT 10, "System"
+BEGIN
+    CONTROL         "Use tab for xyz output ",IDD_USETABSEPARATOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,16,166,12
+    CONTROL         "Use polylines for DXF output",IDD_POLYLINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,64,153,12
+    CONTROL         "XYZ: Output undefined grid z values:",IDD_OUTPUTUNDEFINED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,142,12
+    CONTROL         "Output scattered data points on named DXF layers.",IDD_USESCATTEREDDATALAYERS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,76,196,12
+    CONTROL         "DXF3DFACE or VRML output: Scale z coordinate",IDD_DXFFACESCALEZ,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,40,208,13
+    CONTROL         "Use high precision for DXF output. ",IDD_HIGHDXFOUTPUTPRECISION,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,90,196,9
+    EDITTEXT        IDD_UNDEFINEDVALUE,140,2,58,12
+    PUSHBUTTON      "OK",IDOK,12,171,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,84,171,50,14
+    PUSHBUTTON      "Help",IDHELP,148,171,50,14
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,36,154,144,14
+    LTEXT           "%: Size of DXF text as a % of the drawing height",-1,36,137,160,12,NOT WS_GROUP
+    EDITTEXT        IDD_DXFTEXTHEIGHT,8,135,24,12,ES_RIGHT
+    RTEXT           "Output undefined XYZ or GRD values as:",-1,4,4,136,12,NOT WS_GROUP
+    CONTROL         "Never label DXF contour polylines ",IDD_DXFNEVERLABEL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,52,196,12
+    CONTROL         "Triangulate VRML output",IDD_VRMLTRIANGLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,104,148,8
+    CONTROL         "Output VRML 2 format",IDD_VRML2OUTPUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,118,148,8
+END
+
+COLORFEATURES DIALOG 0, 1, 169, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Feature color chooser"
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,4,156,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,60,156,50,14
+    PUSHBUTTON      "Help",IDHELP,116,156,50,14
+    PUSHBUTTON      "Choose color for grid lines ",IDD_COLORGRIDLINE,16,4,136,12
+    PUSHBUTTON      "Choose color for contour lines",IDD_COLORCONTOURLINE,16,20,136,12
+    PUSHBUTTON      "Choose color for outline",IDD_COLOROUTLINE,16,36,136,12
+    PUSHBUTTON      "Choose color for arrows",IDD_COLORARROWS,16,52,136,12
+    PUSHBUTTON      "Choose color for data points ",IDD_COLORDATAPOINTS,16,68,136,11
+    PUSHBUTTON      "Set above colors as preferences",IDPREFERENCE,4,136,160,12
+    PUSHBUTTON      "Choose color for the background",IDD_COLORBACKGROUND,16,116,136,12
+    PUSHBUTTON      "Choose color for the Axes",IDD_COLORAXIS,16,84,136,12
+    PUSHBUTTON      "Choose color for the text. ",IDD_COLORTEXT,16,100,136,11
+END
+
+GRIDCOORDINATEINFOTERSE DIALOG 6, 15, 161, 57
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Data Point Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDD_COMMENT,4,10,154,42,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | NOT WS_BORDER | WS_VSCROLL
+    LTEXT           "X value",IDD_GRIDVALUEX,8,0,52,9,NOT WS_GROUP
+    LTEXT           "Y Value",IDD_GRIDVALUEY,68,0,60,8,NOT WS_GROUP
+END
+
+RIGHTBUTTONOPTIONS DIALOG 0, 0, 240, 66
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Right mouse button options. "
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,24,48,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,92,48,50,14
+    PUSHBUTTON      "Help",IDHELP,156,48,50,14
+    EDITTEXT        IDD_RIGHTBUTTONBOXTITLE,68,4,160,12
+    LTEXT           "Title for dialog box. ",-1,4,4,64,9,NOT WS_GROUP
+    CONTROL         "Use terse version of the dialog box",IDD_SHOWCOMMENTSONLY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,17,144,11
+    PUSHBUTTON      "Save as preference",IDPREFERENCE,36,28,156,14
+END
+
+EDITVIEWOPTIONS DIALOG 0, 0, 277, 283
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit all view options "
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,28,264,50,14,BS_CENTER
+    PUSHBUTTON      "Cancel",IDCANCEL,108,264,50,14,BS_CENTER
+    PUSHBUTTON      "Help",IDHELP,192,264,50,14,BS_CENTER
+    CONTROL         "2d from above ",IDM_2DSURFACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,104,4,68,8
+    CONTROL         "3d surface",IDM_3DSURFACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,104,16,56,8
+    CONTROL         "Contour lines ",IDM_CONTOUR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,44,72,8
+    CONTROL         "Label contour lines",IDM_CONTOURLABELS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,52,76,12
+    CONTROL         "Axes",IDM_3DAXES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,72,44,12
+    PUSHBUTTON      "Set as Preference ",IDPREFERENCE,44,248,180,14,BS_CENTER
+    CONTROL         "Data points -> ",IDM_DATAPLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,168,56,14
+    CONTROL         "Corner coordinates",IDM_SHOWCORNERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,180,84,14
+    PUSHBUTTON      "Edit View Data Point Options ",IDM_DATAPOINTOPTIONS,68,168,100,12,BS_CENTER
+    CONTROL         "Black and white ",IDM_NOCOLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,196,68,9
+    CONTROL         "Bold outline ",IDM_BOLDOUTLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,208,56,9
+    LTEXT           "View:",-1,80,4,20,8,NOT WS_GROUP
+    LTEXT           "Include:",-1,8,32,32,8,NOT WS_GROUP
+    CONTROL         "Include gridlines on coloured grid",IDD_GRIDLINECOLOUREDGRID,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,156,124,12
+    CONTROL         "Axes always on top (never hidden)",IDD_AXESONTOP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,84,124,12
+    CONTROL         "Include colour legend",IDD_INCLUDECOLOURLEGEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,144,88,12
+    CONTROL         "Transparent grid ",IDM_GRIDPLOT,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,12,108,92,12
+    CONTROL         "Hidden surface grid ",IDM_GRIDHIDE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,12,120,92,12
+    CONTROL         "Coloured hidden surface grid ",IDM_COLOUREDGRID,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,12,132,116,12
+    CONTROL         "Volume difference",IDD_COLOURDIFFERENCE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,220,76,8
+    CONTROL         "Use fast screen update ",IDD_SAVERESTOREMEMORY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,232,88,8
+    CONTROL         "Never hide contour lines ",IDD_NEVERHIDECONTOURS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,64,92,8
+    CONTROL         "No grid. ",IDM_NOGRIDPLOT,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,12,96,112,12
+    RTEXT           "Size of Text:",-1,184,64,44,12,NOT WS_GROUP
+    EDITTEXT        IDD_TEXTSIZE,232,63,24,12,ES_CENTER
+    EDITTEXT        IDD_ZMAXLABEL,224,112,40,12,ES_CENTER
+    EDITTEXT        IDD_ZMINLABEL,224,128,40,12,ES_CENTER
+    RTEXT           "from Z max",-1,180,112,40,12,NOT WS_GROUP
+    RTEXT           "to Z min",-1,188,128,32,12,NOT WS_GROUP
+    CONTROL         "Frame3",-1,"Static",SS_ETCHEDFRAME,180,96,88,48
+    CONTROL         "Frame4",-1,"Static",SS_ETCHEDFRAME,184,59,76,20
+    CONTROL         "Frame5",-1,"Static",SS_ETCHEDFRAME,76,0,100,28
+    LTEXT           "Draw Z axis",-1,204,100,44,8,NOT WS_GROUP
+    CONTROL         "Frame8",-1,"Static",SS_ETCHEDFRAME,4,28,172,216
+    EDITTEXT        IDD_ARROWSIZE,244,36,28,12,ES_CENTER
+    CTEXT           "Size of Speed Arrow",-1,176,36,68,12,NOT WS_GROUP
+    CONTROL         "Frame5",-1,"Static",SS_ETCHEDFRAME,176,32,100,20
+END
+
+COLOURMAPPING DIALOG 0, 0, 245, 166
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_CONTEXTHELP | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit colour mapping"
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,12,148,50,14,BS_CENTER
+    PUSHBUTTON      "Cancel",IDCANCEL,96,148,50,14,BS_CENTER
+    PUSHBUTTON      "Help",IDHELP,176,148,50,14,BS_CENTER
+    CONTROL         "Blended Red/Green/Blue colours",IDD_BLENDEDCOLOUR,
+                    "Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_TABSTOP,20,5,140,13
+    CONTROL         "Monochrome colour to white ->",IDD_SHADEDMONOCHROME,
+                    "Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_TABSTOP,20,18,112,22
+    EDITTEXT        IDD_COLOURZMAX,64,96,60,13
+    EDITTEXT        IDD_COLOURZMID,64,112,60,13
+    EDITTEXT        IDD_COLOURZMIN,64,128,60,13
+    LTEXT           "Red",IDD_RED,128,96,48,13,NOT WS_GROUP
+    LTEXT           "Green",IDD_GREEN,128,112,64,13,NOT WS_GROUP
+    LTEXT           "Blue",IDD_BLUE,128,128,52,13,NOT WS_GROUP
+    RTEXT           "Maximum",-1,20,96,40,14,NOT WS_GROUP
+    RTEXT           "Midpoint",-1,24,112,36,13,NOT WS_GROUP
+    RTEXT           "Minimum ",-1,24,128,36,13,NOT WS_GROUP
+    PUSHBUTTON      "Choose colour ",IDD_CHOOSECOLOUR,132,24,84,12,BS_CENTER
+    PUSHBUTTON      "Save above as preference",IDPREFERENCE,12,56,220,12,BS_CENTER
+    CTEXT           "Message goes in here. ",IDD_COLOURMAPHEADING,20,72,188,20,NOT WS_GROUP
+    CONTROL         "Reverse colour map ",IDD_REVERSECOLOURMAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,40,80,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+QUIKGRID ACCELERATORS
+BEGIN
+    "3",            IDM_3DSURFACE,          VIRTKEY, ALT
+    "2",            IDM_2DSURFACE,          VIRTKEY, ALT
+    VK_HOME,        IDM_UNZOOM,             VIRTKEY 
+    "F",            IDM_ZOOMFREEZE,         VIRTKEY, CONTROL
+    VK_END,         IDM_PREVIOUSZOOM,       VIRTKEY 
+    "N",            IDM_NEGATIVEZOOM,       VIRTKEY, CONTROL
+    VK_F1,          IDM_HELP,               VIRTKEY 
+    VK_PRIOR,       IDM_ZOOMIN,             VIRTKEY 
+    VK_NEXT,        IDM_ZOOMOUT,            VIRTKEY 
+    VK_DOWN,        IDM_PANDOWN,            VIRTKEY 
+    VK_UP,          IDM_PANUP,              VIRTKEY 
+    VK_RIGHT,       IDM_PANRIGHT,           VIRTKEY 
+    VK_LEFT,        IDM_PANLEFT,            VIRTKEY 
+    VK_MULTIPLY,    IDM_GRIDRESFULL,        VIRTKEY 
+    VK_ADD,         IDM_GRIDRESINCREASE,    VIRTKEY 
+    VK_SUBTRACT,    IDM_GRIDRESDECREASE,    VIRTKEY 
+    "8",            IDM_GRIDRESFULL,        VIRTKEY, SHIFT
+    VK_OEM_PLUS,    IDM_GRIDRESINCREASE,    VIRTKEY, SHIFT
+    VK_OEM_MINUS,   IDM_GRIDRESDECREASE,    VIRTKEY 
+    "A",            IDM_GRIDRESAUTO,        VIRTKEY, CONTROL
+    "^C",           IDM_COPYMETA,           ASCII   
+    "^B",           IDM_COPYBITMAP,         ASCII   
+    VK_UP,          IDD_TILTUP,             VIRTKEY, SHIFT
+    VK_DOWN,        IDD_TILTDOWN,           VIRTKEY, SHIFT
+    VK_RIGHT,       IDD_TURNRIGHT,          VIRTKEY, SHIFT
+    VK_LEFT,        IDD_TURNLEFT,           VIRTKEY, SHIFT
+    VK_UP,          IDD_TILTUPTINY,         VIRTKEY, CONTROL
+    VK_DOWN,        IDD_TILTDOWNTINY,       VIRTKEY, CONTROL
+    VK_RIGHT,       IDD_TURNRIGHTTINY,      VIRTKEY, CONTROL
+    VK_LEFT,        IDD_TURNLEFTTINY,       VIRTKEY, CONTROL
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    "ABOUTBOX", DIALOG
+    BEGIN
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_HELP                "QuikGrid was unable to find the help file or the Microsoft Help program is not available."
+    IDS_NOINPUTFILE         "Cannot open file to input scattered data points. "
+    IDS_TOOMUCHDATA         "Too many input Data points - input truncated. "
+    IDS_FILTERSTRING        "All files(*.*)|*.*|Text files(*.txt)|*.txt|"
+    IDS_TOOFEWPOINTS        "The input data had less than 3 data points and was ignored."
+    IDS_TOOMANYTIMERS       "Too many clocks or timers - you must close this dialog box manually at the end of grid generation. "
+    IDS_DATANORANGE         "Input data spans no range in x or y - ignored. "
+    IDS_GRIDTOOLARGE        "The grid dimensions are too large.  "
+    IDS_GENGRIDNODATA       "Cannot generate a grid. There are no data points. "
+    IDS_NOTIRREGULAR        "Cannot generate an irregular grid where there are less data points then grid lines. Use a regular grid or a smaller one."
+    IDS_NOOUTPUTFILE        "Error - Cannot open output file. "
+    IDS_NOINPUTGRIDFILE     "Cannot open file to input a grid. "
+    IDS_NOMETATEXT          "Creation of Meta Files of this screen is not supported. "
+    IDM_GENGRID             "Printing of this screen is not supported. "
+    IDS_NOCLIPTEXT          "Copying of text screen to the clipboard is not implemented. "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOMANYCONTOURS     "Out of memory storage for contour line segments (not all contour segments will be redrawn) . Use a smaller grid size or fewer contour lines. "
+    IDS_NOTNOSDATA          "The input data does not appear to be in NOS latitude/longitude format - try loading it as Metric data. "
+    IDS_INCREMENTNEGATIVE   "The increment for generation of the contour lines should be greater than zero. "
+    IDS_GRIDINCRNEGATIVE    "The increment for the x or y grid coordinate should be greater than zero. "
+    IDS_GRIDRATIOINVALID    "The Automatic Grid Size ratio must be a number between 1 and 20. "
+    IDS_ENDLTSTART          "The ending value should be greater than the starting value. "
+    IDS_NO3DINFORMATION     "Right button information is not available in 3d hidden grid mode. Use the transparent grid option instead. "
+    IDS_NOINPUTDATA         "There is no input data. Command ignored. "
+    IDS_GRIDNOTGENERATED    "There is no grid. Command ignored. "
+    IDS_SAMPLESIZESMALL     "The sample size entered will result in less than 3 data points being eligible for grid generation. Value ignored. "
+    IDS_GRIDLINESLT3        "The number of grid lines in the x or y direction is less than 3 or very large.  "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NOERMAPPEREXT       "ER Mapper Files must have the file extension .ERS "
+    IDS_BADCODEORNAME       "Invalid Registration Code or Registration Name is shorter than 7 characters!"
+    IDS_SCATDATANOTONGRIDLOCK 
+                            "Scattered data lies entirely outside the grid. Uncheck Grid... Lock current grid as template to remove grid lock, then reload the data? "
+    IDS_SCATDATANOTONGRID   "Scattered data lies entirely outside the grid and will not be displayed. "
+    IDS_OUTLINENOTONGRID    "Outline data lies entirely outside the grid and will not be displayed."
+    IDS_GRIDNOZRANGE        "Grid has no range in the z direction (Grid maximum = Grid minimum) and was not displayed"
+    IDS_ABOUTVERSION        "QuikGrid is Free Software. See the help file for a disclaimer and copy restrictions."
+    IDS_GRIDLOCKEDTEMPLATE  "Current grid is locked as template - request ignored."
+    IDS_FUNCTIONNOTAVAILABLE 
+                            "Function not available while grid coordinates are locked"
+    IDS_OPENINPUTFILEFAIL   "Unable to open file %s - input terminated"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FLOATINGPOINTFAIL   "Error interpreting number %s at approximately line number %i in file %s"
+    IDS_MISSINGMESSAGENUMBER 
+                            "Missing message number %i should appear here (internal error)."
+    IDS_CONVERSIONFAIL      "Error interpreting %s %s at line number %i "
+    IDS_NOTENOUGHNUMBERS    "The line at line number %i in file %s does not appear to contain enough numbers. The line contents are: %s"
+    IDS_UNEXPECTEDEOF       "Unexpected end of file at approximately line number %i in file %s"
+    IDS_INVALIDNUMBEROFLINES "Invalid number of unlabelled lines - try again"
+    IDS_SUBMETRIXNOT1OR2    "Submetrix Z value  is not 1 or 2 - 1 will be used"
+    IDS_ZOOMCHANGEBAD       "The specified Zoom change is too big or small. A value between 2 and 300 is expected."
+    IDS_PANCHANGEBAD        "The specified Pan change is too big or small. A value between 2 and 49 is expected."
+    IDS_COLOURMAPPINGERROR  "Colour mapping error. Max less than Min? Values ignored."
+    IDS_TOOMANYCONTOURLINES "WARNING: Too many contour lines requested. Only the first 1000 will be displayed"
+    IDS_FLOATINGPOINTERROR  "Error interpreting floating point number %s. Try again. "
+    IDS_LATLONERROR         "Error interpreting Lat/Lon number %s. Try again."
+    IDS_TABEXPANDERROR      "Tab expansion of input line failed"
+    IDS_GRIDCOMMENTERROR    "Attempt to add a comment to a grid intersection ignored."
+    IDS_NOGRIDTOCOPY        "There is no grid - cannot copy it"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COMMANDWORDLARGE    "Length of Command word too large! Is this a command file? "
+    IDS_COMMANDFLOATERROR   "Error reading floating point number: %s  while processing command: %s"
+    IDS_COMMANDINTEGERERROR "Error reading integer number: %s while processing command: %s"
+    IDS_COMMANDRBGERROR     "Error reading RGB value: %s  while processing command: %s - RGB number must be between 0 and 255"
+    IDS_COMMANDFAIL         "%s Command file processing failure on line %i near position %i near %s. Line contents: %s"
+    IDS_MISSINGANGLE        "Missing value for angle: "
+    IDS_ANGLEVALUEERROR     "Invalid number for Angle about or above:"
+    IDS_PROJECTIONVALUEERROR "Invalid number for Perspective projection:"
+    IDS_BADSAMPLINGVALUE    "Sampling must be between 0 and 999: "
+    IDS_GRIDINCREMENTERROR  "X increment or Y increment is zero or negative:"
+    IDS_GRIDLINESERROR      "Number of grid lines is too large or less than 3:"
+    IDS_EXITTIMERERROR      "Invalid Exit Timer Value:"
+    IDS_MARGINERROR         "Margin specified in command too large or small:"
+    IDS_WINDOWSIZEERROR     "Window size bad:"
+    IDS_INVALIDCOMMAND      "Invalid command encountered:"
+    IDS_GENERATINGGRIDFROM  "Command file: Generating grid using data from %s"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COMMANDTERMINATED   "Command file processing terminated due to error."
+    IDS_PROCESSINGDATAINPUT "Command file: Processing data input from file %s "
+    IDS_READINGINPUTFROM    "Reading input data from file %s"
+    IDS_QUIKGRID            "QuikGrid"
+    IDS_THEREISNOGRID       " There is no grid - any values entered below will be overwritten when a grid is generated "
+    IDS_RED                 "red"
+    IDS_BLUE                "blue"
+    IDS_GREEN               "green"
+    IDS_WHITE               "white"
+    IDS_DARKEST             "darkest"
+    IDS_IGNORED             "ignored"
+    IDS_DIALOGFIELDPOSITIONBAD 
+                            "Input Field Position outside range 1-30 set to 1"
+    IDS_COMMANDFIELDPOSITIONBAD 
+                            "Field Position value less than 1 or greater than 30"
+    IDS_NOSERROR            "Error reading NOS Lat/Lon number: %s  while processing input line %s"
+    IDS_NOAAERROR           "Error reading NOAA Lat/Lon number: %s  while processing input line %s"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
