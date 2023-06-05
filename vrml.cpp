@@ -28,7 +28,8 @@
 //             work with TrueSpace (Increases file size a lot!).
 // Jun. 4/23: VRML2.0 output added and VRML optimizations by Volker Enderlein
 // Jun. 4/23: Fixed rounding error that made some models appear to look
-//				like Minecraft landscapes
+//            like Minecraft landscapes
+// Jun. 5/23: Fixed Outline output error by Volker Enderlein
 //***********************************************************************
 
 #include <windows.h>
@@ -77,7 +78,7 @@ extern ScatData OutLine;
 static int ci;
 
 //******************************************************************
-//         A b o r t   W r i t e  WRL  F i l e
+//         A b o r t   W r i t e   W R L   F i l e
 //******************************************************************
 static void AbortWriteWRLFile( char FileName[] )
 {
@@ -367,18 +368,22 @@ static int OutputVRML1Format()
                << "   shininess .2\n"
                << "   transparency 0\n"
                << "  } # end Material\n"
-               << "  Coordinate3 { point [\n"
-               << "   # Axes coordinates follow\n"
-               << "   " << xmin << " " << ymin << " " << zmin << ",\n"
-               << "   " << xmin << " " << ymin << " " << zmax << ",\n"
-               << "   " << xmax << " " << ymin << " " << zmin << ",\n"
-               << "   " << xmin << " " << ymax << " " << zmin << ",\n"
+               << "  Coordinate3 {\n"
+               << "   point [\n"
+               << "    # Axes coordinates follow\n"
+               << "    " << setprecision(9) << xmin << " " << setprecision(9) << ymin << " " << setprecision(9) << zmin << ",\n"
+               << "    " << setprecision(9) << xmin << " " << setprecision(9) << ymin << " " << setprecision(9) << zmax << ",\n"
+               << "    " << setprecision(9) << xmax << " " << setprecision(9) << ymin << " " << setprecision(9) << zmin << ",\n"
+               << "    " << setprecision(9) << xmin << " " << setprecision(9) << ymax << " " << setprecision(9) << zmin << ",\n"
                << "   ] # end point\n"
                << "  } # end Coordinate 3\n"
-               << "  IndexedLineSet { coordIndex [\n"
-               << "   " << iAxesOrigin << ", " << iAxesZmax << ", -1,\n"
-               << "   " << iAxesOrigin << ", " << iAxesXmax << ", -1,\n"
-               << "   " << iAxesOrigin << ", " << iAxesYmax << ", -1 ] }\n"
+               << "  IndexedLineSet {\n"
+               << "   coordIndex [\n"
+               << "    " << iAxesOrigin << ", " << iAxesZmax << ", -1,\n"
+               << "    " << iAxesOrigin << ", " << iAxesXmax << ", -1,\n"
+               << "    " << iAxesOrigin << ", " << iAxesYmax << ", -1\n"
+               << "   ] # end coordIndex\n"
+               << "  } # end IndexedLineSet\n"
                << " } # end AXES Separator\n";
   }
 
@@ -399,8 +404,9 @@ static int OutputVRML1Format()
                << "   transparency 0\n"
                << "  } # end Material\n";
 
-    WRLoutFile << "  Coordinate3 { point [\n"
-               << "   # Outline coordinates follow\n";
+    WRLoutFile << "  Coordinate3 {\n"
+               << "   point [\n"
+               << "    # Outline coordinates follow\n";
 
     // Output the Outline Coordinates.
 
@@ -416,19 +422,26 @@ static int OutputVRML1Format()
       if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
         z = (z - zMin) * zScale;
 
-      WRLoutFile << "   " << x << " " << y << " " << z << ",\n";
+      WRLoutFile << "    " << setprecision(9) << x << " " << setprecision(9) << y << " " << setprecision(9) << z << ",\n";
     } // End for ( i =
 
-    WRLoutFile << "  ] # end point\n"
-               << " } # end Coordinate 3\n";
+    WRLoutFile << "   ] # end point\n"
+               << "  } # end Coordinate 3\n";
 
-    WRLoutFile << " IndexedLineSet { coordIndex [\n";
-    for ( int i = 0; i < SizeOfOutline; i++ )
+    WRLoutFile << "  IndexedLineSet {\n"
+               << "   coordIndex [\n";
+    WRLoutFile << "    ";
+    for (int i = 0; i < SizeOfOutline; i++)
     {
-      if( OutLine.flags(i) & 1 ) WRLoutFile << " -1, \n"; // Move here?
-      WRLoutFile << i << ", \n";
+      if (i && (OutLine.flags(i) & 1))
+        WRLoutFile << " -1, \n" << i << ", ";
+      else
+        WRLoutFile << i << ", ";
+      if (i && (i % 20) == 0) WRLoutFile << "\n    ";
     }
-    WRLoutFile << " -1 ] }\n"
+    WRLoutFile << "-1\n"
+               << "   ] # end coordIndex\n"
+               << "  } # end IndexedLineSet\n"
                << " } # end OUTLINE Separator\n";
   } // End if( OutlineSize > 1 )
 
@@ -436,7 +449,7 @@ static int OutputVRML1Format()
   return 1;
 }
 //**************************************************************
-//      Output   V R M L 2   F o r m a t
+//      O u t p u t   V R M L 2   F o r m a t
 //**************************************************************
 static int OutputVRML2Format()
 {
@@ -586,17 +599,17 @@ static int OutputVRML2Format()
                << "      coord Coordinate {\n"
                << "       point [\n"
                << "        # Axes coordinates follow\n"
-               << "        " << xmin << " " << ymin << " " << zmin << ",\n"
-               << "        " << xmin << " " << ymin << " " << zmax << ",\n"
-               << "        " << xmax << " " << ymin << " " << zmin << ",\n"
-               << "        " << xmin << " " << ymax << " " << zmin << ",\n"
+               << "        " << setprecision(9) << xmin << " " << setprecision(9) << ymin << " " << setprecision(9) << zmin << ",\n"
+               << "        " << setprecision(9) << xmin << " " << setprecision(9) << ymin << " " << setprecision(9) << zmax << ",\n"
+               << "        " << setprecision(9) << xmax << " " << setprecision(9) << ymin << " " << setprecision(9) << zmin << ",\n"
+               << "        " << setprecision(9) << xmin << " " << setprecision(9) << ymax << " " << setprecision(9) << zmin << ",\n"
                << "       ] # end point\n"
                << "      } # end Coordinate\n"
                << "      coordIndex [\n"
                << "       " << iAxesOrigin << ", " << iAxesZmax << ", -1,\n"
                << "       " << iAxesOrigin << ", " << iAxesXmax << ", -1,\n"
                << "       " << iAxesOrigin << ", " << iAxesYmax << ", -1\n"
-               << "      ]\n"
+               << "      ] # end coordIndex\n"
                << "     } # end IndexedLineSet\n"
                << "    } # end Shape\n"
                << "  } # end AXES Group\n";
@@ -637,7 +650,7 @@ static int OutputVRML2Format()
       if (DXFFaceScaleZ && (zRatio != 0.0))  // Scale z axis if requested.
         z = (z - zMin) * zScale;
 
-      WRLoutFile << "       "<< setprecision(9) << x << " " << setprecision(9) << y << " " << setprecision(9) << z << ",\n";
+      WRLoutFile << "       " << setprecision(9) << x << " " << setprecision(9) << y << " " << setprecision(9) << z << ",\n";
     } // End for ( i =
 
     WRLoutFile << "       ] # end point\n"
@@ -647,11 +660,13 @@ static int OutputVRML2Format()
     WRLoutFile << "       ";
     for ( int i = 0; i < SizeOfOutline; i++ )
     {
-      if( OutLine.flags(i) & 1 ) WRLoutFile << " -1, \n"; // Move here?
-      WRLoutFile << i << ", ";
+      if (i && (OutLine.flags(i) & 1))
+        WRLoutFile << " -1, \n" << i << ", ";
+      else
+        WRLoutFile << i << ", ";
       if (i && (i % 20) == 0) WRLoutFile << "\n       ";
     }
-    WRLoutFile << "      ]\n"
+    WRLoutFile << "-1\n      ] # end coordIndex\n"
                << "     } # end IndexedLineSet\n"
                << "    } # end Shape\n"
                << "  } # end OUTLINE Group\n";
