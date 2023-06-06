@@ -134,7 +134,7 @@ static char szBuffer[256];
 	 switch (wParam)
 	    {
         case IDD_HELP:
-				if( HtmlHelp( hDlg, "quikgrid.chm::html/disclaimer.htm", HELP_CONTEXT, Disclaimer ) == 0 )
+				if( HtmlHelp( hDlg, "quikgrid.chm::disclaimer.htm", HELP_CONTEXT, Disclaimer ) == 0 )
 					//if (HtmlHelp(hDlg, "quikgrid.chm::html/disclaimer.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;
@@ -171,7 +171,7 @@ static char szBuffer[256];
 	 switch (wParam)
 	    {
 	     case IDD_HELP:
-	       if( HtmlHelp( hDlg, "quikgrid.chm::html/gridgeneration.htm", HELP_CONTEXT, GridGenDialogBox ) == 0 )
+	       if( HtmlHelp( hDlg, "quikgrid.chm::gridgeneration.htm", HELP_CONTEXT, GridGenDialogBox ) == 0 )
 			   //if (HtmlHelp(hDlg, "quikgrid.chm::html/gridgeneration.htm", HELP_CONTEXT, 0L) == 0)
 		    NotifyUser( IDS_HELP);
 	       return TRUE;
@@ -243,7 +243,7 @@ static char szBuffer[256];
 	 switch (wParam)
 	    {
 	     case IDD_HELP:
-				if( HtmlHelp( hDlg, "quikgrid.chm::html/09nrwe.htm", HELP_CONTEXT, EditViewPoint ) == 0 )
+				if( HtmlHelp( hDlg, "quikgrid.chm::09nrwe.htm", HELP_CONTEXT, EditViewPoint ) == 0 )
 					//if (HtmlHelp(hDlg, "quikgrid.chm::html/09nrwe.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;
@@ -356,7 +356,7 @@ static char szBuffer[256];
 	    {
 
 	     case IDD_HELP:
-	        if( HtmlHelp( hDlg, "quikgrid.chm::html/aucb3k.htm", HELP_CONTEXT, ContourIntervals ) == 0 )
+	        if( HtmlHelp( hDlg, "quikgrid.chm::aucb3k.htm", HELP_CONTEXT, ContourIntervals ) == 0 )
 				//if (HtmlHelp(hDlg, "quikgrid.chm::html/aucb3k.htm", HELP_CONTEXT, 0L) == 0)
 		        NotifyUser( IDS_HELP);
 	        return TRUE;
@@ -528,7 +528,7 @@ static char szBuffer[256];
       switch (wParam)
  {
 	 case IDD_HELP:
-	     if( HtmlHelp( hDlg, "quikgrid.chm::html/kb32tk.htm", HELP_CONTEXT, TechnicalParameters ) == 0 )
+	     if( HtmlHelp( hDlg, "quikgrid.chm::kb32tk.htm", HELP_CONTEXT, TechnicalParameters ) == 0 )
 			 //if (HtmlHelp(hDlg, "quikgrid.chm::html/kb32tk.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;
@@ -575,7 +575,7 @@ static char szBuffer[256];
 	    {
 	     case IDD_HELP:
 	       //if( HtmlHelp( hDlg, "quikgrid.chm::html/edittitle.htm", HELP_CONTEXT, EditTitle ) == 0 )
-			 if (HtmlHelp(hDlg, "quikgrid.chm::html/edittitle.htm", HELP_CONTEXT, 0L) == 0)
+			 if (HtmlHelp(hDlg, "quikgrid.chm::edittitle.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;
 
@@ -751,7 +751,7 @@ static void CheckAndStashInput( HWND hDlg )
 	       return TRUE;
 
 		  case IDHELP:
-		    if( HtmlHelp( hDlg, "quikgrid.chm::html/datainputoptions.htm", HELP_CONTEXT, DataInputOptions ) == 0 )
+		    if( HtmlHelp( hDlg, "quikgrid.chm::datainputoptions.htm", HELP_CONTEXT, DataInputOptions ) == 0 )
 				//if (HtmlHelp(hDlg, "quikgrid.chm::html/datainputoptions.htm", HELP_CONTEXT, 0L) == 0)
 			    NotifyUser( IDS_HELP);
 		    return TRUE;
@@ -827,7 +827,7 @@ switch (message)
 	       return TRUE;
 
 		  case IDHELP:
-		   if( HtmlHelp( hDlg, "quikgrid.chm::html/dataoutputoptions.htm", HELP_CONTEXT, DataOutputOptions ) == 0 )
+		   if( HtmlHelp( hDlg, "quikgrid.chm::dataoutputoptions.htm", HELP_CONTEXT, DataOutputOptions ) == 0 )
 			   //if (HtmlHelp(hDlg, "quikgrid.chm::html/dataoutputoptions.htm", HELP_CONTEXT, 0L) == 0)
 			    NotifyUser( IDS_HELP);
 		   return TRUE;
@@ -870,7 +870,7 @@ switch (message)
 	 switch (wParam)
 	    {
 	     case IDD_HELP:
-			 if (HtmlHelp(hDlg, "quikgrid.chm::html/15q.8f2.htm", HELP_CONTEXT, ViewDataPointOptions) == 0)
+			 if (HtmlHelp(hDlg, "quikgrid.chm::15q.8f2.htm", HELP_CONTEXT, ViewDataPointOptions) == 0)
 				 //if (HtmlHelp(hDlg, "quikgrid.chm::html/15q.8f2.htm", HELP_CONTEXT, 0L) == 0)
 			  NotifyUser( IDS_HELP);
 	     return TRUE;
@@ -961,7 +961,7 @@ switch (message)
 		switch (wParam)
 	    {
 		  case IDD_HELP:
-		  if( HtmlHelp( hDlg, "quikgrid.chm::html/zratio.htm", HELP_CONTEXT, ZRatio ) == 0 )
+		  if( HtmlHelp( hDlg, "quikgrid.chm::zratio.htm", HELP_CONTEXT, ZRatio ) == 0 )
 			  //if (HtmlHelp(hDlg, "quikgrid.chm::html/zratio.htm", HELP_CONTEXT, 0L) == 0)
 			  NotifyUser( IDS_HELP);
 		  return TRUE;
@@ -1038,7 +1038,7 @@ BOOL FAR PASCAL ZoomRatioDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 		switch (wParam)
 	    {
 		  case IDD_HELP:
-			  if (HtmlHelp(hDlg, "quikgrid.chm::html/zooming.htm", HELP_CONTEXT, ZoomRatioHelp) == 0)
+			  if (HtmlHelp(hDlg, "quikgrid.chm::zooming.htm", HELP_CONTEXT, ZoomRatioHelp) == 0)
 				  //if (HtmlHelp(hDlg, "quikgrid.chm::html/zooming.htm", HELP_CONTEXT, 0L) == 0)
 						 NotifyUser( IDS_HELP);
 			  return TRUE;

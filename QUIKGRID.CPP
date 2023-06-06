@@ -261,7 +261,8 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
        RegisterClassEx (&wndclass) ;
      }
  hInst = hInstance;
-
+ void EnableHtmlHelp();
+ 
  hwnd = CreateWindow(szAppName,
 	     "QuikGrid",             // Window Caption
 	     WS_OVERLAPPEDWINDOW|WS_HSCROLL|WS_VSCROLL, // Window style   
@@ -277,7 +278,12 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
  ShowWindow( hwnd, nCmdShow );
  UpdateWindow(hwnd);
 
- 
+HtmlHelp((HWND)hwnd, "QUIKGRID.CHM::contents.htm", HH_DISPLAY_TOPIC, 0L);
+ HtmlHelp(
+	 NULL,
+	 NULL,
+	 HH_CLOSE_ALL,
+	 0);
  hAccel = LoadAccelerators( hInstance, "QuikGrid" );
 
     while( GetMessage( &msg, NULL, 0, 0 ) )
@@ -1546,7 +1552,7 @@ static void CopyDisplayToMemory()
 
 	  case IDM_HELP :
 		  //if (HtmlHelp((HWND)GetDesktopWindow(), "QUIKGRID.CHM::html/contents.htm", HH_DISPLAY_TOPIC, 0L) == 0)
-			  if (HtmlHelp((HWND)hwnd, "QUIKGRID.CHM::html/contents.htm", HH_DISPLAY_TOPIC, 0L) == 0)
+			  if (HtmlHelp((HWND)hwnd, "QUIKGRID.CHM::contents.htm", HH_DISPLAY_TOPIC, 0L) == 0)
 		  NotifyUser( IDS_HELP);
 		  return 0;
 

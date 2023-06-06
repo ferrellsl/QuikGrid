@@ -65,7 +65,7 @@ BOOL FAR PASCAL NumberGridLinesDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 		 switch (wParam)
 	    {
         case IDD_HELP:
-	     if( HtmlHelp( hDlg, "quikgrid.chm::html/fx3bh7.htm", HELP_CONTEXT, NumberGridLines ) == 0 )
+	     if( HtmlHelp( hDlg, "quikgrid.chm::fx3bh7.htm", HELP_CONTEXT, NumberGridLines ) == 0 )
 			 //if (HtmlHelp(hDlg, "quikgrid.chm::html/fx3bh7.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;
@@ -150,7 +150,7 @@ BOOL FAR PASCAL NumberGridLinesDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 	 switch (wParam)
 	    {
 	     case IDD_HELP:
-	     if( HtmlHelp( hDlg, "quikgrid.chm::html/kb32tk.htm", HELP_CONTEXT, EditGridDimensions ) == 0 )
+	     if( HtmlHelp( hDlg, "quikgrid.chm::kb32tk.htm", HELP_CONTEXT, EditGridDimensions ) == 0 )
 			 //if (HtmlHelp(hDlg, "quikgrid.chm::html/kb32tk.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;

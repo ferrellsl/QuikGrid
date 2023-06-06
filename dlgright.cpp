@@ -163,7 +163,7 @@ BOOL FAR PASCAL GridLocationDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 	 switch (wParam)
 	    {
 	     case IDD_HELP:
-	       if( HtmlHelp( hDlg, "quikgrid.chm::html/gridinfo.htm", HELP_CONTEXT, GridInfo ) == 0 )
+	       if( HtmlHelp( hDlg, "quikgrid.chm::gridinfo.htm", HELP_CONTEXT, GridInfo ) == 0 )
 			 //if (HtmlHelp(hDlg, "quikgrid.chm::html/gridinfo.htm", HELP_CONTEXT, 0L) == 0)
 		    NotifyUser( IDS_HELP);
 	       return TRUE;
@@ -276,7 +276,7 @@ BOOL FAR PASCAL RightMouseOptionsDlgProc( HWND hDlg, UINT message, WPARAM wParam
 	  switch (wParam)
 	    {
 	     case IDHELP:
-	        if( HtmlHelp( hDlg, "quikgrid.chm::html/1w_tidp.htm", HELP_CONTEXT, RightButtonOptions ) == 0 )
+	        if( HtmlHelp( hDlg, "quikgrid.chm::1w_tidp.htm", HELP_CONTEXT, RightButtonOptions ) == 0 )
 				//if (HtmlHelp(hDlg, "quikgrid.chm::html/1w_tidp.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	     return TRUE;

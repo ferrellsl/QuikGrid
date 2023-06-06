@@ -139,7 +139,7 @@ BOOL FAR PASCAL ColorFeaturesDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 		 switch (wParam)
 	    {
         case IDHELP:
-	       if( HtmlHelp( hDlg, "quikgrid.chm::html/1ku6po.htm", HELP_CONTEXT, EditColourFeatures ) == 0 )
+	       if( HtmlHelp( hDlg, "quikgrid.chm::1ku6po.htm", HELP_CONTEXT, EditColourFeatures ) == 0 )
 			   //if (HtmlHelp(hDlg, "quikgrid.chm::html/1ku6po.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	       return TRUE;
@@ -272,7 +272,7 @@ static void SetColourMapLook( HWND hDlg )
 		 switch (wParam)
 	    {
         case IDHELP:
-			   if (HtmlHelp(hDlg, "quikgrid.chm::html/1ku6po.htm", HELP_CONTEXT, 0L) == 0)
+			   if (HtmlHelp(hDlg, "quikgrid.chm::1ku6po.htm", HELP_CONTEXT, 0L) == 0)
 		     NotifyUser( IDS_HELP);
 	       return TRUE;
 

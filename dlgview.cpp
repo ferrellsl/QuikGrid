@@ -221,7 +221,7 @@ BOOL FAR PASCAL EditViewDlgProc( HWND hDlg, UINT message, WPARAM wParam,
 		 switch (wParam)
 	    {
         case IDHELP:
-	       if( HtmlHelp( hDlg, "quikgrid.chm::html/1347xo_.htm", HELP_CONTEXT, MapViewOptions ) == 0 )
+	       if( HtmlHelp( hDlg, "quikgrid.chm::1347xo_.htm", HELP_CONTEXT, MapViewOptions ) == 0 )
 			   //if (HtmlHelp(hDlg, "quikgrid.chm::html/1347xo_.htm", HELP_CONTEXT, 0L) == 0)
 		          NotifyUser( IDS_HELP);
 	       return TRUE;
