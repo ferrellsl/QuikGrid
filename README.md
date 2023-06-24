@@ -57,6 +57,7 @@ LINUX/MacOS USAGE:
 I have confirmed that this build of QuikGrid runs under Ubuntu 22.10 via Wine64 so it should also in theory run just as well under MacOS using Wine64.  To obtain help file support under Wine64, you will need to install Gecko. Download the appropriate version of Gecko from here:  https://wiki.winehq.org/Gecko
 
 Next, open a terminal in the location where you downloaded Gecko and type:  wine msiexec /i wine-gecko-2.xxxxx.msi
+
 Replace the x's with your version.  In my case, that was wine-gecko-2.47.2-x86_64.msi
 
 
