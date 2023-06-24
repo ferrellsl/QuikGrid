@@ -63,7 +63,7 @@ Replace the x's with your version.  In my case, that was wine-gecko-2.47.2-x86_6
 
 FOR QUESTIONS or COMMENTS:
 
-I can be reached at: sferrellblue >at< yahoo.com if you have any questions or comments.
+Please use the Discussions link at the top of the page for questions or comments and report any bugs using the Issues link and I'll respond as soon as I can.
 
 
 
