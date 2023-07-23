@@ -60,8 +60,9 @@ Next, open a terminal in the location where you downloaded Gecko and type:  wine
 
 Replace the x's with your version.  In my case, that was wine-gecko-2.47.2-x86_64.msi
 
+![Screenshot from 2023-07-23 10-50-52](https://github.com/ferrellsl/QuikGrid/assets/5926287/58170a2b-a989-4435-8429-3e50c2b4ab8f)
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Quikgrid-Ubuntu.png?raw=true)
+
 
 
 
