@@ -8,7 +8,7 @@ If you want a binary copy of version 5.5.0 of QuikGrid, contact me at sferrellbl
 
 
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrif-LAS.png?raw=true)
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-LAS.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
 
