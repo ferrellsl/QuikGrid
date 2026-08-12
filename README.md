@@ -7,8 +7,8 @@ It can now read and process files compatible with the LAS 1.5 specification and 
 If you want a binary copy of version 5.5.0 of QuikGrid, contact me at sferrellblue@yahoo.com as the source and the binary for version 5.5.0 will not be posted here on github. Version 5.4.4 is still available in the releases section although it's incorrectly tagged as version 5.5.0.
 
 
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/ef5d4bec-bdc0-4ac0-9166-efffee71e019" />
 
+![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrif-LAS.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
 
