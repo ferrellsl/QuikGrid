@@ -2,7 +2,7 @@
 Contour mapping and 3D surface modeling app.
 
 
-This latest version of QuikGrid has been updated to work with LIDAR LAS and compressed LAS (LAZ) files and use points classified as ground points (classification 2) to generate grids.  
+This latest version of QuikGrid has been updated to work with LIDAR LAS and compressed LAS (LAZ) files and use points classified as ground points (classification 2) to generate grids. See first image below.
 It can now read and process files compatible with the LAS 1.5 specification and earlier.  LAS/LAZ files must be ground classified to work properly with QuikGrid.
 If you want a copy of version 5.6.0 of QuikGrid, contact me at sferrellblue@yahoo.com as the source and the binary will not be posted here on github.
 
