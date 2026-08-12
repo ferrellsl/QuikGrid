@@ -1,7 +1,11 @@
 # QuikGrid v5.6.0 for 64-bit editions of MS Windows
-Contour mapping and 3D surface modeling app
-This latest version of QuikGrid has been updated to work with LIDAR LAS and compressed LAS (LAZ) files and can now read files compatible with the LAS 1.5 spec.
-If you want a copy of version 5.6.0 of QuikGrid, contact me at sferrellblue@yahoo.com as the source and the binary will not be posted here.
+Contour mapping and 3D surface modeling app.
+
+
+This latest version of QuikGrid has been updated to work with LIDAR LAS and compressed LAS (LAZ) files and use points classified as ground points (classification 2) to generate grids.  
+It can now read and process files compatible with the LAS 1.5 specification and earlier.  LAS/LAZ files must be ground classified to work properly with QuikGrid.
+If you want a copy of version 5.6.0 of QuikGrid, contact me at sferrellblue@yahoo.com as the source and the binary will not be posted here on github.
+
 
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/ef5d4bec-bdc0-4ac0-9166-efffee71e019" />
 
