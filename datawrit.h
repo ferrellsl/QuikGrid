@@ -1,1 +1,0 @@
-int OutputDataPointFile( HWND &hwnd );
