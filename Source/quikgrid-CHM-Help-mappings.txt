@@ -1,0 +1,409 @@
+<HTML><HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1252">
+	<META NAME="AUTHOR" CONTENT="">
+<!-- Sitemap 1.0 -->
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<UL>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Contents">
+		<PARAM NAME="Local" VALUE="html/contents.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Introduction">
+		<PARAM NAME="Local" VALUE="html/introduction.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Data Output Options">
+		<PARAM NAME="Local" VALUE="html/dataoutputoptions.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Coordinate and Data Point Information">
+		<PARAM NAME="Local" VALUE="html/gridinfo.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Perspective Surface Z-Ratio">
+		<PARAM NAME="Local" VALUE="html/zratio.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Copying and Redistribution Conditions">
+		<PARAM NAME="Local" VALUE="html/disclaimer.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Data Input Options">
+		<PARAM NAME="Local" VALUE="html/datainputoptions.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What's new in Version 5.4">
+		<PARAM NAME="Local" VALUE="html/fx19kz.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What's new in Version 5.3">
+		<PARAM NAME="Local" VALUE="html/2hht8.4.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What's new in Version 5.2">
+		<PARAM NAME="Local" VALUE="html/fwz9kz.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What's new in Version 5.1">
+		<PARAM NAME="Local" VALUE="html/fwy9kz.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What's new in Version 5.0">
+		<PARAM NAME="Local" VALUE="html/fx79kz.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Using QuikGrid under UNIX">
+		<PARAM NAME="Local" VALUE="html/jnnvb9.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Using QuikGrid from other programs (Visual Basic)">
+		<PARAM NAME="Local" VALUE="html/11.fg33.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Processing a command file">
+		<PARAM NAME="Local" VALUE="html/n4lw8k.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Command File Example: reading data and setting contours">
+		<PARAM NAME="Local" VALUE="html/commandfileexample1.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Command File Example">
+		<PARAM NAME="Local" VALUE="html/commandfileexample2.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Command File Example">
+		<PARAM NAME="Local" VALUE="html/commandfileexample3.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Command File Example: Viewing XYZ data points that represent a grid.">
+		<PARAM NAME="Local" VALUE="html/commandfileexample4.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Reading Scattered Data">
+		<PARAM NAME="Local" VALUE="html/1il3wwp.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Submetrix .sxp data files">
+		<PARAM NAME="Local" VALUE="html/submetrixdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Fixed Format Data">
+		<PARAM NAME="Local" VALUE="html/fixedformatdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading Metric Data">
+		<PARAM NAME="Local" VALUE="html/metricdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading Data Expressed in Latitude and Longtitude">
+		<PARAM NAME="Local" VALUE="html/iogv8m.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading NOAA/NOS integer Latitude/Longitude Data">
+		<PARAM NAME="Local" VALUE="html/nosdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading NOAA/NGS Latitude/Longitude Data">
+		<PARAM NAME="Local" VALUE="html/ngsdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading DCA Data">
+		<PARAM NAME="Local" VALUE="html/dcadata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Comments">
+		<PARAM NAME="Local" VALUE="html/comment.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Saving Scattered data points to a file">
+		<PARAM NAME="Local" VALUE="html/savingscattereddata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading DXF Data">
+		<PARAM NAME="Local" VALUE="html/dxfdata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Reading outline data.">
+		<PARAM NAME="Local" VALUE="html/8nt0ys.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="The Mapgen or Matlab format.">
+		<PARAM NAME="Local" VALUE="html/0ya41s.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Saving a grid to a file">
+		<PARAM NAME="Local" VALUE="html/gzhc6w.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Saving a grid to a file as x,y,z triplets.">
+		<PARAM NAME="Local" VALUE="html/amdf_e.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Saving a grid to a file in the Surfer .GRD format">
+		<PARAM NAME="Local" VALUE="html/9hc0vr.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Saving a grid to a file in ER Mapper format.">
+		<PARAM NAME="Local" VALUE="html/2xkbz55.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Loading a grid from a file">
+		<PARAM NAME="Local" VALUE="html/1lkknc..htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Format of a grid saved to a file">
+		<PARAM NAME="Local" VALUE="html/gridfileformat.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Example of the format of a grid saved to a file">
+		<PARAM NAME="Local" VALUE="html/127ebkq.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Output the grid in DXF format">
+		<PARAM NAME="Local" VALUE="html/outputdxf.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Generation">
+		<PARAM NAME="Local" VALUE="html/gridgeneration.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Output the grid in the DXF 3D Face format">
+		<PARAM NAME="Local" VALUE="html/1ivsvgq.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Export the grid in the VRML format">
+		<PARAM NAME="Local" VALUE="html/exportvrml.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Generation Dialog Box">
+		<PARAM NAME="Local" VALUE="html/3wyx_ix.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Printing">
+		<PARAM NAME="Local" VALUE="html/printing.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Viewing a Contour Map">
+		<PARAM NAME="Local" VALUE="html/aucb3k.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Viewing a Perspective Representation of the Surface">
+		<PARAM NAME="Local" VALUE="html/1dre1lp.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Contour Map and Perspective View options.">
+		<PARAM NAME="Local" VALUE="html/1347xo_.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Changing text size">
+		<PARAM NAME="Local" VALUE="html/1_guf5h.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Changin the Z axis labels">
+		<PARAM NAME="Local" VALUE="html/2ffwyro.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Viewing the xy coordinates as latitude and longitude">
+		<PARAM NAME="Local" VALUE="html/6i2a0q.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Viewing the display in black and white">
+		<PARAM NAME="Local" VALUE="html/rgqasj.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Viewing the Volume difference between two surfaces">
+		<PARAM NAME="Local" VALUE="html/8nokzl.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Using fast screen updating.">
+		<PARAM NAME="Local" VALUE="html/i5dq6f.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Copying to the clipboard">
+		<PARAM NAME="Local" VALUE="html/3eu187.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Editing the color of features">
+		<PARAM NAME="Local" VALUE="html/8s7wye.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Editing the color map">
+		<PARAM NAME="Local" VALUE="html/1ku6po.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Changing the number of contour lines lines">
+		<PARAM NAME="Local" VALUE="html/7k06d8.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Editing the Viewpoint for the Perspective View of the Surface">
+		<PARAM NAME="Local" VALUE="html/09nrwe.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Changing the number of grid lines">
+		<PARAM NAME="Local" VALUE="html/fx3bh7.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Editing the Grid Dimensions">
+		<PARAM NAME="Local" VALUE="html/kb32tk.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Reset grid lines to enclose all data.">
+		<PARAM NAME="Local" VALUE="html/resetgrid.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Calculate number of lines from grid coordinate values.">
+		<PARAM NAME="Local" VALUE="html/calculatelines.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Reset grid lines to enclose current view of the data">
+		<PARAM NAME="Local" VALUE="html/ajycsh.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Generation Options">
+		<PARAM NAME="Local" VALUE="html/rj2t9b.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Automatic grid size ratio">
+		<PARAM NAME="Local" VALUE="html/automaticgridsizeratio.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Sampling data points during grid generation">
+		<PARAM NAME="Local" VALUE="html/c_3xoi.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Scan bandwidth cutoff">
+		<PARAM NAME="Local" VALUE="html/scanbandwidthcutoff.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Distance cutoff">
+		<PARAM NAME="Local" VALUE="html/distancecutoff.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="View ... with data points options">
+		<PARAM NAME="Local" VALUE="html/15q.8f2.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Right mouse button options.">
+		<PARAM NAME="Local" VALUE="html/1w_tidp.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Edge Sensitivity">
+		<PARAM NAME="Local" VALUE="html/edgesensitivity.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Set undefined grid loc'n to">
+		<PARAM NAME="Local" VALUE="html/setundefinedto.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Pan and Zoom options">
+		<PARAM NAME="Local" VALUE="html/2ds4.uq.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Zooming">
+		<PARAM NAME="Local" VALUE="html/zooming.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Resolution">
+		<PARAM NAME="Local" VALUE="html/gridresolution.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Colour Mapping">
+		<PARAM NAME="Local" VALUE="html/gridcolourmap.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Cropping">
+		<PARAM NAME="Local" VALUE="html/gridcropping.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Grid Templates">
+		<PARAM NAME="Local" VALUE="html/gridtemplates.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Handling unevenly distributed data">
+		<PARAM NAME="Local" VALUE="html/bauy48.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Handling large amounts of data">
+		<PARAM NAME="Local" VALUE="html/sstkdn.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Special funtions">
+		<PARAM NAME="Local" VALUE="html/functions.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Handling meteorological data">
+		<PARAM NAME="Local" VALUE="html/meteorologicaldata.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Using the colour layer">
+		<PARAM NAME="Local" VALUE="html/2jocnvq.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Associating file types with QuikGrid">
+		<PARAM NAME="Local" VALUE="html/associations.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Author&gt;Small">
+		<PARAM NAME="Local" VALUE="html/author.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="GNU General Public License">
+		<PARAM NAME="Local" VALUE="html/5axl_.r.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Algorithm">
+		<PARAM NAME="Local" VALUE="html/algorithm.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Metafile Definition">
+		<PARAM NAME="Local" VALUE="html/metafiledefinition.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Density Distance Definition">
+		<PARAM NAME="Local" VALUE="html/densitydistance.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Unevaluated Intersections">
+		<PARAM NAME="Local" VALUE="html/unevaluatedintersections.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Limitations">
+		<PARAM NAME="Local" VALUE="html/limitations.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Artifacts (unexpected results)">
+		<PARAM NAME="Local" VALUE="html/artifacts.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="How do I get started?">
+		<PARAM NAME="Local" VALUE="html/tz0zu.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="How do I prepare my input data?">
+		<PARAM NAME="Local" VALUE="html/tz0zv.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="What units should I use?">
+		<PARAM NAME="Local" VALUE="html/tz0zw.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="The DXF output file doesn't produce the results I expected...?">
+		<PARAM NAME="Local" VALUE="html/tz0zx.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="Can QuikGrid be configured to define &quot;undefined grid locations&quot; to remove gaps in the contours">
+		<PARAM NAME="Local" VALUE="html/tz0zy.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="My XYZ data alrady represents a grid - any suggestions?">
+		<PARAM NAME="Local" VALUE="html/tz0zz.htm">
+	</OBJECT>
+	<LI><OBJECT TYPE="text/sitemap">
+		<PARAM NAME="Name" VALUE="The DXF file will not load into....">
+		<PARAM NAME="Local" VALUE="html/22es9k5.htm">
+	</OBJECT>
+</UL>
+</BODY></HTML>

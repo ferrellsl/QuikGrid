@@ -1,0 +1,10 @@
+int InitializeGrid ( HWND &hwnd );
+void SetGridXY( float xmin, float xincr, float ymin, float yincr);
+void ZapZgrid();
+void DefaultxyCoords();
+void FillGridXY();
+void SetZUndefined( double arg );
+void SetUndefinedTo( double arg );
+void SnapXYZdata();
+void SetGridEdgeZ( float value );
+void InitializeZgrid( ); 

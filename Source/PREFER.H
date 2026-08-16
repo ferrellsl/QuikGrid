@@ -1,0 +1,15 @@
+void LoadPreferences( HMENU &hMenu);
+void SaveZoomOptions();
+void SaveViewDataOptions();
+void SaveViewMenuOptions();
+void SaveTechnicalOptions();
+void SaveInputOptions();
+void SaveOutputOptions(); 
+void SaveZratioOptions();
+void SaveTemplate();
+void ClearTemplate();
+void Save3dOptions();
+void SaveColorOptions();
+void SaveRightButtonOptions();
+void SaveContourOptions();
+void SaveColourMappingOptions(); 
