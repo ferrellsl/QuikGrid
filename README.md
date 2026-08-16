@@ -1,4 +1,4 @@
-# QuikGrid v5.5.2 for 64-bit editions of MS Windows
+# QuikGrid v5.5.2 LIDAR Edition
 Contour mapping and 3D surface modeling app.
 
 
