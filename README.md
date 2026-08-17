@@ -12,6 +12,8 @@ If you want a binary copy of version 5.5.3 of QuikGrid, contact me here or at sf
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-LAS.png?raw=true)
 
+Click the image below to watch a video of Mount St. Helens being rotate around an axis in real time.
+
 [![Watch the video](https://img.youtube.com/vi/3z5-tAXMWX4/hqdefault.jpg)](https://www.youtube.com/watch?v=3z5-tAXMWX4)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
