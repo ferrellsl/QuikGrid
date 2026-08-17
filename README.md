@@ -14,9 +14,6 @@ If you want a binary copy of version 5.5.3 of QuikGrid, contact me here or at sf
 
 [![Watch the video](https://youtube.com)](https://youtu.be/3z5-tAXMWX4)
 
-
-[![Watch the video](https://youtube.com)](https://youtu.be/3z5-tAXMWX4)
-
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz2.png?raw=true)
