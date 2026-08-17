@@ -12,6 +12,20 @@ If you want a binary copy of version 5.5.3 of QuikGrid, contact me here or at sf
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-LAS.png?raw=true)
 
+
+<h2 align="center">📺 Project Walkthrough</h2>
+
+<p align="center">
+  Check out the video below to see the project running live!
+</p>
+
+<p align="center">
+  <a href="https://youtu.be/3z5-tAXMWX4">
+    <img src="https://youtube.com" alt="Watch the video" width="550"/>
+  </a>
+</p>
+
+
 [![Watch the video](https://youtube.com)](https://youtu.be/3z5-tAXMWX4)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz1.png?raw=true)
