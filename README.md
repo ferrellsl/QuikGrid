@@ -1,13 +1,19 @@
-# QuikGrid v5.5.3 LIDAR Edition
+# QuikGrid v5.6 LIDAR Edition
 Contour mapping and 3D surface modeling app.
 
 
-This latest version of QuikGrid has been updated to read LIDAR LAS and compressed LAS (LAZ) files. See first image below.
+QuikGrid has been updated to read LIDAR LAS and compressed LAS (LAZ) files. See first image below.
 It can now read and process files compatible with the ASPRS LAS 1.5 specification and earlier.  For more information about the LAS 1.5 specification see:  https://publicdocuments.asprs.org/las-v15-r00-2025  Your LAS/LAZ files must be ground classified to work properly with QuikGrid. If you need an app to ground classify your own LAS/LAZ files please contact me.  Most LAS/LAZ files downloaded from public sources such as universities have already been ground classified so you're all set if that's the case, but other sources don't always offer ground classified LAS/LAZ files. 
 
-Version 5.5.3 has also been modified to add smooth, real-time, 3D rotation of surface grids. No more choppy rotations that look like slideshows.  Just left-click on the vertical or horizontal sliders and rotate your 3D grid in real-time.  Panning via the arrow keys has also been reworked and also works smoothly now. 
-If you want a binary copy of version 5.5.3 of QuikGrid, contact me here or at sferrellblue (at) yahoo dot com as the source and the binary for version 5.5.3 will not be posted here on github. Version 5.4.4 (non-LIDAR) is still available in the releases section although it's incorrectly tagged as version 5.5.3.
+Version 5.6 has also been modified to add smooth, real-time, 3D rotation of surface grids. No more choppy rotations that look like slideshows.  Just left-click on the vertical or horizontal sliders and rotate your 3D grid in real-time.  Panning via the arrow keys has also been reworked and also works smoothly now. 
+If you want a binary copy of version 5.6 of QuikGrid, contact me here or at sferrellblue (at) yahoo dot com as the source and the binary for version 5.6 will not be posted here on github. Version 5.4.4 (non-LIDAR) is still available in the releases section although it's incorrectly tagged as version 5.6.
 
+This latest version now supports exporting (Structured Vector Graphics) SVG files instead of exporting Windows Meta Files (WMF) to the clipboard.  Exporting WMF files made sense in QuikGrid's early days when data sets were small and sparse, but LIDAR files and current survey data files have become enormous.  Windows 11 also limits the size of WMF clipboard files to 4MB and QuikGrid can easily exceed this limit even when the smallest of LIDAR files are loaded. 
+
+SVG Export
+
+
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/9176f2ef-72ed-4428-bf2f-a9d72a6c6ed5" />
 
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-LAS.png?raw=true)
