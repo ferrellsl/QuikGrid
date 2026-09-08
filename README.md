@@ -15,7 +15,7 @@ SVG Export
 
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/9176f2ef-72ed-4428-bf2f-a9d72a6c6ed5" />
 
-LIDAR LAS/LAZ Input
+LIDAR LAS/LAZ Input and DXF, VRML and SVG output
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/QuikGrid-LAS.png?raw=true)
 
