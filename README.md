@@ -85,7 +85,7 @@ Replace the x's with your version.  In my case, that was wine-gecko-2.47.4-x86_6
 
 ![Screenshot from 2023-07-23 10-50-52](https://github.com/ferrellsl/QuikGrid/assets/5926287/58170a2b-a989-4435-8429-3e50c2b4ab8f)
 
-Native MacOS and Linux ports are in development with an expected release date in the 4th quarter of 2026.  The native MacOS version will require XQuaartz, found here: https://www.xquartz.org/
+Native MacOS and Linux ports are in development with an expected release date in the 4th quarter of 2026.  The native MacOS version will require XQuartz, found here: https://www.xquartz.org/
 
 
 
