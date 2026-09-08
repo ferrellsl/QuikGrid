@@ -72,7 +72,8 @@ Users who wish to create VRML models should note that the latest version of Quik
 
 BUILDING:
 
-If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE.  This app is a Microsoft Foundation Class (MFC) application so building a native Linux or MacOS version is probably out of the question without a significant re-write of the GUI code. It would be nice if some coding gurus out there removed the MFC dependencies and replaced them with something cross-platform such as QT, wxWidgets or even GTK.  I currently have no plans to do so though.  I'm happy running this on Windows. 
+If you're using Visual Studio 2019 or later, double-click the Visual Studio Solution file in the QuikGrid sub-folder and build the EXE. Native MacOS and Linux ports are in development with an expected release date in the 4th quarter of 2026.
+
 
 LINUX/MacOS USAGE:
 
@@ -84,7 +85,7 @@ Replace the x's with your version.  In my case, that was wine-gecko-2.47.4-x86_6
 
 ![Screenshot from 2023-07-23 10-50-52](https://github.com/ferrellsl/QuikGrid/assets/5926287/58170a2b-a989-4435-8429-3e50c2b4ab8f)
 
-
+Native MacOS and Linux ports are in development with an expected release date in the 4th quarter of 2026.  The native MacOS version will require XQuaartz, found here: https://www.xquartz.org/
 
 
 
