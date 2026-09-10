@@ -2,7 +2,7 @@
 Contour mapping and 3D surface modeling app.
 
 
-QuikGrid has been updated to read LIDAR LAS and compressed LAS (LAZ) files. See first image below.
+QuikGrid has been updated to read LIDAR LAS and compressed LAS (LAZ) files. See second image below.
 It can now read and process files compatible with the ASPRS LAS 1.5 specification and earlier.  For more information about the LAS 1.5 specification see:  https://publicdocuments.asprs.org/las-v15-r00-2025  Your LAS/LAZ files must be ground classified to work properly with QuikGrid. If you need an app to ground classify your own LAS/LAZ files please contact me.  Most LAS/LAZ files downloaded from public sources such as universities have already been ground classified so you're all set if that's the case, but other sources don't always offer ground classified LAS/LAZ files. 
 
 Version 5.6 has also been modified to add smooth, real-time, 3D rotation of surface grids. No more choppy rotations that look like slideshows.  Just left-click on the vertical or horizontal sliders and rotate your 3D grid in real-time.  Panning via the arrow keys has also been reworked and also works smoothly now. 
