@@ -37,10 +37,6 @@ Click the image below to watch a video of Mount St. Helens being rotated around 
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/Wiz4.png?raw=true)
 
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz5.png?raw=true)
-
-![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz6.png?raw=true)
-
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz7.png?raw=true)
 
 ![alt text](https://github.com/ferrellsl/QuikGrid/blob/main/Screenshots/wiz-5ft-gradient.png?raw=true)
