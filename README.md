@@ -1,5 +1,5 @@
 # QuikGrid v5.6 LIDAR Edition
-Contour mapping and 3D surface modeling app.
+Contour mapping and 3D surface modeling app. Native Windows and Linux versions are available and a MacOS port is in development and expected to be completed in the 4th quarter of 2026.
 
 
 QuikGrid has been updated to read LIDAR LAS and compressed LAS (LAZ) files. See second image below.
