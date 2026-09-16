@@ -90,8 +90,7 @@ A native Linux port has been completed and has feature parity with the Windows v
 
 
 
-A native MacOS port is in development with an expected release date in the 4th quarter of 2026.  The native MacOS version will require XQuartz, found here: https://www.xquartz.org/
-
+A native MacOS port for M-Series Macs is in development with an expected release date in the 4th quarter of 2026. 
 
 
 FOR QUESTIONS or COMMENTS:
