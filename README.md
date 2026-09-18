@@ -10,12 +10,12 @@ If you want a binary copy of version 5.7 of QuikGrid, contact me here or at sfer
 
 Version 5.7 has also been upgraded to use hillshading to bring out additional terrain details.  This version alos supports exporting (Structured Vector Graphics) SVG files instead of exporting Windows Meta Files (WMF) to the clipboard.  Exporting WMF files made sense in QuikGrid's early days when data sets were small and sparse, but LIDAR files and current survey data files have become enormous.  Windows 11 also limits the size of WMF clipboard files to 4MB and QuikGrid can easily exceed this limit even when the smallest of LIDAR files are loaded. If you absolutely must use WMF exports, then please use an earlier version of QuikGrid but bear in mind that you will eventually hit the WMF size limit imposed by Windows.  You can still export BMP files to the clipboard in this version and earlier versions as well, but SVG images are preferred because they are true vector files and can be scaled to any size without pixelation and Windows won't limit your SVG file sizes.
 
-SVG Export without hillshade
+SVG Export with flat colors.
 
 
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/9176f2ef-72ed-4428-bf2f-a9d72a6c6ed5" />
 
-Same data set with hillshade applied.
+Hillshade applied.
 
 <img width="2560" height="1440" alt="hillshade_putnam" src="https://github.com/user-attachments/assets/7018ae8b-2601-4662-8e15-40b7e23cdbc8" />
 
