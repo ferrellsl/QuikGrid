@@ -25,6 +25,10 @@ Click the image below to watch a video of Mount St. Helens being rotated around 
 
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/87f03679-7ae3-4c91-aa04-8d1f70fc2564" />
 
+
+New hillshade graphics applied.
+
+
 <img width="2560" height="1440" alt="sunset crater hillshade" src="https://github.com/user-attachments/assets/a92eae3f-ad85-4dde-abf5-dcbd2bb5674d" />
 
 
